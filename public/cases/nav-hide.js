@@ -19,3 +19,23 @@
   addEventListener("load", tick);
   document.addEventListener("DOMContentLoaded", tick);
 })();
+
+/* Open every case study at its start. Without this, some browsers and embedded
+   viewers keep or restore the previous scroll position, which can land the
+   reader at the end of the page. A link to a #section still goes there. */
+(function () {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  var touched = false;
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (e) {
+    addEventListener(e, function () { touched = true; }, { passive: true, once: true });
+  });
+  function toTop() {
+    if (touched) return;
+    if (location.hash && document.getElementById(location.hash.slice(1))) return;
+    window.scrollTo(0, 0);
+  }
+  toTop();
+  document.addEventListener("DOMContentLoaded", toTop);
+  addEventListener("pageshow", toTop);
+  addEventListener("load", function () { toTop(); setTimeout(toTop, 60); });
+})();
