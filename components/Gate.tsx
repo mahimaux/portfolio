@@ -17,9 +17,22 @@ export function Gate() {
   // ?nogate skips the loader entirely. So does arriving with a section hash
   // (e.g. from a case study's nav): the visitor lands straight on that section.
   useEffect(() => {
-    const hash = location.hash;
+    // A refresh always starts at the hero. The browser would otherwise restore the old
+    // scroll position, or follow a #section left in the URL by an in-page link.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    const isReload = nav?.type === "reload";
+    if (isReload && location.hash) history.replaceState(null, "", location.pathname + location.search);
+    const hash = isReload ? "" : location.hash;
     const target = hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
-    if (!target) window.scrollTo(0, 0);
+    if (!target) {
+      window.scrollTo(0, 0);
+      const toTop = () => {
+        window.scrollTo(0, 0);
+        getLenis()?.scrollTo(0, { immediate: true, force: true });
+      };
+      window.addEventListener("load", () => setTimeout(toTop, 60), { once: true });
+    }
     // A visitor who already came through the gate this session (e.g. back from a
     // case study) goes straight to the page instead of waiting again.
     let seen = false;
