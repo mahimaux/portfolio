@@ -1,0 +1,66 @@
+/* Responsive repairs — tablet and phone.
+   Loaded after the compiled stylesheet so these rules win on specificity/order.
+   Every rule here is a containment or legibility fix; none change the desktop design. */
+
+/* 1. Grid/flex children must be allowed to shrink. Default min-width:auto on grid
+      items is what let the Skills section push the page 139px wider than the screen. */
+#toolkit > div,
+#toolkit .tk-bars,
+#google > div,
+#meta > div,
+#process > div,
+#receipts > div { min-width: 0; }
+
+/* 2. The Skills title is set nowrap for its desktop -90deg rotation. Below the md
+      breakpoint it is upright, so it has to be allowed to wrap. */
+@media (max-width: 767px) {
+  .tk-side-title h2 {
+    white-space: normal;
+    font-size: clamp(38px, 11vw, 64px);
+    line-height: .88;
+  }
+  .tk-side-title { padding-top: 14vw; }
+}
+
+/* 3. Rotated full-bleed bands (the project marquee) stick past the viewport edge
+      at their corners. Clip the band itself rather than un-rotating it. */
+main > div:has(> .paper-tex[class*="-rotate-2"]),
+.paper-tex[class*="-rotate-2"] { max-width: 100vw; }
+html, body { overflow-x: clip; }
+
+/* 4. Legibility floor. These labels are sized in em against the hero headline, so
+      they shrank to 8.3px once the headline clamp bottomed out on a phone. max()
+      keeps the desktop value (where the em term already wins) and only lifts the
+      small-screen end. */
+.hero-tile .tile-slide { font-size: max(11px, 0.14em); }
+.feed-strip [class*="text-[0.07em]"] { font-size: max(10px, 0.07em); }
+@media (max-width: 900px) {
+  .h-float { font-size: 11px; }
+  .tag { font-size: 11px; }
+}
+
+/* 5. Tap targets. 44px minimum on anything clickable, phone only. */
+@media (max-width: 767px) {
+  a.btn, button.btn { min-height: 46px; }
+  nav a, header a { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* 6. Phone type scale. The compiled clamps bottom out larger than a 360px screen
+      can hold for the longest headings; this trims the floor without touching
+      the vw term, so tablet and desktop are unchanged. */
+@media (max-width: 480px) {
+  .display { letter-spacing: -.01em; }
+  h1.display { word-break: break-word; }
+}
+
+/* 7. Keep the pinned horizontal track usable on touch: it is driven by scroll
+      position, so it works as-is, but the floating notes beside it are decorative
+      and crowd a narrow screen. */
+@media (max-width: 600px) {
+  .h-note { position: static; margin-top: 10px; }
+}
+
+/* 8. Smallest phones (under 360px): keep "Let's connect" on one line beside the logo. */
+@media (max-width: 359px) {
+  header a.nav-connect { padding: 6px 11px; font-size: 12px; margin-right: 56px; }
+}

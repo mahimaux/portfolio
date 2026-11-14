@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-case="reframe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reframe · Mahima Shastry</title>
+<meta name="description" content="I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version.">
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+
+.small{margin:0;max-width:70ch;font-size:13.5px;line-height:1.6;opacity:.72}
+.callout{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;max-width:72ch;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+.callout p{margin:0;font-size:15.5px;line-height:1.55}
+.callout .lbl{color:var(--ink);opacity:.8;font-weight:700}
+.hmw{margin:6px 0;display:flex;flex-direction:column;gap:10px;padding-left:22px;border-left:4px solid var(--tomato)}
+.hmw .q{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.22;max-width:34ch}
+.tr.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tr.n3 .td + .td,.tr.n2 .td + .td{border-left:2px solid rgb(18 17 16 / .12)}
+.tr.n3 .td.k{border-right:0}
+.tr.head .th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-mono,ui-monospace,monospace)}
+.td strong{font-weight:700}
+.cards .card .lbl{color:var(--tomato);font-weight:700}
+.card p{margin:0;font-size:15.5px;line-height:1.5}
+.card h4{margin:0;font-size:22px;line-height:1.08}
+.person{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.person img{width:120px;height:auto;border:3px solid var(--ink);border-radius:12px;display:block;filter:grayscale(1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px}
+.stat{background:var(--forest);color:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 0 var(--ink)}
+.stat .display{font-size:clamp(38px,4.4vw,60px);line-height:.95;color:var(--lime)}
+.stat span:last-child{font-size:14px;line-height:1.4;opacity:.9}
+.figrow{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px;align-items:start}
+.figrow .fig{margin:0}
+.fig figcaption{font-size:14px;line-height:1.5;opacity:.8}
+.phones{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:16px 14px;align-items:start}
+.phones .fig img{border-radius:18px;background:#111}
+.phones .fig figcaption{font-size:13px}
+.flow{display:flex;flex-direction:column;gap:0;max-width:640px}
+.flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
+.flow .step:not(:last-child) .num{position:relative}
+.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
+.flow .txt b{font-size:18px;line-height:1.2}
+.flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
+.flow .step:last-child .txt{padding-bottom:0}
+.dots.ol .dot{width:26px;height:26px;margin-top:0;display:grid;place-items:center;font-size:12px;font-weight:700}
+.swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw{display:flex;flex-direction:column;gap:6px;width:110px}
+.sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
+.hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
+.hero-fig img{display:block;width:100%;height:auto}
+.readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+@media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
+@media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#process" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">UX and accessibility case study / Self-directed concept / Web prototype + Chrome extension</span>
+      <span class="mono readtime">7 min read</span>
+    </div>
+    <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">Reframe</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
+      <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Make the page easier to read. Keep the reader in charge.</h2>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version.</p>
+        <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">I built CivicConnect to make the design problem concrete. Imagine trying to find out whether you qualify for help with an energy bill. The deadline is buried, several parts of the page compete for attention, and a single “unless” can change your answer.</p><p class="rv small">CivicConnect, its energy-assistance program and all example eligibility details are fictional.</p>
+        
+      </div>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">My role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Research, UX, UI, content design and prototype development.</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">The test case</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">A fictional benefits page with income limits, deadlines and exceptions.</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">What I measured</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">The rewrite checks caught 9 of 12 meaning-changing examples in a hand-labelled benchmark.</dd></dl>
+    </div>
+    <figure class="rv hero-fig" style="background:var(--paper-2);margin-top:44px"><img src="ux/reframe/01.webp" alt="01 A simplified eligibility passage, with an explanation of the change and access to the published wording." width="1250" height="781" fetchpriority="high"></figure><p class="small" style="margin-top:12px">01 A simplified eligibility passage, with an explanation of the change and access to the published wording.</p>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">01 Research &amp; problem framing</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The deadline is in there somewhere</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The project began with desk research and self-testing on CivicConnect. I looked at browser reading tools, operating-system settings, plain-language guidance and criticism of accessibility overlays.</p>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Reading controls</span><span class="td">Firefox Reader View supports changes to size, width and spacing. Edge also offers translation and Copilot summaries. That set a baseline for support readers can already turn on. [1, 2]</span></div><div class="tr defs"><span class="td k">Plain language and control</span><span class="td">W3C cognitive accessibility guidance recommends clearer language, reader control over content changes and an easy way back. Those patterns support the preview and recovery decisions. [3]</span></div><div class="tr defs"><span class="td k">Overlay criticism</span><span class="td">The European Disability Forum and IAAP describe how some overlays can interfere with assistive technology. I kept activation reader-led and treated compatibility as a question to test. [4]</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Personas grounded in reading situations</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">These are scenario-based personas synthesized from the desk research. One reader can move between them over the course of a single visit.</p>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">The tired applicant</h4><p>Dense text and competing alerts make it hard to keep a place. Needs comfortable reading, simpler wording, focus and reduced motion.</p></div><div class="rv hard card"><h4 class="display">The reader in glare</h4><p>Small type, weak contrast and color-only cues make details hard to see. Needs more legible text, bigger controls and clearer visual cues.</p></div><div class="rv hard card"><h4 class="display">The multilingual reader</h4><p>A term or eligibility condition is unclear in English. Needs an explanation or a translation with the original close at hand.</p></div></div>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">How might we help a reader find and understand the rule that applies to them, without asking them to disclose a diagnosis or giving up access to the published text?</p></div>
+<p class="rv small">Two questions guided the design: Where should a change take effect immediately? Where does the reader need to stop and inspect it first?</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">02 Ideation &amp; onboarding</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">One panel, two ways to make a change</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I organized the panel around what the reader wants to do: read, understand, see, focus, reduce motion or switch language. How the change takes effect depends on what it touches.</p>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Apply immediately</span><span class="td">Type, spacing, contrast, larger controls, reduced motion and focus mode give immediate feedback. People can adjust them while looking at the page.</span></div><div class="tr defs"><span class="td k">Preview before applying</span><span class="td">Simplification, everyday wording, generated translations and proposed color cues get a review step. Selected-text explanations open beside the source and leave the page wording in place.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Ask what would help</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The optional setup asks one question in everyday language and lets readers skip it. Preferences stay on the device. A single launcher opens the same panel later, with a separate Active changes view for reviewing and undoing adjustments.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/reframe/02.webp" alt="02 Setup offers needs-based choices. The reader can also skip setup." loading="lazy" width="936" height="828"><figcaption>02 Setup offers needs-based choices. The reader can also skip setup.</figcaption></figure><figure class="rv fig"><img src="ux/reframe/03.webp" alt="03 The launcher opens reading settings next to the page." loading="lazy" width="800" height="600"><figcaption>03 The launcher opens reading settings next to the page.</figcaption></figure></div>
+<div class="rv callout"><p>A preview for every change slows down visible adjustments. An immediate rewrite makes readers discover changed rules after the fact. I gave these two kinds of change different paths.</p></div>
+<p class="rv small">I carried the same approach into the interface: plain labels, warm paper tones, a restrained accent and no chat window to learn.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">03 Solution / Presentation</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Turn down the noise</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The page should stay usable while the reader changes it. Comfortable reading, text size and line height make the article easier to scan. Larger interface controls and high contrast address different parts of the same problem.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/reframe/04.webp" alt="04 Focus mode quiets peripheral content. The status message explains how to reveal it or exit." loading="lazy" width="1250" height="781"><figcaption>04 Focus mode quiets peripheral content. The status message explains how to reveal it or exit.</figcaption></figure><figure class="rv fig"><img src="ux/reframe/05.webp" alt="05 The color tools add cues that can be read alongside color. Changes can be reviewed and reversed." loading="lazy" width="1196" height="738"><figcaption>05 The color tools add cues that can be read alongside color. Changes can be reviewed and reversed.</figcaption></figure></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Keep the deadline in view</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Focus mode dims peripheral navigation, sidebar material and the footer. Hover or keyboard focus brings those areas back into view. Warnings, eligibility rules, requirements, deadlines, rights information and help lines are protected from dimming.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Give color a second cue</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The vision tools can improve color distinction, add labels or visual cues, and emphasize links. Reframe looks for a label in the page first. When the page cannot support a proposed interpretation, the element stays as published.</p>
+<p class="rv small">The guided tour also demonstrates individual undo, the reduced-motion setting for a moving alert ticker, and the control for larger interface elements.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">04 Solution / Content review</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Show the rewrite before it touches the page</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A shorter sentence can be easier to read and still send someone to the wrong office. I split permission to send text from permission to apply the result.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/reframe/06.webp" alt="06 Before sending, the consent screen explains the request and what leaves the device." loading="lazy" width="800" height="600"><figcaption>06 Before sending, the consent screen explains the request and what leaves the device.</figcaption></figure><figure class="rv fig"><img src="ux/reframe/07.webp" alt="07 The review shows the proposed wording alongside the original, with checks and passage-level choices." loading="lazy" width="922" height="828"><figcaption>07 The review shows the proposed wording alongside the original, with checks and passage-level choices.</figcaption></figure></div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">1. Explain the request</span><span class="td">The prototype explains what will be sent before a rewrite. The service receives the relevant page text. Setup preferences and anything the reader types stay out of the request.</span></div><div class="tr defs"><span class="td k">2. Review the proposal</span><span class="td">The server checks the rewrite and the browser checks it again. The review names checks such as numbers, dates, obligations and conditions. A failed passage defaults to the published wording.</span></div><div class="tr defs"><span class="td k">3. Apply and recover</span><span class="td">The reader can keep the page as published or apply reviewed passages. Changed passages are marked, with a way to inspect the source and undo the change.</span></div></div>
+<div class="rv callout"><p>The review says what it checked. It gives the reader the evidence it has, without a confidence percentage.</p></div>
+<p class="rv small">The prototype also supports an Everyday words review for lighter edits and adds an overview to the simplified page.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">05 Solution / Meaning &amp; language</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Keep the original within reach</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Sometimes the sticking point is one phrase. Sometimes the reader needs a different language for the whole task. Each path keeps the source close enough to consult.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/reframe/08.webp" alt="08 Select a phrase to open an explanation beside the original." loading="lazy" width="1095" height="711"><figcaption>08 Select a phrase to open an explanation beside the original.</figcaption></figure><figure class="rv fig"><img src="ux/reframe/09.webp" alt="09 Kannada preview shows the source and translation before application." loading="lazy" width="944" height="850"><figcaption>09 Kannada preview shows the source and translation before application.</figcaption></figure></div>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/reframe/10.webp" alt="10 A change marker opens the rationale and offers View original and Undo." loading="lazy" width="1080" height="621"><figcaption>10 A change marker opens the rationale and offers View original and Undo.</figcaption></figure><figure class="rv fig"><img src="ux/reframe/11.webp" alt="11 Guided tour, 4:42. When the proposed change cannot be checked, the page stays as it is." loading="lazy" width="1250" height="705"><figcaption>11 Guided tour, 4:42. When the proposed change cannot be checked, the page stays as it is.</figcaption></figure></div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Explain a phrase</span><span class="td">A small card pairs the selected wording with a simpler explanation. The original passage remains in place.</span></div><div class="tr defs"><span class="td k">Switch languages</span><span class="td">English and Spanish use published site copy and switch immediately. Hindi and Kannada use the reviewed translation flow. Readers can view the original again or reset the translation.</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">06 Evaluation &amp; reflection</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">What the checks caught and missed</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I hand-labelled 19 pairs of original passages and rewrites from CivicConnect: 12 that changed the meaning and 7 that preserved it. I ran them through the prototype’s rule-based checks.</p>
+<div class="stats"><div class="rv stat"><span class="display">9 of 12</span><span>Meaning-changing rewrites caught.</span></div><div class="rv stat"><span class="display">3 of 12</span><span>Meaning-changing rewrites missed.</span></div><div class="rv stat"><span class="display">1 of 7</span><span>Faithful rewrites refused.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Same deadline, different person</h3>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Published example</span><span class="th">Rewrite the checks missed</span></div><div class="tr n2"><span class="td k">The office must contact you within 30 days.</span><span class="td">You must contact the office within 30 days.</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Both sentences kept “must” and “30 days.” The duty changed hands. The other misses reversed cause and effect or introduced a claim about the office while retaining the expected names. The checks also refused one faithful rewrite that split a sentence into steps.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I’d test next</h3>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Reader comprehension</span><span class="td">Ask people who use screen readers, reading adjustments or translation to find an eligibility rule, review a rewrite and recover the source. Track task completion, correct interpretation and independent recovery.</span></div><div class="tr defs"><span class="td k">Compatibility and meaning</span><span class="td">Check keyboard order, announcements, zoom and translation on more real pages. Expand the benchmark to cover swapped actors, negation, exceptions and causal reversals.</span></div></div>
+<p class="rv small">The benchmark measures the checks on one fictional page. Participant outcomes, translation accuracy across sites and accessibility conformance remain open. The extension is a concept build.</p>
+<p class="rv small">1 Mozilla Firefox Reader View · 2 Microsoft Edge Reading mode · 3 W3C cognitive accessibility guidance · 4 EDF and IAAP statement on overlays</p>
+<p class="rv small">Project evidence: original case study PDF and archive, guided tour, and Reframe’s evaluation notes. Prototype screenshots appear throughout.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="steer.dc.html" style="display:block;margin:0;font-size:clamp(40px,8vw,120px);line-height:.9;max-width:16ch">Steer</a>
+      <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.5;opacity:.78">Running a driving school takes more than a group chat.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="steer.dc.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#process" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All five projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

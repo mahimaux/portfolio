@@ -1,0 +1,32 @@
+{
+ "halo": {
+  "words": 2850,
+  "mins": 13,
+  "title": "An SOS you can start with your phone in your bag.",
+  "lede": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India."
+ },
+ "reframe": {
+  "words": 1430,
+  "mins": 7,
+  "title": "Make the page easier to read. Keep the reader in charge.",
+  "lede": "I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version."
+ },
+ "steer": {
+  "words": 2152,
+  "mins": 10,
+  "title": "Running a driving school takes more than a group chat.",
+  "lede": "Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records."
+ },
+ "atlas": {
+  "words": 3127,
+  "mins": 15,
+  "title": "Delegate the work. Keep the judgment.",
+  "lede": "ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops."
+ },
+ "lineage": {
+  "words": 3082,
+  "mins": 15,
+  "title": "Creative Lineage Canvas - Recover the shadow. Keep the progress.",
+  "lede": "Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today."
+ }
+}

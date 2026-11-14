@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs restructure · Content design · Mahima Shastry</title>
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#content-design-cases" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65;margin-bottom:18px">CONTENT SYSTEMS 8 ACCESSIBILITY</div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-end">
+      <h1 class="display" style="flex:3 1 520px;min-width:0;margin:0;font-size:clamp(40px,6.6vw,104px);line-height:.98">Documentation restructure post- merger: rebuilding information architecture for scannability</h1>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">ROLE</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Content Designer/ UX Writer</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">compANY</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Software AG, through the merger with IBM</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">SCOPE</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">webMethods suite documentation</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">year</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">1 month</dd></dl>
+    </div>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ BRIEF</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Problem</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">When Software AG merged with IBM, I inherited two sets of documentation, written by two companies. Software AG's docs were organized around how the engineering teams had built the product. IBM's followed its own conventions. Neither was wrong on its own, but stitched together into one product library they gave users two different logics.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Users told us they could not find things. I audited the whole set, rebuilt it around the way people actually do the work, and got four very different teams to sign off on it.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The feedback and support tickets kept coming back to the same six issues:</p>
+<div class="cards" style="--n:2">
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Duplicated topics</span><span style="font-size:15.5px;line-height:1.5">The same topic showed up in two or three places, each explained a bit differently. People had no idea which version to trust.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Buried content</span><span style="font-size:15.5px;line-height:1.5">Useful pages sat four to five levels deep, under headings that made sense to whoever wrote them and nobody else.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Mixed content types</span><span style="font-size:15.5px;line-height:1.5">Concepts, steps, and reference material were packed into the same blocks. If you only wanted the steps, you had to read everything else first.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">No troubleshooting guides</span><span style="font-size:15.5px;line-height:1.5">When something broke halfway through a tutorial, there was nowhere to go. People either filed a ticket or gave up.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">No inclusive terms</span><span style="font-size:15.5px;line-height:1.5">Outdated terms like master/slave and whitelist/blacklist were still over all the docs.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Harder searchability</span><span style="font-size:15.5px;line-height:1.5">Related concepts were scattered, so search results led people to fragments of an answer instead of the whole thing.</span></div>
+</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Honestly, most of these problems existed before the merger. The merger just made all of them worse at the same time, and it made them impossible to ignore.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ APPROACH</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Process</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">How I figured out what was actually wrong</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">"The docs are hard to use" isn't something you can fix. So I started with a content audit.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I went through the API Gateway guides page by page and logged four things for each one: what it covered, where it lived, how deep it was nested, how easy the instructions were to follow, and whether another page already said the same thing.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">That spreadsheet turned a vague complaint into a list of specific problems I could point at. It also changed how my stakeholder conversations went. I could show them that a single configuration topic existed in three places, or that a tutorial users relied on was five clicks deep</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">The rules I rebuilt it with</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Once the audit was done, I wrote down a handful of rules so every decision after that point had something to check against:</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span><strong>Organize by process, not by owner: </strong>Topics follow the order people actually do the work in, that is, get started, administer, use, promote, upgrade. Which team or which company wrote the page doesn't matter to the reader.<br></span></li><li class="rv"><span class="dot"></span><span><strong>Three levels at maximum:  </strong>If a topic needs a fourth level to find a home, the structure above it is wrong.<br></span></li><li class="rv"><span class="dot"></span><span><strong>Say it once, link to it everywhere else: </strong> Every topic gets one canonical page. Other pages point to it instead of re-explaining it.<br></span></li><li class="rv"><span class="dot"></span><span><strong>Put help where people get stuck:</strong> Troubleshooting lives right after the task it supports, not in a separate corner of the site.<br></span></li><li class="rv"><span class="dot"></span><span><strong>Write for everyone: </strong>Inclusive, accessible terminology by default, in the documentation and in product copy.<br></span></li></ul>
+<div class="rv mono lbl sub">Who I worked with</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Each group knew something about the docs that I didn't, and each one also had limits I had to design around.</p>
+<div class="cards" style="--n:2">
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Developers</span><span style="font-size:15.5px;line-height:1.5">Told me which technical constraints were fixed and which had some give. That kept me from designing a structure the platform couldn't support.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Leadership</span><span style="font-size:15.5px;line-height:1.5">Needed new structure to scale across the full webMethods suite and roll out without disrupting active documentation work.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Designers</span><span style="font-size:15.5px;line-height:1.5">Turned the hierarchy into navigation that actually looked and felt coherent, so the UI backed up the structures instead of working against it.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Support teams</span><span style="font-size:15.5px;line-height:1.5">Knew from real tickets exactly where users got stuck. Most of the troubleshooting sections came straight out of those conversations.</span></div>
+</div>
+<p class="serif-i rv" style="margin:6px 0;font-size:clamp(22px,2.4vw,30px);line-height:1.22;max-width:32ch;padding-left:22px;border-left:4px solid var(--tomato)">The biggest constraint: The platform's URL and content-management structure couldn't change without a lot of engineering effort. So, I had to fit the new architecture inside the existing system. Instead of new URLs, removed pages redirect to their canonical topic.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Getting everyone to agree took some back and forth. What helped most was the audit. It is hard to argue for keeping three copies of the same page when they're sitting next to each other in a spreadsheet.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ SOLUTION</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Before and after structure</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">What I found and what I changed</h3>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>What I found</strong></span><span class="th mono lbl"><strong>What I did about it</strong></span></div>
+<div class="tr"><span class="td k">Main guides like Administering API Gateway and Using API Gateway had no links to their own subsections. You had to open the sidebar and dig.</span><span class="td">I added subsection links to each main guide, so people can see what's inside and jump straight to it.</span></div>
+<div class="tr"><span class="td k">Most concepts were hard to find and weren't grouped with related ones. That confused readers and made search a lot less useful.</span><span class="td">I restructured the entire guide around process, so related topics sit together in the order people need them.</span></div>
+<div class="tr"><span class="td k">A lot of topics were repeated across guides, often with small differences.</span><span class="td">I removed the repeats and linked to the original topic instead. That simplified the docs, cut the word count, and gave readers fewer versions to choose between, which meant less decision fatigue.</span></div>
+<div class="tr"><span class="td k">Each guide had multiple levels of nested navigation, and some went four or five deep.</span><span class="td">I limited navigation to three levels everywhere.</span></div>
+<div class="tr"><span class="td k">Old, non-inclusive terms were still in use throughout the docs.</span><span class="td">I introduced inclusive language and replaced the old terms with accessible, inclusive ones. For example, master/slave became primary/replica, and whitelist became allowlist.</span></div>
+<div class="tr"><span class="td k">Users kept running into small issues and errors while following the user guides and getting-started tutorials</span><span class="td">I added a troubleshooting section after each tutorial, so the fix is right there when something goes wrong.</span></div>
+</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The difference goes deeper than labels. Someone new lands in Getting Started and finds a troubleshooting section right after the tutorial they're following. Someone running the product day to day goes to Administering and sees every subsection up front. Every top-level heading now answers a question a user might actually have.</p>
+<figure class="rv fig"><img src="cd/oNv9xe4kLyDM43C7YrnWuO7B9RI.png" alt="The &quot;before&quot; side is a simplified reconstruction. I didn&#x27;t capture screenshots of the old hierarchy before it was retired, so I&#x27;ve rebuilt the shape of it from memory. The &quot;after&quot; side reflects the live IBM webMethods API Gateway docs." loading="lazy" width="951" height="496"><figcaption class="mono lbl">The "before" side is a simplified reconstruction. I didn't capture screenshots of the old hierarchy before it was retired, so I've rebuilt the shape of it from memory. The "after" side reflects the live IBM webMethods API Gateway docs.</figcaption></figure>
+<figure class="rv fig"><img src="cd/fgPPKVTiGrw6jVS57GEdDAVc.png" alt="The shipped structure in the live IBM webMethods API Gateway documentation." loading="lazy" width="951" height="463"><figcaption class="mono lbl">The shipped structure in the live IBM webMethods API Gateway documentation.</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="opacity:.6;margin-bottom:10px">Result</div><div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ The outcome</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">What changed</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The thing I'm proudest of is that the structure stuck. Other teams across the webMethods suite started using it as the model for their own product docs, long after my part of the restructure was done.</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span><strong>Answers are faster to find.</strong> Every topic has one home, it's never more than three levels deep, and it sits next to the topics it belongs with.</span></li><li class="rv"><span class="dot"></span><span><strong>Search works better.</strong> Grouping related concepts by process means search results land on complete answers, not fragments.</span></li><li class="rv"><span class="dot"></span><span><strong>Less to read, less to decide.</strong> Cutting the repeated topics and 40+ redundant visuals made pages shorter and easier to scan.</span></li><li class="rv"><span class="dot"></span><span><strong>Fewer dead ends.</strong> Troubleshooting after each tutorial gives users a next step when something breaks, and gives support a stable page to link to. Support pointed to fewer tickets about getting-started errors after launch.</span></li><li class="rv"><span class="dot"></span><span><strong>Language that includes everyone.</strong> Outdated terms are gone, and the replacements became the default for new content.</span></li></ul>
+<p class="rv note"><strong>What I would do differently: </strong><br><br>We didn't have analytics set up before the restructure, so I can't give you a clean before-and-after number for time-to-answer or ticket volume. Next time, I'd set a baseline before touching anything: search success rate, time on page for the top tasks, and ticket counts by topic. The direction was obvious here. The numbers would have made it undeniable.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="cd-onboarding-comic.html" style="display:block;margin:0;font-size:clamp(36px,6.4vw,96px);line-height:.98;max-width:18ch">Explaining an invisible product with a 15-panel comic</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="cd-onboarding-comic.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#content-design-cases" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All content design work</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

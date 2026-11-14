@@ -1,0 +1,152 @@
+kicker: UX portfolio case study
+name: Steer
+title: Running a driving school takes more than a group chat.
+lede: Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.
+meta: My role | Solo UX designer
+meta: Duration | 3 months
+meta: Deliverables | Web + mobile prototypes
+meta: Status | Concept project
+intro: Discovery interviews, information architecture, interaction design and visual design across both platforms.
+hero: 02 |
+herobg: #1c1d21
+tags: Research | Web app | Instructor app | Key takeaways
+cardsub: Operations · Web + mobile
+
+# Backstory || I signed up to learn to ride.
+p: The school wrote student records by hand. Updating a record was awkward. Finding an old one meant going back through the books. I wanted to see what happened when the same school had to keep track of lessons, fees, instructor assignments and vehicle maintenance.
+h: Understanding the users
+p: **Primary research.** I visited nine small to midsize driving schools and conducted ten semi-structured interviews with supervisors and instructors on site. I asked how they teach lessons, manage student and instructor records, and coordinate the work around each booking.
+label: How schools teach
+stat: 100% | Practical
+stat: 50% | Theory
+stat: 10% | Simulation
+label: How schools keep records
+stat: 60% | Registers or notebooks
+stat: 40% | Excel sheets
+small: Percentages are reproduced from the project reference. The denominator for each question is undocumented, so these figures describe the research as reported.
+label: Secondary research / Portfolio update
+p: **Local context.** India’s Parivahan Form 5 ties a driving-school training certificate to a register entry, vehicle class and training dates. That shows why an enrolment record needs to be easy to retrieve.
+small: Parivahan • Driving certificate, Form 5
+p: **Product benchmark.** Drive Scout already combines scheduling, payments and records. For Steer, the specific design opportunity was carrying the same lesson from the office schedule to the instructor’s next action and back.
+small: Drive Scout • Driving school management software
+
+# Interviews and insights || Personas
+p: Two composite personas capture where a manager and an instructor get stuck in the same workflow.
+person: 04 | 32 / Manager, Swift Drive School // Monica Adams :: **Pain points.** Schedules and payments are hard to reconcile. Changes take too long to reach instructors and students. Documents are easy to misfile, and vehicle maintenance adds another record to keep current. :: **Needs.** A current schedule, a way to review student progress, and a shared place to coordinate changes and assignments. :: _What changed across the school today?_
+person: 05 | 40 / Instructor, Ace Drivers Academy // Rajesh Nair :: **Pain points.** Schedules and cancellations arrive late. Paperwork takes time away from teaching. Progress is hard to track from one lesson to the next. :: **Needs.** Current assignments, a quick way to record attendance and performance, and a direct channel for coordinating with managers and students. :: _Who am I teaching next, and where?_
+
+# Processes || Affinity Mapping
+p: I grouped the research by recurring problem and compared how each one showed up at the desk and in the car.
+table: Theme | Managers | Instructors
+tr: Scheduling issues | Payments, records and vehicle logs take time to reconcile. | Progress sheets and paperwork cut into teaching time.
+tr: User experience | A clean, simple tool matters because training time is limited. | A phone app should feel familiar and easy to pick up.
+tr: Performance tracking | Manual reporting makes it hard to spot where students or instructors need support. | Progress is hard to follow lesson by lesson. Better records would inform the next lesson.
+tr: Technology adoption | Teams need to see a clear payoff for learning a new tool. | A busy schedule leaves little time to learn new software.
+tr: Safety compliance | Vehicle and driver documentation needs upkeep. | Routine vehicle checks are essential and easy to put off.
+tr: Payments | It is hard to see who has paid and who needs a reminder. | Late fees can interrupt classes and slow learner progress.
+tr: Document collection | Physical files go missing and delay onboarding or scheduling. | A missing document can interrupt a lesson. A shared record would help.
+note: The handoff to fix. :: A schedule update should reach the instructor, and a lesson outcome should make it back to the office. Both teams needed to see the same record.
+
+# Interviews and insights || Themes
+rows: 01 Visibility | See schedules, payments and daily operations as they change.
+rows: 02 Vehicle checks | Keep safety, maintenance and compliance information easy to find.
+rows: 03 Shared records | Keep student progress, payments and vehicle health together.
+rows: 04 Adoption | Keep the tool affordable and easy to learn around a full workday.
+rows: 05 Repetitive work | Reduce time spent on reminders, document checks and scheduling.
+
+# Problem statement || Problem Statement
+p: A schedule change could live in a message while the office worked from an older copy. A fee or a missing document could go unnoticed until it delayed a lesson. Each task was manageable on its own. The failures happened between them.
+quote: How might we :: How might we create a unified digital solution that streamlines communication, scheduling, record management and daily operations so managers and instructors can spend more time on their core work and improve the experience for students?
+
+# The concept || Digital Solutions
+p: I designed two ways into the same system. Supervisors need to see the whole school at a glance. Instructors need to know what to do before the next lesson starts.
+card: 01 / Web application :: **For managers and owners at a desk.** Track active lessons, maintain student and instructor records, monitor vehicles, and manage payments, documents and calendars.
+card: 02 / Mobile application :: **For instructors between lessons.** Check the schedule, contact students, record attendance, see the route and log performance after class.
+label: Ideation
+h: Where should a supervisor look first?
+card: List-first :: Familiar and quick to sort. Supervisors still asked where everyone was.
+card: Session cards :: Showed more per lesson. Location still took effort to piece together.
+card: Map-first :: Put active vehicles in view and kept lesson details within reach. I chose this direction.
+p: I brought rough paper versions of all three to supervisors. Their first question was about location. I kept session status and reminders visible on the dashboard and put editing and history in detail views.
+p: **On mobile, the trade-off reversed.** I chose one tap on Begin session from Session Details, where the instructor can already check the learner, time and vehicle. The prototype notes favour one tap. A false start still matters because it initiates tracking, so I’d measure start errors and recovery alongside speed.
+
+# Web application || User Flow
+p: After onboarding, six destinations cover the supervisor’s day. The Dashboard and Students branches connect the live operation to each learner’s record.
+figs: 06 |
+figs: 07 | **01 Dashboard.** See active vehicles, reminders and profile. ;; 08 | **02 Students.** Add a student or open the registry to reach enrolment, schedule, progress, payments and documents.
+
+# Web application / User flow || Instructors and Vehicles
+p: Both branches split by two- or four-wheeler. Each keeps the add flow separate from the registry and detailed record.
+figs: 09 | **03 Instructors.** Open an instructor record to see assigned students, schedules, vehicles, performance and documents. ;; 10 | **04 Vehicles.** Open a vehicle record for health, maintenance, assignment, usage and documents.
+
+# Web application / User flow || Payments and Calendar
+p: The remaining branches give supervisors a place to close out fees and organise upcoming work.
+figs: 11 | **05 Payments.** Open the payment summary to review, edit, message, filter or export. Individual records carry the fee, payment and student details. ;; 12 | **06 Calendar.** Check the schedule, add an event or capture a to-do that doesn’t need a calendar slot.
+note: The workflow in practice :: A supervisor can update a lesson from a student’s schedule. The instructor’s schedule is intended to reflect the change, and the supervisor can follow up from the same student record.
+
+# Web application || Web App UI
+label: 01 / The dashboard
+h: Where is everyone, and what needs attention?
+p: The map pairs each active session with its student, instructor and vehicle. The notification panel keeps pending and upcoming tasks beside it, so a fee reminder or service date can surface while the supervisor is checking the day’s lessons.
+figs: 13 |
+rows: Make monitoring visible | The map keeps session location in view. A pin opens the lesson’s details. Search is designed to help a supervisor jump to a known student without scanning the map.
+rows: Make status readable | The yellow and charcoal palette borrows from road signage. The design calls for status labels and distinct pin shapes alongside colour. Those cues still need testing with colour-blind users.
+
+# Web application / Web app UI || The Students Page
+label: 02 / Student records
+p: The registry can be sorted by student ID, name, instructor, attendance or vehicle type. Supervisors can narrow it by enrolment or payment status and date. Filters help answer a specific question without opening every student record.
+figs: 14 | **Student registry.** Sort and filter, then open or edit the relevant record.
+figs: 15 | **Add student.** Create a record and upload documents. ;; 16 | **View student.** See enrolment, progress, schedule and fees.
+
+# Web application / Web app UI || Instructors and Vehicles
+label: 03 / The instructors page
+p: Separate two- and four-wheeler registries match how the schools organise instructors. A profile brings together assigned students, vehicles, schedules, performance and feedback.
+figs: 17 | Instructor registry ;; 18 | Instructor record
+label: 04 / The vehicles page
+p: Filter two- and four-wheelers by health, then open the record for maintenance, assignments, usage and documents. Keeping these details together gives managers context before assigning a car or bike to a lesson.
+figs: 19 | Vehicle registry ;; 20 | Vehicle overview
+
+# Web application / Web app UI || Payments and Calendar
+label: 05 / The payments page
+p: The payment summary puts the amount due beside each learner’s status. Supervisors can filter, record payments, follow up and export the summary.
+figs: 21 |
+label: 06 / The calendar
+p: Supervisors can add events and switch between daily, weekly, monthly and yearly views. A to-do list keeps untimed work, such as following up on a document, beside the schedule.
+figs: 22 |
+
+# Mobile application || User Flow
+p: The instructor lands on Today. From there, they can check Students, Schedule or Notifications, or open the next lesson and record what happened.
+figs: 23 |
+note: From lesson to record :: On the original flow, the instructor can begin the lesson or mark the learner absent. Beginning opens the map. Ending the session leads to a performance rating. The updated lesson is intended to be visible from the supervisor’s student record.
+small: The original design opened lesson details five minutes before start time and offered a Simulation filter. The Lane preview shows Practical, Theory and All.
+
+# Mobile application || Mobile App UI
+p: Lane Instructor is the mobile prototype for Steer. The instructor can see the day’s lessons, check the next learner’s details and close out the session without saving paperwork for the end of the day.
+phones3: 24 | **01 Today.** The next lesson stands out in a list with time, class and vehicle. ;; 25 | **02 Session Details.** Check pickup and prior notes. Begin in one tap, or confirm an absence. ;; 26 | **03 Live Session.** The route, recording status and end control stay visible during the active lesson.
+p: **Tracking boundary.** Lane explains that location recording begins with the lesson and ends when the instructor stops it. The instructor can see when recording is active. What the school can retain and who can access it still need to be agreed with instructors.
+
+# Mobile application / Mobile app UI || After the Lesson
+p: The close-out turns a completed drive into something the instructor can use to teach the next lesson.
+phones: 27 | **04 Rate the session.** Add a rating, choose skills to revisit and leave a note for next time. ;; 28 | **05 Back to Today.** The completed lesson stays visible and the next one takes its place.
+phones3: 29 | **Students.** Roster and progress ;; 30 | **Schedule.** Lessons by day ;; 31 | **Notifications.** Changes and reminders
+
+# Mobile application / Mobile app UI || Instructor Onboarding
+p: Lane adds setup before the first lesson. It collects the instructor’s details, vehicles and teaching hours, then explains why the app asks for location and reminder permissions.
+phones5: 32 | Splash ;; 33 | Mobile number ;; 34 | Verify code ;; 35 | Your profile ;; 36 | Vehicles ;; 37 | Teaching hours ;; 38 | Location access ;; 39 | Reminders ;; 40 | All set
+small: The location screen explains the session boundary before the permission request. The instructor can also choose to set up location access or reminders later.
+
+# Key takeaways || Key Takeaways
+p: The two interfaces changed how I think about the handoff between office work and field work.
+label: 01 / What did I learn?
+card: Design for both sides of the handoff. :: Fees and progress matter to the business. The instructor needs a quick way to update the lesson that feeds those records.
+card: Start with the context of use. :: A supervisor can scan several sessions. An instructor in a parked car needs one clear next step.
+card: Work with habits already in place. :: A pilot needs to account for how schools move from paper or Excel and how much training they can spare.
+card: Research both roles. :: Talking to managers and instructors showed where information got stuck between them.
+label: 02 / What’s next?
+rows: Instructor copilot | I’m currently working on a copilot for the instructor app.
+rows: Instructor salary payments | Explore pay calculations and payouts based on completed lessons.
+rows: Instructor rescheduling | Let instructors move lessons within school-defined rules.
+rows: Mobile lesson materials | Bring teaching guides and progress reports into the instructor app.
+rows: Student app | Let learners track lessons, see feedback and pay fees.
+rows: AI-powered insights | Explore recommendations for progress, schedules and vehicle maintenance.
+note: What I’d test in a pilot :: Compare one paper-based and one Excel-based school with their own baselines. Measure time to locate an active session, morning calls, scheduling clashes, time to act on overdue items and instructor usage. Co-design tracking and test map labels and shapes before piloting.

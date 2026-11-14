@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility system · Content design · Mahima Shastry</title>
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#content-design-cases" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65;margin-bottom:18px">CONTENT SYSTEMS 8 ACCESSIBILITY</div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-end">
+      <h1 class="display" style="flex:3 1 520px;min-width:0;margin:0;font-size:clamp(40px,6.6vw,104px);line-height:.98">Building an accessibility and inclusive content system for webMethods documentation</h1>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--lime);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">ROLE</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Content systems and accessibility</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">compANY</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Software AG (webMethods documentation), continued through IBM merger</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">SCOPE</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Documentation and product copy across the webMethods suite</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">year</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">4 months</dd></dl>
+    </div>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ BRIEF</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The problem</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Years of technical documentation for webMethods had accumulated two invisible but serious problems, and nobody owned either one.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Language carried outdated, exclusionary terminology.</strong> Long-standing technical conventions like <em>master - slave</em> to describe <em>primary - replica</em> system relationships, and default use of gendered pronouns (<em>he</em> or <em>she</em>, <em>him</em> or <em>her</em>) in instructional copy, were embedded across hundreds of pages. They were baked into templates, style precedent, and years of writer habit.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Visuals were not accessible</strong>. Diagrams, icons, and screenshots across the documentation had missing or unhelpful alt text, inconsistent color and icon treatments, and no ARIA labeling conventions that writers or designers could follow consistently. Every writer solved this differently, if they solved it at all, which meant screen reader users and low-vision users hit a different, unpredictable experience depending on which doc they landed on.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Both problems shared a root cause: there was no owned standard. Writers and designers were improvising accessibility and inclusivity decisions individually, which meant a fix would not hold even if any one person cleaned up any one page.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I addressed this in two connected phases: inclusive content first, then accessible visuals/illustrations. Language conventions could be corrected immediately across existing text, while visual standards needed to be built into how new diagrams, icons, and screenshots are going to be created going forward.</p>
+<figure class="rv fig"><img src="cd/bAOVBvovBBll5cq8iDxjqxIWGM.png" alt="" loading="lazy" width="960" height="287"></figure>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ LANGUAGE ACCESSIBILITY</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Phase 1: accessible and inclusive content</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">My Role: authoring the standard</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Most inclusive-language fixes in documentation are reactive. A writer notices a problem term on their own page and fixes it locally. I took a different approach: I authored the writing guidelines for the webMeth0ds suite documentation, giving writers a working reference for retiring outdated terminology and defaulting to inclusive phrasing in both documentation and product copy. Not a one-time cleanup, but the standard new content was written against.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Before > After: terminology swaps</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A sample of the terminology decisions codified in the guidelines, organized by category so future writers could apply the same logic to terms not explicitly listed.</p>
+<div class="rv mono lbl sub">Hierarchy and system - relationship terms</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before</strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">master / slave</span><span class="td">primary / replica, primary / secondary, leader / follower</span></div>
+<div class="tr"><span class="td k">master node</span><span class="td">primary node, control node</span></div>
+<div class="tr"><span class="td k">master branch</span><span class="td">main branch</span></div>
+<div class="tr"><span class="td k">master database</span><span class="td">primary database</span></div>
+<div class="tr"><span class="td k">master record</span><span class="td">primary record</span></div>
+<div class="tr"><span class="td k">slave node</span><span class="td">replica node, worker node</span></div>
+<div class="tr"><span class="td k">slave process</span><span class="td">worker process, dependent process</span></div>
+<div class="tr"><span class="td k">master-detail relationship</span><span class="td">parent-child relationship</span></div>
+<div class="tr"><span class="td k">master copy</span><span class="td">source copy, original copy</span></div>
+</div>
+<div class="rv mono lbl sub">Access and security terms</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before</strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">whitelist</span><span class="td">allowlist</span></div>
+<div class="tr"><span class="td k">blacklist</span><span class="td">denylist, blocklist</span></div>
+<div class="tr"><span class="td k">white hat / black hat (hacker)</span><span class="td">ethical hacker / malicious hacker</span></div>
+<div class="tr"><span class="td k">blackbox testing</span><span class="td">opaque-box testing, closed-box testing</span></div>
+<div class="tr"><span class="td k">whitebox testing</span><span class="td">open-box testing, clear-box testing</span></div>
+<div class="tr"><span class="td k">black box (system)</span><span class="td">opaque system, undocumented system</span></div>
+<div class="tr"><span class="td k">man-in-the-middle attack</span><span class="td">on-path attack, adversary-in-the-middle attack</span></div>
+</div>
+<div class="rv mono lbl sub">Idioms with racial or cultural bias origin</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before</strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">grandfather clause / grandfathered in</span><span class="td">legacy clause, exempted clause / exempted, carried over</span></div>
+<div class="tr"><span class="td k">tribal knowledge</span><span class="td">institutional knowledge, undocumented knowledge</span></div>
+<div class="tr"><span class="td k">native (e.g. "feels native")</span><span class="td">built-in, integrated</span></div>
+<div class="tr"><span class="td k">sanity check / sanity test</span><span class="td">confidence check, validation check / validation test</span></div>
+</div>
+<div class="rv mono lbl sub">Ableist language</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before</strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">crazy / insane</span><span class="td">unexpected, extreme, significant</span></div>
+<div class="tr"><span class="td k">dumb terminal</span><span class="td">basic terminal, simple terminal</span></div>
+<div class="tr"><span class="td k">dummy value / dummy variable</span><span class="td">placeholder value, sample value</span></div>
+<div class="tr"><span class="td k">crippled / crippling bag</span><span class="td">disabled, severely limited / critical bug</span></div>
+<div class="tr"><span class="td k">blind spot</span><span class="td">gap, oversight</span></div>
+<div class="tr"><span class="td k">lame</span><span class="td">weak, ineffective</span></div>
+<div class="tr"><span class="td k">handicapped / handicap</span><span class="td">impaired, limited / disadvantage</span></div>
+<div class="tr"><span class="td k">idiot-proof</span><span class="td">foolproof, error-resistant</span></div>
+<div class="tr"><span class="td k">dead code</span><span class="td">unused code, obsolete code</span></div>
+<div class="tr"><span class="td k">normal / abnormal (behavior)</span><span class="td">expected / unexpected</span></div>
+</div>
+<div class="rv mono lbl sub">Gendered language</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl">Before</span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">guys (addressing a group)</span><span class="td">everyone, folks, team</span></div>
+<div class="tr"><span class="td k">manpower</span><span class="td">workforce, staff, personnel</span></div>
+<div class="tr"><span class="td k">man-hours</span><span class="td">person-hours, workhours</span></div>
+<div class="tr"><span class="td k">mankind</span><span class="td">humanity, humankind</span></div>
+<div class="tr"><span class="td k">manned / unmanned</span><span class="td">staffed / uncrewed, automated</span></div>
+<div class="tr"><span class="td k">chairman</span><span class="td">chairperson, chair</span></div>
+<div class="tr"><span class="td k">policeman / fireman / mailman</span><span class="td">police officer / firefighter / mail carrier</span></div>
+<div class="tr"><span class="td k">man-made</span><span class="td">artificial, human-made</span></div>
+<div class="tr"><span class="td k">he or she / him or her / his or her</span><span class="td">they / them / their</span></div>
+<div class="tr"><span class="td k">freshman</span><span class="td">first-year</span></div>
+</div>
+<div class="rv mono lbl sub">Violence &amp; conflict metaphors</div>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before</strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">kill the process</span><span class="td">stop the process, end the process</span></div>
+<div class="tr"><span class="td k">abort</span><span class="td">cancel, stop</span></div>
+<div class="tr"><span class="td k">hang (system hangs)</span><span class="td">becomes unresponsive, stalls</span></div>
+<div class="tr"><span class="td k">war room / war story</span><span class="td">coordination room, incident room / field story</span></div>
+<div class="tr"><span class="td k">kill switch</span><span class="td">emergency stop, shutoff control</span></div>
+</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">These were not isolated edits. They were entries in a living reference document, each with a short rationale, so future writers understood why the change existed and could extend the same reasoning to terms not On the list.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">The review process: making it stick</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A guideline that lives in a document nobody checks against erodes within a quarter. Alongside the standards themselves, I set up a review process for content and graphics: a gate new documentation and product copy passed through before publication, not an audit after the fact.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Setting this up meant working directly with developers, leadership, designers, and support teams to understand real implementation constraints and make sure the language and content structures I was suggesting could realistically be maintained, not just written on paper.</p>
+<figure class="rv fig"><img src="cd/62yGJPMlCs3CGR6A6Dfjn03yEU.png" alt="Figure 3 - This gate sits before publication" loading="lazy" width="1440" height="285"><figcaption class="mono lbl">Figure 3 - This gate sits before publication</figcaption></figure>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Outcome</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The inclusive language guidelines became the standard reference that writers and designers continued to use for terminology decisions across the webMethods documentation, including through the transition into IBM's documentation environment post-merger, where the same principles carried forward into broader restructuring work.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ VISUAL GUIDELINES</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Phase 2: accessible visuals</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv"><a class="btn pdf-btn" href="https://drive.google.com/file/d/1tKtk9MuaAw_ipvs7rUh5iLsWPuFhsP5f/view?usp=sharing" target="_blank" rel="noopener" style="--btn-bg:var(--lime)"><span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></span><span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Click here to view the entire guidline pdf</span></a></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">The Final Result: Illustration Guidelines on Carbon</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Once the language standard was in place, the second gap was visual: diagrams, icons, and screenshots across the documentation had no consistent accessibility treatment. I authored the graphic guidelines for webMethods documentation, giving technical writers and content designers concrete, repeatable direction on:</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">• Writing <em><strong>alt text</strong></em> that describes function and context, not just literal visual content</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">• Correctly scoping and writing<em><strong> ARIA labels</strong></em> for interactive documentation elements</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">• Choosing <em><strong>colors</strong></em> and<em><strong> </strong></em>icon treatments that met accessible contrast standards by default, rather than leaving contrast checks to individual judgment</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">• Adding transcripts for non-text and narrative  content, including the transcript and accompanying intent documentation built for the comic-strip explainer created for the API Control Plane product, so the same concept was accessible to screen reader users as it was to sighted users</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The Phase 2 standard shipped as the 'Illustration guidelines' for the webMethods documentation is built on the Carbon Design System and the IBM Design Language. This phase is a working reference covering how to plan, build, check, and deliver documentation illustrations. The excerpts below reproduce its actual visual system: IBM Plex type, the Carbon blue accent, the layout grid, and a palette that passes contrast checks by default.</p>
+<figure class="rv fig"><img src="cd/HQcuuyI4zpo7jnpwiHfF6dcbyhs.png" alt="Figure 4 - Structure of the shipped guideline: sequential usage steps, each assuming the previous one is done" loading="lazy" width="951" height="454"><figcaption class="mono lbl">Figure 4 - Structure of the shipped guideline: sequential usage steps, each assuming the previous one is done</figcaption></figure>
+<figure class="rv fig"><img src="cd/8ZyByAfl2olnZwySvrySKCgttU.png" alt="Figure 5 - Contrast baked into the palatte" loading="lazy" width="951" height="273"><figcaption class="mono lbl">Figure 5 - Contrast baked into the palatte</figcaption></figure>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Before > After: visual accessibility practice</h3>
+<div class="rv tbl">
+<div class="tr head"><span class="th mono lbl"><strong>Before </strong></span><span class="th mono lbl"><strong>After</strong></span></div>
+<div class="tr"><span class="td k">Alt text describing literal appearance only Cscreenshot of dashboard•)</span><span class="td">Alt text describing function and context ("dashboard showing API traffic volume across three environments")</span></div>
+<div class="tr"><span class="td k">No ARIA labeling on interactive documentation elements</span><span class="td">Interactive elements labeled consistently per a defined ARIA convention</span></div>
+<div class="tr"><span class="td k">Color and icon choices left to individual writer/designer judgment</span><span class="td">Standardized accessible color palette and icon set meeting contrast requirements by default</span></div>
+<div class="tr"><span class="td k">Visual-only explainer content (e.g. comic strip) with no text equivalent</span><span class="td">Visual content paired with a transcript and an intent document explaining the concept in text form</span></div>
+</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">The review process: making it stick</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The same design review process covered graphics, not just copy. New visuals were checked against the accessibility standard (alt text quality, ARIA labeling, color and contrast, and text equivalents where needed) before publication. This meant accessibility in visuals was not a retrofit step. It was part Of how a diagram or screenshot got approved for the documentation in the first place.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">As with the Content guidelines, building this out required working with <em><strong>developers</strong></em>, <em><strong>leadership</strong></em>, <em><strong>designers</strong></em>, and <em><strong>support teams</strong></em> to confirm what was technically implementable in the documentation platform, so the visual standards held up in practice, not just in theory.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Outcome</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The graphic and accessibility guidelines became the standard reference for how writers and designers across the documentation org treated visuals going forward. The same durability outcome as the content guidelines, extended to cover diagrams, icons, screenshots, and non-text content like the comic- strip explainer.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="opacity:.6;margin-bottom:10px">Result</div><div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ The outcome</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Why two phases, one system</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Phase 1 and Phase 2 were sequential in practice but built as one connected system. Inclusive language made the words in the documentation accessible and respectful. The graphic guidelines made the visuals accessible to the same standard. Together, they moved accessibility and inclusion from something individual writers decided on their own, page by page, to something the documentation system defaulted to, for every writer and designer who touched it after.</p>
+<p class="rv note">Note: Terminology and visual accessibility examples above reflect actual language and process decisions made as part of this work. Specific screenshots and diagram assets are described at the process level or recreated/generalised for portfolio purposes where original assets are not available due to company access restrictions.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="cd-docs-restructure.html" style="display:block;margin:0;font-size:clamp(36px,6.4vw,96px);line-height:.98;max-width:18ch">Rebuilding information architecture for scannability</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="cd-docs-restructure.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#content-design-cases" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All content design work</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

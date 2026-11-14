@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding comic · Content design · Mahima Shastry</title>
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#content-design-cases" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65;margin-bottom:18px">CONTENT SYSTEMS 8 ACCESSIBILITY</div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-end">
+      <h1 class="display" style="flex:3 1 520px;min-width:0;margin:0;font-size:clamp(40px,6.6vw,104px);line-height:.98">Explaining an invisible product with a 15-panel comic</h1>
+      
+    </div>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ BRIEF</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The problem</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">API Control Plane watches API traffic and health across every gateway and runtime a company runs. The catch is that its value only shows up when something is <em>missing</em>: visibility you never had, or an outage you can't pin down. New users opening the docs got architecture diagrams and a glossary long before they got a reason to care.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">So, I set one bar. After a single read, a first-time reader should be able to explain the product in one sentence without being prompted.</p>
+<div class="cards" style="--n:3">
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Abstract subject</span><span style="font-size:15.5px;line-height:1.5">No single screen shows "one view of everything." The benefit is that the chaos stops.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Skeptical readers</span><span style="font-size:15.5px;line-height:1.5">Engineers who already juggle three monitoring tools and don't want a fourth.</span></div>
+<div class="rv hard card"><span class="display" style="font-size:22px;line-height:1.02">Docs-shaped docs</span><span style="font-size:15.5px;line-height:1.5">The old onboarding opened with concepts and jargon and got to the stakes last.</span></div>
+</div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ APPROACH</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The solution</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv"><a class="btn pdf-btn" href="https://drive.google.com/file/d/1o3lUSEftWECnFD571UJI0u_Rv86gUSuE/view?usp=sharing" target="_blank" rel="noopener" style="--btn-bg:var(--lime)"><span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></span><span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Click here to view the entire comic</span></a></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Why a comic? - Stakes before concepts</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Docs answer "how does it work?".  A first touchpoint has to answer "why should I care?".  A story is the simplest way I know to put the stakes first: an outage on a Friday night, three dashboards giving three different answers, and a fix found in twenty minutes. Each product idea only shows up when a character actually needs it.</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span><strong>Concrete stand-ins for abstract ideas:</strong> A "fragmented API landscape" became three delivery apps built by three different teams. "Unified visibility" became a city map lighting up. The main analogy, <em>Google Maps, but for every API we own</em>, is easy to repeat to a colleague, and that's the whole job of an analogy.<br></span></li><li class="rv"><span class="dot"></span><span><strong>Color tells part of the story:</strong> Panels 6 to 9 fade to gray during the outage, and Blue 60 only comes back once the product is online. Someone skimming the thumbnails can still follow the arc.<br></span></li><li class="rv"><span class="dot"></span><span><strong>A tone that suits enterprise readers:</strong> Warm and dry, but never silly. I kept to the Carbon palette and IBM Plex, and saved red and green for system states. The humor comes from understatement ("Keep Fridays boring") rather than mascots.</span></li></ul>
+<figure class="rv fig"><img src="cd/SdCETueC7Qxx9ngoTxk9bxiqAME.png" alt="Figure 1 - Reading load to first full explaination" loading="lazy" width="960" height="253"><figcaption class="mono lbl">Figure 1 - Reading load to first full explaination</figcaption></figure>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(26px,3vw,40px);line-height:1.04">Accessibility - a comic that works with the images off</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A comic is visual first, which raises an obvious question: what about readers who can't see it? I treated that as a content design problem with its own deliverables, planned from the start instead of patched in after launch.</p>
+<div class="rv tbl">
+<div class="tr defs"><span class="td k"><strong>Panel-level alt text</strong></span><span class="td">Each panel's SVG has an <code>aria-label</code> written like narration rather than a list of objects. It says "Ria's glasses reflect the error codes," not "woman, monitors, plant."</span></div>
+<div class="tr defs"><span class="td k"><strong>Reading order</strong></span><span class="td">Each panel sits in a labeled section, so a screen reader follows the story in the order it's meant to be read: caption, then dialogue, then scene.</span></div>
+<div class="tr defs"><span class="td k"><strong>Full transcript</strong></span><span class="td">A prose version that works as a short story on its own, with the same arc, stakes, and one-sentence takeaway, and no reliance on the pictures. It's also the version people can search, quote, and translate, which the comic can't offer.</span></div>
+<div class="tr defs"><span class="td k"><strong>Intent doc</strong></span><span class="td">A short note on what each panel has to get across. It works as the comic's content model, so translators, localizers, and anyone redrawing a panel keep the meaning intact.</span></div>
+</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Color never carries meaning on its own. You can tell there's an outage from the error codes and the copy; the shift to gray just backs that up.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">↘ The outcome</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Outcome - the one-sentence test</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">In read-throughs, every reviewer could describe the product afterward without prompting. Most said some version of <em>"it's a single control plane that discovers and monitors every API across all our gateways."</em> That sentence is the metric I cared about. Everything else in the comic is there to get people to it.</p>
+<div class="cards" style="--n:3">
+<div class="rv hard card"><span class="display" style="font-size:clamp(44px,5vw,72px);line-height:.86;color:var(--tomato)">~ 6 min</span><span style="font-size:15.5px;line-height:1.5">to a full product explanation you can retell, compared with four-page docs path</span></div>
+<div class="rv hard card"><span class="display" style="font-size:clamp(44px,5vw,72px);line-height:.86;color:var(--tomato)">73%</span><span style="font-size:15.5px;line-height:1.5">fewer words than the docs onboarding path it sits in front of (~=1000 vs ~=4500)</span></div>
+<div class="rv hard card"><span class="display" style="font-size:clamp(44px,5vw,72px);line-height:.86;color:var(--tomato)">3</span><span style="font-size:15.5px;line-height:1.5">personas served by one piece: engineer, PM, and architect, each with their own payoff in the final panel</span></div>
+</div>
+<h4 class="display rv" style="margin:14px 0 0;font-size:22px;line-height:1">What I would do differently:</h4>
+<p class="rv note">I'd cut two of the setup panels, since 13 would tell the same story more tightly. I'd also give governance its own moment in the story instead of one line on the payoff card, so the product doesn't come across as just monitoring.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="cd-accessibility-system.html" style="display:block;margin:0;font-size:clamp(36px,6.4vw,96px);line-height:.98;max-width:18ch">Building an accessibility and inclusive content system</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="cd-accessibility-system.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#content-design-cases" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All content design work</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

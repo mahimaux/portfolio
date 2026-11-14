@@ -1,0 +1,165 @@
+kicker: UX portfolio case study / Personal safety
+name: HalO
+title: An SOS you can start with your phone in your bag.
+lede: HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India.
+meta: My role | Solo UX designer
+meta: Duration | 4 months
+meta: Deliverables | Ring + app prototype
+meta: Status | Concept project
+intro: I led research synthesis, product definition, interaction and visual design in Figma and FigJam. The ring concept handles the gesture. The paired phone handles location and alerts.
+hero: 01 |
+herobg: #152321
+tags: Research | Ring + SOS | Mobile app | Key takeaways
+cardsub: Personal safety · Wearable + app
+
+# Backstory || The phone was in the way.
+p: A woman on a crowded bus may have a phone in her bag and a reason to leave it there. On a quiet walk to the market, she may have the phone in hand and weak coverage. I wanted to design for both moments, starting with what it takes to ask for help.
+h: Understanding the users
+p: **Primary research.** The project materials reference interviews but provide no participant count, interview guide or records. I use the published survey and desk research below as evidence. The personas represent scenarios I would validate with commuters in Bengaluru and Sullia.
+label: Secondary research
+card: Published public-bus study // 614 valid survey responses :: 422 from Bengaluru and 192 from Ahmedabad. The study linked safety perceptions on buses to anxiety, bus-stop conditions and the wider travel experience. :: _Verma et al., Transportation Research Procedia (2020)_
+card: Urban and rural mobility // Infrastructure shapes the trip :: The World Bank points to lighting and walkable routes in cities, and limited transport options and poor road conditions in rural areas. I treated weak coverage as a scenario to test in Sullia. :: _World Bank, Gender Responsive Urban Mobility in India (2022) · World Bank, Rural and Peri-Urban Roads_
+p: **Global context.** WHO estimates nearly one in three women have experienced physical or sexual intimate partner violence or non-partner sexual violence in their lifetime. This figure covers a broader context than commuting.
+small: World Health Organization, global prevalence estimates
+h: Product benchmark
+p: invisaWear already pairs discreet jewellery with a phone over Bluetooth. My opportunity was a thumb-operated ring paired with three distinct ways to respond during a commute.
+small: invisaWear, product and Bluetooth FAQ
+note: Evidence to design :: The bus study is about perceived safety. I used it to select scenarios and design constraints. Whether a ring feels discreet and usable in those scenarios remains a question for primary research.
+
+# Interviews and insights || Personas
+p: Two research-informed composites show how the same safety task changes with the commute.
+card: Urban commuter // Priya Sharma :: 27 · Marketing professional · Bengaluru, Karnataka :: Takes public transport between meetings and sometimes comes home late. :: **Pain points.** Crowded or late trips can feel unsafe. A visible panic device or taking out a phone can draw attention. Menus cost time when she wants to act quickly. :: **Needs.** A gesture she can use with one hand, a ring she would wear as jewellery, and control over whether to call, share location or trigger SOS.
+card: Rural commuter // Kavitha Devi :: 38 · Farmer · Sullia, Karnataka :: Walks to nearby markets and fields. Some stretches have few people, poor lighting and intermittent coverage. :: **Pain points.** Help may be farther away. Coverage can drop. A tool that assumes English, confidence with apps or a multistep setup can be hard to use. :: **Needs.** A trigger she can find by touch, setup in a language she reads, and a clear indication of what the app can send when coverage is weak.
+note: Shared job :: Get someone to help me when I need it. Priya’s scenario tests discretion in a crowd. Kavitha’s tests how much the emergency interaction assumes about the phone, the network and reading under pressure.
+small: Names, ages, jobs and scenarios are composite persona details.
+
+# Processes || Affinity Mapping
+p: I grouped the secondary findings and persona scenarios by the moments when asking for help could break down.
+table: Theme | Priya / Bengaluru | Kavitha / Sullia
+tr: Exposure | A crowded bus can make pulling out a phone or a visible alarm feel conspicuous. | An isolated stretch can mean fewer people within reach.
+tr: Access to help | The phone may be in a bag or hard to use one-handed. | The phone may be within reach, but help and mobile coverage can be intermittent.
+tr: Ways to cope | May share a location with someone, choose a familiar route or avoid travelling late. | May walk with others when possible, choose familiar paths or rely on a basic phone.
+tr: Effort under pressure | Wants a quick response without searching menus or looking down. | Needs a short, learnable gesture and a setup she can read.
+tr: Information before travel | Wants to see a route and know who could accompany her. | Needs useful route context when the map last synced and clear limits when service drops.
+note: The handoff to fix :: Let the commuter start the alert with her hand. Have the paired phone use preselected contacts and report the state of delivery. The interaction begins before the app needs her attention.
+small: Coping strategies are scenario hypotheses from the original empathy map.
+
+# Interviews and insights || Themes
+rows: Discretion | Make the device and gesture inconspicuous enough to use in a crowd.
+rows: Accessibility | Use touch for the trigger, start setup with language, and keep the app readable at a glance.
+rows: Proportionate response | Give uneasy, worried and endangered commuters different actions.
+rows: Readiness | Configure the ring and choose trusted contacts before leaving.
+rows: Connectivity | Store what can be stored locally and be clear about what can be delivered.
+
+# Problem statement || Asking for help can be its own obstacle.
+p: An emergency interaction can assume a free hand, a visible screen, a good connection and time to decide. A crowded commute can take away the first two. A rural walk can take away the connection. Both make the cost of extra steps apparent.
+quote: How might we :: How might we design an intuitive, accessible safety solution that helps women in urban and rural areas feel more secure on their commutes, while accounting for their different needs and keeping it easy and reliable to use?
+small: **Design test.** Could someone start an SOS by touch with a hand at their side? Could they tell whether help had actually been notified once they could check their phone?
+
+# The concept || Digital Solutions
+p: I split the product around the moment when the screen becomes hard to reach.
+card: Wearable // The ring :: A same-hand thumb gesture starts SOS. The ring concept can also provide light and an alarm.
+card: Mobile application // The companion app :: Handles setup, route planning, Fake Call, Tag Along, location sharing and alert status.
+label: Ideation
+h: Where should the SOS start?
+table: Option | What I kept or ruled out
+tr: Phone only | The app is useful when the screen is available. Reaching for it is the failure case I wanted to solve.
+tr: Pendant | Easy to reach with one hand. Pulling it into position could make the gesture visible.
+tr: Bracelet | Familiar wearable. I found the wrist gesture harder to conceal in the sketches.
+tr: Ring / chosen | The thumb can reach a palm-facing panel on the same hand. That gave me a plausible gesture to test by touch.
+figs: 02 | Original concept sketches explored band shape and where the thumb could find the trigger.
+
+# Wearable + SOS || User Flow
+p: The commuter can start on the ring or demonstrate the same hold on Home in the phone prototype.
+flow: Ring trigger | Find the palm-facing panel by touch.
+flow: Home hold pad | A second entry point when the phone is accessible.
+flow: Hold for 2 seconds | The hold arms SOS. Releasing early resets it.
+flow: Silent confirmation window | 5 seconds to cancel on the paired phone.
+flow: Cancel | Return to Home. No alert has gone out.
+flow: Countdown expires | SOS starts automatically.
+flow: Active SOS | The phone shows alert and location status.
+flow: I’m safe | Stand down, stop the alarm and send an all-clear.
+note: Emergency confirmation :: The hold confirms intent. The countdown gives an accidental trigger a way out. A deliberate alert requires no second tap.
+
+# Wearable + SOS / User flow || Live Location & Alerts
+p: At the end of the countdown, the concept starts the local and remote actions in parallel.
+flow: Paired phone starts SOS | Uses the configured recipients and location.
+card: Trusted contacts :: Share live location through the available data channel.
+card: Nearby HalO users :: Send the proposed community alert where available.
+card: Ring :: Start the alarm and flash in the concept.
+label: When connectivity changes
+table: Condition | Proposed behaviour
+tr: Mobile data available | Use app-based live sharing and show progress by recipient or channel.
+tr: SMS coverage only | Explore an SMS alert to saved contacts with the latest available location. This would send a snapshot.
+tr: No data or SMS service | Communicate that the remote alert cannot be sent. A cached map or local alarm does not establish delivery.
+note: Shared dependency :: Parallel actions avoid waiting for each other. The phone and available communication channels still determine which remote actions can complete.
+
+# Wearable + SOS / User flow || Ring & Trusted Contacts
+p: Setup puts the decisions that can wait ahead of the commute.
+flow: Home | Open the Ring tab or Emergency Contacts.
+card: Ring tab :: Check connection, battery and trigger readiness. :: **Configuration.** Adjust the alarm and flashlight ahead of time. :: **Return to ring status.** Check whether the app reports that it is listening.
+card: Emergency Contacts :: See the saved recipients before you need them. :: **Add or remove a contact.** Choose who should receive an SOS. :: **Return to the recipient list.** Keep SOS recipients distinct from optional trip sharing.
+note: Design rationale :: A saved recipient list removes a decision from the SOS moment. An upfront connection check tells the commuter whether the ring and phone are ready to hand off the gesture.
+
+# Wearable + SOS || Ring & SOS UI
+p: Before leaving, the commuter can check whether the ring is paired, has charge and is listening.
+figs: 03 | The original HalO ring concept. Everyday jewellery was the visual brief. The gesture drove the form. ;; 04 | Ring status · Connection, battery and trigger readiness in one view.
+h: Make readiness visible
+p: The ring page answers a different question from Home. Home is for deciding what to do next. Ring status is for checking whether the wearable is ready before you need it.
+note: Prototype boundary :: The battery and connection indicators are sample states. The prototype does not measure the ring’s radio range or battery life.
+
+# Wearable + SOS / Ring & SOS UI || The Hold & Cancel
+p: A bag strap can press a ring. The activation needs to feel deliberate when the user means it.
+figs: 05 | **Hold to arm.** The app stand-in fills a progress arc. Releasing before the threshold resets the gesture. ;; 06 | **Cancel in silence.** The countdown tells the commuter when the alert will go out and gives an accidental trigger a way back.
+note: Why two seconds, then five? :: The hold is meant to filter brief contact. The cancel window gives the commuter time to recover from an accidental hold. It also delays an intentional alert. Both timings need testing on a physical ring.
+small: The phone prototype demonstrates the timing. Whether the wearer can perceive confirmation with the phone in a bag is a hardware research question.
+
+# Wearable + SOS / Ring & SOS UI || Active SOS & Stand-Down
+p: Once SOS starts, the interface shifts from asking for input to showing what is happening.
+figs: 07 | **SOS active.** Large status text, icons and an elapsed timer make the simulated actions easy to scan. ;; 08 | **Stand-down.** “I’m safe” leads to the all-clear screen. The prototype shows the alarm off and contacts notified.
+note: What a real status must say :: In a live system, “sending,” “sent” and “received” need distinct meanings. A green check in the demo stands in for a system event that engineering would need to verify.
+small: The prototype simulates messages and nearby alerts. A production design would also need a way to surface failed or delayed delivery.
+
+# Wearable + SOS / Ring & SOS UI || Configuration & Contacts
+p: I kept settings in a part of the app the commuter can use when there is time to read and decide.
+figs: 09 | **Ring configuration.** Gesture mappings, alarm volume and flashlight brightness live together. The screen also shows an exploratory deterrent control. ;; 10 | **Emergency contacts.** View, add or remove the people the app would contact during an SOS.
+note: Hardware scope :: The early concept explored a deterrent and a damage-triggered alert using the last known location. The core SOS depends on the gesture and alert handoff. Any additional hardware or dispatch integration would need its own review.
+small: The primary flow uses trusted contacts and a proposed nearby-user alert. Authority notification was an early exploration. The original contacts screen overstates coverage. Alert delivery needs data or SMS service.
+
+# Mobile application || User Flow
+p: Splash leads to onboarding and then Home. From Home the commuter chooses the response that fits the moment.
+flow: Splash → Onboarding → Home | Choose language, meet and pair the ring, add contacts.
+rows: SOS | Hold → confirmation countdown → SOS active → live location to trusted contacts → stand down.
+rows: Tag Along | Find a route match → request → wait for acceptance → see pickup ETA → walk → arrive and rate.
+rows: Fake Call | Start a simulated incoming call → answer or dismiss → end the call.
+rows: Route planning | Search for a destination → compare a suggested route → start → choose whether to share live location.
+rows: Ring and contacts | Check and configure the ring or manage trusted recipients from Home.
+note: Sharing in Tag Along :: The commuter can call or message in the app without exchanging phone numbers. Sharing with emergency contacts is a separate choice, and she can end the session early.
+
+# Mobile application || Mobile App UI
+p: Home makes the next action easy to find. A commuter can choose Fake Call, Tag Along or SOS without moving through them in order.
+phones: 11 | **Home.** Search and the main safety actions share one screen. ;; 12 | **Fake Call / incoming.** Familiar answer and dismiss controls make the simulated call legible. ;; 13 | **Fake Call / connected.** Keeps the appearance of an ordinary call while the commuter steps away. ;; 14 | **Tag Along / choose.** Shows potential companions before a request is sent. ;; 15 | **Tag Along / asking.** Shows that the request is pending. ;; 16 | **Tag Along / active.** Keeps pickup ETA, call, message and the exit control in view.
+note: Sharing boundary :: Tag Along is opt-in and scoped to the session in the concept. The sample profiles and reviews illustrate the interface. Identity checks and controls against misuse need testing before launch.
+
+# Mobile application / Mobile app UI || The Walk & Arrival
+p: The commuter can share progress on her terms, end the session and leave feedback after arrival.
+phones: 17 | **Tag Along / share.** Asks before sharing live location with emergency contacts. ;; 18 | **Tag Along / rate.** After arrival, a star rating and optional written review close the session. ;; 19 | **Choose a destination.** Recent and saved places reduce typing. Search stays available. ;; 20 | **Review a route.** Shows travel time alongside factors such as lighting, foot traffic and nearby safe spots. ;; 21 | **Follow the journey.** Keeps the route, estimated time and safety shortcuts available. ;; 22 | **Share the journey.** Asks before sending trip location to emergency contacts.
+note: Route language :: “Safest route” is a prototype label. Lighting, foot traffic and reports can change. I would test a label that explains the route factors and when the information was last updated.
+
+# Mobile application / Mobile app UI || Onboarding
+p: Language comes before the welcome copy. Pairing and choosing two contacts put the critical decisions before the first commute.
+phones4: 23 | **Splash.** Opens HalO. ;; 24 | **Language.** Offers English, Hindi, Kannada and Tamil. ;; 25 | **The promise.** Explains why the trigger is on the ring. ;; 26 | **Three responses.** Introduces Fake Call, Tag Along and SOS. ;; 27 | **Meet the ring.** Shows where to find the trigger by touch. ;; 28 | **Pairing.** Shows that the phone is looking for the ring. ;; 29 | **Ring ready.** Confirms the simulated connection. ;; 30 | **Trusted contacts.** Prompts the user to add two people.
+note: Accessibility to validate :: Status combines text, icons and colour. The phone hold uses visual progress and can use haptics on supported devices. The language selector is demonstrated. Translation, screen-reader behaviour, touch target size and reduced motion need verification.
+
+# Key takeaways || Key Takeaways
+p: The concept is a wearable and an interactive walkthrough. The next decision is whether the handoff earns enough trust to pilot.
+label: 01 / What did I learn?
+card: Start with the hand. :: When the phone is hard to reach, simplifying its screens only helps once the commuter can use it. The wearable moves the first action.
+card: Make waiting visible. :: A cancel window can prevent a false alarm and delay a real one. The timing should earn its place through testing.
+card: Design for delivery. :: An alert starting, an alert leaving the phone and someone receiving it are different events. Each needs a distinct status.
+label: 02 / What’s next?
+card: Run primary research. :: Interview urban and rural commuters about recent journeys, language needs and what “discreet” means to them. Include trusted contacts.
+card: Test the physical gesture. :: Use a test ring, simulated scenarios and consented time pressure. Compare hold and cancel timings, including hands-busy and accidental presses.
+card: Review privacy and reliability. :: Test Bluetooth loss and intermittent service. For Tag Along and route reports, review consent, verification, misuse and stale information.
+note: What I’d test in a pilot :: Compare phone-only and ring-triggered tasks. Record first-attempt activation without coaching, accidental sends, successful cancellations and time to confirmed receipt. Compare outcomes by commute context and connectivity. Treat every unrecognised delivery failure as a blocker to resolve.
+small: Scope at handoff · Ring form concept, Figma designs and an interactive app walkthrough. Physical hardware, operational alerts and field outcomes remain to be validated.

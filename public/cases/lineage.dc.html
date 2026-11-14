@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-case="lineage">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lineage · Mahima Shastry</title>
+<meta name="description" content="Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.">
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+
+.small{margin:0;max-width:70ch;font-size:13.5px;line-height:1.6;opacity:.72}
+.callout{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;max-width:72ch;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+.callout p{margin:0;font-size:15.5px;line-height:1.55}
+.callout .lbl{color:var(--ink);opacity:.8;font-weight:700}
+.hmw{margin:6px 0;display:flex;flex-direction:column;gap:10px;padding-left:22px;border-left:4px solid var(--tomato)}
+.hmw .q{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.22;max-width:34ch}
+.tr.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tr.n3 .td + .td,.tr.n2 .td + .td{border-left:2px solid rgb(18 17 16 / .12)}
+.tr.n3 .td.k{border-right:0}
+.tr.head .th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-mono,ui-monospace,monospace)}
+.td strong{font-weight:700}
+.cards .card .lbl{color:var(--tomato);font-weight:700}
+.card p{margin:0;font-size:15.5px;line-height:1.5}
+.card h4{margin:0;font-size:22px;line-height:1.08}
+.person{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.person img{width:120px;height:auto;border:3px solid var(--ink);border-radius:12px;display:block;filter:grayscale(1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px}
+.stat{background:var(--forest);color:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 0 var(--ink)}
+.stat .display{font-size:clamp(38px,4.4vw,60px);line-height:.95;color:var(--lime)}
+.stat span:last-child{font-size:14px;line-height:1.4;opacity:.9}
+.figrow{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px;align-items:start}
+.figrow .fig{margin:0}
+.fig figcaption{font-size:14px;line-height:1.5;opacity:.8}
+.phones{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:16px 14px;align-items:start}
+.phones .fig img{border-radius:18px;background:#111}
+.phones .fig figcaption{font-size:13px}
+.flow{display:flex;flex-direction:column;gap:0;max-width:640px}
+.flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
+.flow .step:not(:last-child) .num{position:relative}
+.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
+.flow .txt b{font-size:18px;line-height:1.2}
+.flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
+.flow .step:last-child .txt{padding-bottom:0}
+.dots.ol .dot{width:26px;height:26px;margin-top:0;display:grid;place-items:center;font-size:12px;font-weight:700}
+.swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw{display:flex;flex-direction:column;gap:6px;width:110px}
+.sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
+.hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
+.hero-fig img{display:block;width:100%;height:auto}
+.readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+@media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
+@media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#process" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">Lineage / UX case study / 2026</span>
+      <span class="mono readtime">15 min read</span>
+    </div>
+    <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">Lineage</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
+      <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Creative Lineage Canvas - Recover the shadow. Keep the progress.</h2>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.</p>
+        <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">An independent desktop UX concept for small creative teams working with a mix of manual edits and AI-assisted artwork. The central question: can a recovery show its consequences clearly enough for someone to trust the next click?</p>
+        
+      </div>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">Role and format</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">UX design and prototyping; independent concept with AI-assisted research and implementation.</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Time and scope</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">45 days and three tracked elements.</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Result</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">A working recovery flow that preserves unrelated work and marks the recovered result.</dd></dl>
+    </div>
+    <figure class="rv hero-fig" style="background:var(--paper-2);margin-top:44px"><img src="ux/lineage/01.webp" alt="Lineage prototype" width="1400" height="1051" fetchpriority="high"></figure>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Understanding the problem</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">One small shadow with several consequential decisions.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A designer working on a project wants an older shadow. However, the current photograph, background and wording need to stay.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">In the Serein demo scenario, a manually refined shadow was approved in an earlier poster. A later AI-assisted edit made it heavier. Meanwhile, other parts of the poster changed. Restoring the whole earlier poster would also replace work the designer wants to keep.</p>
+<p class="rv small">PS: Serein is fictional. Its collaborators, comments, approvals and AI outputs are purely demonstration records. The scenario exercises a design hypothesis; it is not a client incident or a participant story.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Part of the poster</span><span class="th">Earlier approval context</span><span class="th">Current state</span></div><div class="tr n3"><span class="td k">Product photograph</span><span class="td">photo-r2</span><span class="td">photo-r2 - unchanged</span></div><div class="tr n3"><span class="td k">Background</span><span class="td">bg-r1</span><span class="td">bg-r3 - keep this</span></div><div class="tr n3"><span class="td k">Shadow + mask</span><span class="td">shadow-r2 + mask-r1</span><span class="td">shadow-r3 + mask-r2 - replace together</span></div><div class="tr n3"><span class="td k">Typography</span><span class="td">Earlier wording</span><span class="td">Current wording - keep this</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The problem I chose to solve</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The aim of this product is to help someone <strong>identify</strong> the right recorded element, <strong>understand</strong> what its approval covered, and <strong>predict</strong> what recovering it will change.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Selective restoration already exists. The open UX question is whether bringing this decision context together makes recovery clearer.</strong></p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">An example of what a successful recovery must preserve</h3>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>The chosen shadow must return with the mask it needs.</span></li><li class="rv"><span class="dot"></span><span>The current photograph, background and typography must remain intact.</span></li><li class="rv"><span class="dot"></span><span>Earlier versions and approvals must stay in the record.</span></li><li class="rv"><span class="dot"></span><span>The new result must be clearly marked for review.</span></li></ul>
+<div class="rv callout"><span class="mono lbl">Two terms to know:</span><p>A <strong>revision</strong> is a saved version of one element. A <strong>mask</strong> controls where artwork is visible. Here the shadow relies on a particular mask, so recovering one without the other could change its appearance.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Secondary research</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Checking whether this problem already has a solution.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I used a desk review to narrow the opportunity.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The project research combined the following:</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Original HCI papers</span></li><li class="rv"><span class="dot"></span><span>Official product documentation,</span></li><li class="rv"><span class="dot"></span><span>Provenance guidance and public workflow reports.</span></li></ul>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I asked how people reuse earlier work, what existing tools can restore, and where a recovery can become difficult to predict.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Evidence</span><span class="th">What it changed in the design</span><span class="th">Limit</span></div><div class="tr n3"><span class="td k"><strong>Selective undo research</strong> In Aquamarine's initial nine-person study, six expected frequent use and three said layers or saved files were sufficient. [P1]</span><span class="td">Retain selective recovery as a question worth exploring, and include competent existing workarounds.</span><span class="td">Small 2015 study; not current demand evidence for agencies.</span></div><div class="tr n3"><span class="td k"><strong>Creative version control</strong> 18 interviews explored how practitioners use versions as reusable material. [P2]</span><span class="td">Organize around a selected element and its reusable revisions.</span><span class="td">Cross-disciplinary sample and not an AI campaign-team study.</span></div><div class="tr n3"><span class="td k"><strong>HistoryPalette</strong> Prior research supports previewing and reusing earlier image alternatives in place. [P3]</span><span class="td">Narrow the concept to approval scope, required assets and preservation information.</span><span class="td">Close prior art plus in-place history reuse is not a new Invention.</span></div><div class="tr n3"><span class="td k"><strong>Provenance guidance</strong> A history record does not settle whether an assertion is true. [P6]</span><span class="td">Keep recorded facts, collaborator declarations and unknowns separate.</span><span class="td">No C2PA verification is implemented in this prototype.</span></div></div>
+<div class="rv callout"><span class="mono lbl">Reasonable conclusion</span><p>The evidence makes this a credible design investigation. It does not tell me how often small agencies face the scenario, how costly it is, or whether they would adopt a separate recovery workspace.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Existing workflows</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Selective recovery did not start here.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr head n3"><span class="th">Existing approach</span><span class="th">What it already supports</span><span class="th">Question for Lineage</span></div><div class="tr n3"><span class="td k">Photoshop History Brush [P4]</span><span class="td">Paint selected areas from an earlier state or snapshot while keeping other edits.</span><span class="td">Can a recovery surface approval context and linked-asset consequences alongside the visual result?</span></div><div class="tr n3"><span class="td k">Photoshop cloud versions [P5]</span><span class="td">Open an older version separately, compare it and extract elements without replacing the working document.</span><span class="td">Is the combined decision view clearer than an experienced designer's existing extraction workflow?</span></div><div class="tr n3"><span class="td k">Layers and saved copies [P1]</span><span class="td">Provide familiar ways to preserve alternatives and reuse earlier material.</span><span class="td">Does the extra recording and review structure earn its place in the workflow?</span></div><div class="tr n3"><span class="td k">HistoryPalette [P3]</span><span class="td">Organizes earlier image alternatives and supports in-place preview and reuse.</span><span class="td">Can explicit approval scope, dependencies and preserved content improve comprehension?</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The opportunities</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I brought three questions into one interaction:</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Is this the revision I want?</span></li><li class="rv"><span class="dot"></span><span>What else must come with it? What will remain as it is?</span></li></ul>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Empathise</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Designing for the job</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Two proto-personas describe the work and the approval relationship.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Primary proto-persona - The campaign designer</h3>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Context</span><span class="th">Design implication</span></div><div class="tr n2"><span class="td k">Produces campaign visuals in a small agency or studio, mixing imported artwork, manual edits and AI-assisted outputs.</span><span class="td">Make selection visual and direct. Keep the current poster visible during comparison.</span></div><div class="tr n2"><span class="td k">Needs to recover an earlier element while retaining later improvements elsewhere.</span><span class="td">List what changes and what stays before applying a recovery.</span></div><div class="tr n2"><span class="td k">May not have complete records of how every asset was made.</span><span class="td">Expose gaps rather than inventing origin, authorship or tool information.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Secondary proto-persona - The creative lead or reviewer</h3>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Context</span><span class="th">Design implication</span></div><div class="tr n2"><span class="td k">Reviews work created by someone else and needs to know what was approved.</span><span class="td">Attach the reviewer, date, comment and composition context to the relevant revision.</span></div><div class="tr n2"><span class="td k">May encounter the same element in a changed composition.</span><span class="td">Keep the earlier approval in its original context. Mark a recovered copy Needs review.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The shared job to be done</h3>
+<div class="rv callout"><p>When I need an earlier approved element, help me identify it and see the effects of recovering it, so I can keep later work and make an informed choice.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Define</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Turning uncertainty into design questions.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">The “How might we?” question</span><p class="serif-i q">How might we help a designer recover a previously approved element while understanding its dependencies, evidence gaps and effects on the current composition?</p></div>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Supporting question</span><span class="th">Response in the prototype</span><span class="th">Evidence status</span></div><div class="tr n3"><span class="td k">How might we show an older element in today's poster?</span><span class="td">Compare the chosen revision in the current composition without saving.</span><span class="td">Informed by history-reuse research; implementation checked.</span></div><div class="tr n3"><span class="td k">How might we prevent an old approval from looking like a new one?</span><span class="td">Show the earlier approval context and require review of the recovered revision.</span><span class="td">Project hypothesis; comprehension untested.</span></div><div class="tr n3"><span class="td k">How might we reveal an invisible dependency?</span><span class="td">Explain that the shadow and its mask must be copied together.</span><span class="td">Informed by dependency concerns; rule checked.</span></div><div class="tr n3"><span class="td k">How might we remain useful when evidence is incomplete?</span><span class="td">Show unknown fields, name the block reason and provide an honest next step.</span><span class="td">Evidence-boundary principle; usefulness untested.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Three principles that guided the trade-offs</h3>
+<ul class="dots ol"><li class="rv"><span class="dot mono">1</span><span><strong>Make scope visible.</strong> The designer should be able to say what changes and what stays.</span></li><li class="rv"><span class="dot mono">2</span><span><strong>Keep history accountable.</strong> New work gets a new revision; earlier approvals and records remain attached to their sources.</span></li><li class="rv"><span class="dot mono">3</span><span><strong>Prefer an explicit stop to a silent substitution.</strong> If required artwork is missing or incompatible, explain why recovery cannot proceed.</span></li></ul>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Ideate</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Explaining and verifying four ways back.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr head n3"><span class="th">Approach</span><span class="th">Appeal</span><span class="th">Reason for the decision</span></div><div class="tr n3"><span class="td k">Restore the whole poster</span><span class="td">A familiar file-level rollback.</span><span class="td">Too broad for this task as the designer wants the latest background, photograph and wording.</span></div><div class="tr n3"><span class="td k">Replay earlier operations</span><span class="td">Could reconstruct a state from its edit history.</span><span class="td">Requires reliable, complete operations and a consistent account of their dependencies. This prototype does not promise that.</span></div><div class="tr n3"><span class="td k">Ask AI to recreate the old shadow</span><span class="td">Could produce a visually similar result.</span><span class="td">Similarity cannot establish that it is the stored, previously reviewed artwork. It would need to be treated as new generation.</span></div><div class="tr n3"><span class="td k"><strong>Copy the recorded snapshot</strong> Chosen</span><span class="td">Uses known stored artwork and creates a new, inspectable revision.</span><span class="td">Fits the bounded task and requires available source material and compatible dependencies. Otherwise, it must refuse.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The cost of the chosen approach</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The prototype cannot automatically recover separable elements from flattened or unrecorded artwork. Its fallback is to choose another recorded revision or redo the work manually in the editor. It explicitly says that this prototype has no branch editor.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Scope was also a design decision</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I kept one end-to-end poster scenario:</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Three selectable elements</span></li><li class="rv"><span class="dot"></span><span>Revision inspection, comparison</span></li><li class="rv"><span class="dot"></span><span>Recovery preview, apply, undo and reproducible failure states.</span></li><li class="rv"><span class="dot"></span><span>The mask remains a dependency rather than a fourth primary element and typography is the protected content.</span></li></ul>
+<p class="rv small">PS:Live AI generation, accounts, multiplayer editing, cross-app capture and broad rights management were deferred. The prototype demonstrates the recovery decision, not a full creative suite.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Information architecture</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Choosing the piece. Reading its story.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr head n3"><span class="th">Area</span><span class="th">User question</span><span class="th">Why it is here</span></div><div class="tr n3"><span class="td k">Elements list</span><span class="td">Which part am I working on?</span><span class="td">Three explicit choices also provide a keyboard alternative to clicking the poster.</span></div><div class="tr n3"><span class="td k">Composition canvas</span><span class="td">What does it look like in today's poster?</span><span class="td">Keeps the surrounding design visible when an earlier revision is compared.</span></div><div class="tr n3"><span class="td k">Revision inspector</span><span class="td">What changed, what is known and what was approved?</span><span class="td">Opens one revision card at a time to limit competing detail.</span></div></div>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>1 Select and inspect</b><span>Choose an element, then open a revision and read its recorded history.</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>2 Compare in context</b><span>View the earlier shadow inside the current poster. Nothing is saved.</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>3 Preview the consequences</b><span>Read what changes, what stays, what must travel together and what needs review.</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>4 Recover or keep the current version</b><span>Apply creates new revisions and a receipt. Cancel keeps the saved scene unchanged.</span></div></div><div class="step"><span class="num mono">05</span><div class="txt"><b>5 Undo if compatible</b><span>Create another revision that restores the previous appearance without deleting the recovery.</span></div></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Solution: inspect</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">“Not recorded” is a useful answer.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Selecting Shadow exposes its revisions, actor, time, operation, recorded comments and linked mask.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The current revision records an AI-assisted edit, while the tool name was not captured.</p>
+<figure class="rv fig"><img src="ux/lineage/02.webp" alt="Actual evidence block from the supplied standalone demo. The tool name remains visibly unrecorded." loading="lazy" width="435" height="672"><figcaption>Actual evidence block from the supplied standalone demo. The tool name remains visibly unrecorded.</figcaption></figure>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Why three evidence groups?</h3>
+<ul class="dots"><li class="rv"><span class="dot"></span><span><strong>Recorded by the system</strong> identifies captured metadata.</span></li><li class="rv"><span class="dot"></span><span><strong>Declared by a collaborator</strong> identifies a person's statement.</span></li><li class="rv"><span class="dot"></span><span><strong>Unknown</strong> identifies what the record cannot answer.</span></li></ul>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">This avoids turning a collaborator's declaration into a verified fact, or an absent tool name into a guess about how the artwork was made.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Why the mask is not another main selection</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The user is trying to recover a shadow. The mask matters because that task depends on it. Showing the mask as required supporting material preserves the relationship without asking the designer to manage a separate top-level recovery.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Solution: approval</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Approving has an address. It stays there.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The older shadow was reviewed alongside an earlier background and wording. Reusing the same artwork in a new composition changes that context.</p>
+<figure class="rv fig"><img src="ux/lineage/03.webp" alt="The approval block names the reviewer and date, shows the earlier poster and compares its context with today&#x27;s." loading="lazy" width="440" height="975"><figcaption>The approval block names the reviewer and date, shows the earlier poster and compares its context with today's.</figcaption></figure>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Decision</span><span class="td">Keep the original approval attached to the original revision. Every recovered copy is a new revision marked Needs review.</span></div><div class="tr defs"><span class="td k">Why show then versus now?</span><span class="td">A context table makes the difference inspectable. A date and a green badge alone would not explain what the reviewer saw.</span></div><div class="tr defs"><span class="td k">Accepted cost</span><span class="td">Even an exact copy needs another review. This is conservative and may create overhead if a team uses a different approval model.</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Solution: compare and preview</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Trying it on. Then reading the consequences.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The comparison places the earlier shadow inside today's poster, using explicit controls rather than hover. A framed canvas and “Preview only, nothing is saved” message identify the temporary state. The saved composition remains unchanged.</p>
+<figure class="rv fig"><img src="ux/lineage/04.webp" alt="The recovery preview shows the current and proposed compositions, plus enlarged shadow details. The marked area is the only visual difference." loading="lazy" width="1188" height="785"><figcaption>The recovery preview shows the current and proposed compositions, plus enlarged shadow details. The marked area is the only visual difference.</figcaption></figure>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Preview block</span><span class="th">Question it answers</span></div><div class="tr n2"><span class="td k">Will change</span><span class="td">Which shadow and mask revisions will be replaced?</span></div><div class="tr n2"><span class="td k">Will stay</span><span class="td">Will the photograph, background and typography remain as they are?</span></div><div class="tr n2"><span class="td k">Required together</span><span class="td">Why does the mask have to come with the shadow?</span></div><div class="tr n2"><span class="td k">After recovering: Needs review</span><span class="td">Does the earlier approval carry forward? No.</span></div><div class="tr n2"><span class="td k">What is not known</span><span class="td">Which evidence gaps remain unresolved?</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Why enlarge the shadow?</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Two complete posters fit in the dialog, but the small difference was difficult to inspect. The enlarged detail makes the actual decision visible without asking the user to infer it from metadata.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Solution: recover and undo</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Recovering gets a receipt. Undoing leaves a record.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Applying recovery copies the chosen shadow and its required mask into new revisions. It preserves the current photograph, background and typography; the original approval stays put.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The receipt lists the new revisions, their sources and the save time. Success appears only after the save succeeds, and the result is marked Needs review.</p>
+<figure class="rv fig"><img src="ux/lineage/05.webp" alt="Actual recovery receipt. Its timestamp reflects this walkthrough; it is not a launch date" loading="lazy" width="491" height="515"><figcaption>Actual recovery receipt. Its timestamp reflects this walkthrough; it is not a launch date</figcaption></figure>
+<div class="rv tbl"><div class="tr head n3"><span class="th">State</span><span class="th">Shadow / mask</span><span class="th">History and approval</span></div><div class="tr n3"><span class="td k">Before recovery</span><span class="td">shadow-r3 / mask-r2</span><span class="td">Earlier approved shadow-r2 remains available.</span></div><div class="tr n3"><span class="td k">After recovery</span><span class="td">New shadow-r4 / new mask-r3</span><span class="td">Copied from shadow-r2 / mask-r1. New result needs review.</span></div><div class="tr n3"><span class="td k">After undo</span><span class="td">New shadow-r5 / new mask-r4</span><span class="td">Restores the prior appearance. The recovery is still recorded.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Why undo adds a version</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A whole-scene rollback could remove unrelated later changes. Here undo adds a compensating revision: another saved version that restores the previous shadow and mask. The history grows rather than losing the recovery event.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The cost is an unfamiliar meaning of undo and a longer history. If the shadow, its mask or the required photograph position changed incompatibly, undo is blocked instead of overwriting that newer work.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Solution: difficult states</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The “no” states are part of the design.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr head n3"><span class="th">Situation</span><span class="th">Behaviour</span><span class="th">Why it matters</span></div><div class="tr n3"><span class="td k">Source artwork unavailable</span><span class="td">Flag the unavailable source and block recovery and suggest another recorded revision or manual redo.</span><span class="td">A record is not the same thing as recoverable artwork.</span></div><div class="tr n3"><span class="td k">Required mask missing</span><span class="td">Block the recovery rather than silently using today's mask.</span><span class="td">The result should match the stored combination.</span></div><div class="tr n3"><span class="td k">Photograph position incompatible</span><span class="td">Block the shadow recovery and do not quietly restore the photograph.</span><span class="td">The designer explicitly wanted the current photograph kept.</span></div><div class="tr n3"><span class="td k">Poster, approval or evidence changes after preview</span><span class="td">Require a fresh preview before applying.</span><span class="td">The designer should act on the state they actually reviewed.</span></div><div class="tr n3"><span class="td k">Saving fails</span><span class="td">Show an error, preserve the previous state and show no success.</span><span class="td">An unsaved change must not look complete.</span></div><div class="tr n3"><span class="td k">Undo would overwrite newer dependent work</span><span class="td">Block undo and offer a new recovery instead.</span><span class="td">Undo should not destroy later work to fulfil an earlier promise.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">A deliberately conservative preview rule</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Any change to the recorded scene invalidates an open preview, even when the change looks unrelated to the shadow. A more selective rule could reduce interruptions, but would need a second, reliable account of which changes affect the plan.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Iterate</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The screen challenged the specification.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">These iterations came from implementation and visual review. They were not findings from a user test.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Observed problem</span><span class="th">Change</span><span class="th">Reason / trade-off</span></div><div class="tr n3"><span class="td k">A hidden-state check passed in a simulated page, while a CSS rule made the real interface visibly wrong.</span><span class="td">Check the rendered application in a browser as well as the underlying rules.</span><span class="td">A correct attribute does not guarantee the person sees the correct state.</span></div><div class="tr n3"><span class="td k">Two full posters made the shadow difference too small to inspect in the dialog.</span><span class="td">Add enlarged shadow details alongside the complete compositions.</span><span class="td">More vertical space, but a readable comparison of the thing being recovered.</span></div><div class="tr n3"><span class="td k">The earlier UI used nested frames, multiple resting shadows, uppercase labels and 14px body text.</span><span class="td">A documented later design pass used space and tone, 16px body text and a full-width demo notice.</span><span class="td">Reduce competing emphasis so the poster and the decision carry the hierarchy.</span></div><div class="tr n3"><span class="td k">Making the page behind the modal inactive broke focus restoration on Escape.</span><span class="td">Remove the inactive state before returning focus to the invoking control.</span><span class="td">An accessibility improvement introduced another accessibility problem; existing browser checks caught it.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I left open</h3>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>The revision card may be too long.</span></li><li class="rv"><span class="dot"></span><span>The approval wording may be too subtle.</span></li><li class="rv"><span class="dot"></span><span>Undo may not match expectations.</span></li></ul>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I recorded these concerns rather than writing a successful user outcome around them. The next study should establish where people hesitate and what they believe happened.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Lineage / 14 / Accessibility</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Recovery should not require a mouse.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr head n3"><span class="th">Interaction need</span><span class="th">Implemented / checked</span><span class="th">Remaining limitation</span></div><div class="tr n3"><span class="td k">Choose the element</span><span class="td">An explicit Elements list supports keyboard selection. Selected states are exposed programmatically.</span><span class="td">The poster layers themselves have no direct keyboard path. The list is the alternative.</span></div><div class="tr n3"><span class="td k">Operate a dialog</span><span class="td">Focus enters the dialog, remains inside, closes on Escape and returns appropriately.</span><span class="td">No screen-reader walkthrough has been run.</span></div><div class="tr n3"><span class="td k">Understand the result</span><span class="td">Status messages and words such as Needs review, Will change and Unavailable supplement colour.</span><span class="td">Live-region presence is not proof of useful assistive-technology announcements.</span></div><div class="tr n3"><span class="td k">Read at a larger scale</span><span class="td">The evaluation recorded no horizontal overflow at five widths, including 720px and 390px.</span><span class="td">Real devices, long content and high-contrast mode were not tested.</span></div><div class="tr n3"><span class="td k">Avoid unnecessary motion</span><span class="td">Transitions reduce to zero with the system's reduced-motion preference.</span><span class="td">This is a specific check, not an accessibility-conformance result.</span></div><div class="tr n3"><span class="td k">See focus and text</span><span class="td">Measured 3px focus outlines and automated rendered-text contrast checks.</span><span class="td">Poster artwork text was excluded from the contrast scan.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Issues identified, still to address</h3>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>The canvas hint leads with clicking.</span></li><li class="rv"><span class="dot"></span><span>The demo controls interrupt the keyboard route from element selection to history.</span></li><li class="rv"><span class="dot"></span><span>Reset is the first tab stop, with no skip link.</span></li></ul>
+<div class="rv callout"><span class="mono lbl">Accessibility status</span><p>Next: a keyboard-only walkthrough by a person, followed by a screen-reader session with actual announcements recorded. The current evidence does not establish WCAG conformance.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Next research and reflection</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Test the interpretation</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The prepared plan aims for five participants, with three as a useful minimum:</p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Campaign designers in small studios</span></li><li class="rv"><span class="dot"></span><span>Near-equivalent in-house designers or freelancers, and</span></li><li class="rv"><span class="dot"></span><span>Ideally one creative lead.</span></li></ul>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Task</span><span class="th">What I would observe</span><span class="th">What would change the design</span></div><div class="tr n3"><span class="td k">Identify recorded contributions</span><span class="td">Can they separate captured facts, declarations and missing information?</span><span class="td">Invented authorship or missed unknowns would trigger a hierarchy and wording review.</span></div><div class="tr n3"><span class="td k">Find the earlier approval</span><span class="td">In their own words, what did the approval apply to?</span><span class="td">If they read it as approval of today's poster, reassess both the wording and the element-level approval model.</span></div><div class="tr n3"><span class="td k">Compare and recover</span><span class="td">Do they know nothing is saved during comparison, what stays, and why the mask is included?</span><span class="td">Mistaken change scope would trigger a preview-layout and feedback iteration.</span></div><div class="tr n3"><span class="td k">Encounter a blocked recovery</span><span class="td">Can they explain the reason and name an available alternative?</span><span class="td">Confusion or self-blame would trigger an error-message and fallback review.</span></div></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Measure understanding before speed</h3>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Record unaided completion, hints, misattribution</span></li><li class="rv"><span class="dot"></span><span>Approval-scope comprehension</span></li><li class="rv"><span class="dot"></span><span>Unexpected-change beliefs and hesitation.</span></li></ul>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I would carry forward</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The useful part of this project is connecting a rule to a consequence a person can inspect. The shadow is small; the decision around it is not. My next step is to watch someone make that decision, then change the design where their understanding and the system's behaviour part ways.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="halo.dc.html" style="display:block;margin:0;font-size:clamp(40px,8vw,120px);line-height:.9;max-width:16ch">HalO</a>
+      <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.5;opacity:.78">An SOS you can start with your phone in your bag.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="halo.dc.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#process" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All five projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

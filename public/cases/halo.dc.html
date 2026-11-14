@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-case="halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HalO · Mahima Shastry</title>
+<meta name="description" content="HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India.">
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+
+.small{margin:0;max-width:70ch;font-size:13.5px;line-height:1.6;opacity:.72}
+.callout{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;max-width:72ch;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+.callout p{margin:0;font-size:15.5px;line-height:1.55}
+.callout .lbl{color:var(--ink);opacity:.8;font-weight:700}
+.hmw{margin:6px 0;display:flex;flex-direction:column;gap:10px;padding-left:22px;border-left:4px solid var(--tomato)}
+.hmw .q{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.22;max-width:34ch}
+.tr.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tr.n3 .td + .td,.tr.n2 .td + .td{border-left:2px solid rgb(18 17 16 / .12)}
+.tr.n3 .td.k{border-right:0}
+.tr.head .th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-mono,ui-monospace,monospace)}
+.td strong{font-weight:700}
+.cards .card .lbl{color:var(--tomato);font-weight:700}
+.card p{margin:0;font-size:15.5px;line-height:1.5}
+.card h4{margin:0;font-size:22px;line-height:1.08}
+.person{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.person img{width:120px;height:auto;border:3px solid var(--ink);border-radius:12px;display:block;filter:grayscale(1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px}
+.stat{background:var(--forest);color:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 0 var(--ink)}
+.stat .display{font-size:clamp(38px,4.4vw,60px);line-height:.95;color:var(--lime)}
+.stat span:last-child{font-size:14px;line-height:1.4;opacity:.9}
+.figrow{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px;align-items:start}
+.figrow .fig{margin:0}
+.fig figcaption{font-size:14px;line-height:1.5;opacity:.8}
+.phones{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:16px 14px;align-items:start}
+.phones .fig img{border-radius:18px;background:#111}
+.phones .fig figcaption{font-size:13px}
+.flow{display:flex;flex-direction:column;gap:0;max-width:640px}
+.flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
+.flow .step:not(:last-child) .num{position:relative}
+.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
+.flow .txt b{font-size:18px;line-height:1.2}
+.flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
+.flow .step:last-child .txt{padding-bottom:0}
+.dots.ol .dot{width:26px;height:26px;margin-top:0;display:grid;place-items:center;font-size:12px;font-weight:700}
+.swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw{display:flex;flex-direction:column;gap:6px;width:110px}
+.sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
+.hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
+.hero-fig img{display:block;width:100%;height:auto}
+.readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+@media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
+@media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#process" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">UX portfolio case study / Personal safety</span>
+      <span class="mono readtime">13 min read</span>
+    </div>
+    <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">HalO</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
+      <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">An SOS you can start with your phone in your bag.</h2>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India.</p>
+        <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">I led research synthesis, product definition, interaction and visual design in Figma and FigJam. The ring concept handles the gesture. The paired phone handles location and alerts.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px"><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Research</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Ring + SOS</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Mobile app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Key takeaways</span></div>
+      </div>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">My role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Solo UX designer</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Duration</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">4 months</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Deliverables</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Ring + app prototype</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Status</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Concept project</dd></dl>
+    </div>
+    <figure class="rv hero-fig" style="background:#152321;margin-top:44px"><img src="ux/halo/01.webp" alt="HalO prototype" width="1400" height="871" fetchpriority="high"></figure>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Backstory</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The phone was in the way.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A woman on a crowded bus may have a phone in her bag and a reason to leave it there. On a quiet walk to the market, she may have the phone in hand and weak coverage. I wanted to design for both moments, starting with what it takes to ask for help.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Understanding the users</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Primary research.</strong> The project materials reference interviews but provide no participant count, interview guide or records. I use the published survey and desk research below as evidence. The personas represent scenarios I would validate with commuters in Bengaluru and Sullia.</p>
+<div class="rv mono lbl sub">Secondary research</div>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">Published public-bus study</span><h4 class="display">614 valid survey responses</h4><p>422 from Bengaluru and 192 from Ahmedabad. The study linked safety perceptions on buses to anxiety, bus-stop conditions and the wider travel experience.</p><p><em>Verma et al., Transportation Research Procedia (2020)</em></p></div><div class="rv hard card"><span class="mono lbl">Urban and rural mobility</span><h4 class="display">Infrastructure shapes the trip</h4><p>The World Bank points to lighting and walkable routes in cities, and limited transport options and poor road conditions in rural areas. I treated weak coverage as a scenario to test in Sullia.</p><p><em>World Bank, Gender Responsive Urban Mobility in India (2022) · World Bank, Rural and Peri-Urban Roads</em></p></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Global context.</strong> WHO estimates nearly one in three women have experienced physical or sexual intimate partner violence or non-partner sexual violence in their lifetime. This figure covers a broader context than commuting.</p>
+<p class="rv small">World Health Organization, global prevalence estimates</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Product benchmark</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">invisaWear already pairs discreet jewellery with a phone over Bluetooth. My opportunity was a thumb-operated ring paired with three distinct ways to respond during a commute.</p>
+<p class="rv small">invisaWear, product and Bluetooth FAQ</p>
+<div class="rv callout"><span class="mono lbl">Evidence to design</span><p>The bus study is about perceived safety. I used it to select scenarios and design constraints. Whether a ring feels discreet and usable in those scenarios remains a question for primary research.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Personas</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Two research-informed composites show how the same safety task changes with the commute.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">Urban commuter</span><h4 class="display">Priya Sharma</h4><p>27 · Marketing professional · Bengaluru, Karnataka</p><p>Takes public transport between meetings and sometimes comes home late.</p><p><strong>Pain points.</strong> Crowded or late trips can feel unsafe. A visible panic device or taking out a phone can draw attention. Menus cost time when she wants to act quickly.</p><p><strong>Needs.</strong> A gesture she can use with one hand, a ring she would wear as jewellery, and control over whether to call, share location or trigger SOS.</p></div><div class="rv hard card"><span class="mono lbl">Rural commuter</span><h4 class="display">Kavitha Devi</h4><p>38 · Farmer · Sullia, Karnataka</p><p>Walks to nearby markets and fields. Some stretches have few people, poor lighting and intermittent coverage.</p><p><strong>Pain points.</strong> Help may be farther away. Coverage can drop. A tool that assumes English, confidence with apps or a multistep setup can be hard to use.</p><p><strong>Needs.</strong> A trigger she can find by touch, setup in a language she reads, and a clear indication of what the app can send when coverage is weak.</p></div></div>
+<div class="rv callout"><span class="mono lbl">Shared job</span><p>Get someone to help me when I need it. Priya’s scenario tests discretion in a crowd. Kavitha’s tests how much the emergency interaction assumes about the phone, the network and reading under pressure.</p></div>
+<p class="rv small">Names, ages, jobs and scenarios are composite persona details.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Processes</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Affinity Mapping</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I grouped the secondary findings and persona scenarios by the moments when asking for help could break down.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Theme</span><span class="th">Priya / Bengaluru</span><span class="th">Kavitha / Sullia</span></div><div class="tr n3"><span class="td k">Exposure</span><span class="td">A crowded bus can make pulling out a phone or a visible alarm feel conspicuous.</span><span class="td">An isolated stretch can mean fewer people within reach.</span></div><div class="tr n3"><span class="td k">Access to help</span><span class="td">The phone may be in a bag or hard to use one-handed.</span><span class="td">The phone may be within reach, but help and mobile coverage can be intermittent.</span></div><div class="tr n3"><span class="td k">Ways to cope</span><span class="td">May share a location with someone, choose a familiar route or avoid travelling late.</span><span class="td">May walk with others when possible, choose familiar paths or rely on a basic phone.</span></div><div class="tr n3"><span class="td k">Effort under pressure</span><span class="td">Wants a quick response without searching menus or looking down.</span><span class="td">Needs a short, learnable gesture and a setup she can read.</span></div><div class="tr n3"><span class="td k">Information before travel</span><span class="td">Wants to see a route and know who could accompany her.</span><span class="td">Needs useful route context when the map last synced and clear limits when service drops.</span></div></div>
+<div class="rv callout"><span class="mono lbl">The handoff to fix</span><p>Let the commuter start the alert with her hand. Have the paired phone use preselected contacts and report the state of delivery. The interaction begins before the app needs her attention.</p></div>
+<p class="rv small">Coping strategies are scenario hypotheses from the original empathy map.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Themes</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr defs"><span class="td k">Discretion</span><span class="td">Make the device and gesture inconspicuous enough to use in a crowd.</span></div><div class="tr defs"><span class="td k">Accessibility</span><span class="td">Use touch for the trigger, start setup with language, and keep the app readable at a glance.</span></div><div class="tr defs"><span class="td k">Proportionate response</span><span class="td">Give uneasy, worried and endangered commuters different actions.</span></div><div class="tr defs"><span class="td k">Readiness</span><span class="td">Configure the ring and choose trusted contacts before leaving.</span></div><div class="tr defs"><span class="td k">Connectivity</span><span class="td">Store what can be stored locally and be clear about what can be delivered.</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Problem statement</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Asking for help can be its own obstacle.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">An emergency interaction can assume a free hand, a visible screen, a good connection and time to decide. A crowded commute can take away the first two. A rural walk can take away the connection. Both make the cost of extra steps apparent.</p>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">How might we design an intuitive, accessible safety solution that helps women in urban and rural areas feel more secure on their commutes, while accounting for their different needs and keeping it easy and reliable to use?</p></div>
+<p class="rv small"><strong>Design test.</strong> Could someone start an SOS by touch with a hand at their side? Could they tell whether help had actually been notified once they could check their phone?</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">The concept</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Digital Solutions</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I split the product around the moment when the screen becomes hard to reach.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">Wearable</span><h4 class="display">The ring</h4><p>A same-hand thumb gesture starts SOS. The ring concept can also provide light and an alarm.</p></div><div class="rv hard card"><span class="mono lbl">Mobile application</span><h4 class="display">The companion app</h4><p>Handles setup, route planning, Fake Call, Tag Along, location sharing and alert status.</p></div></div>
+<div class="rv mono lbl sub">Ideation</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Where should the SOS start?</h3>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Option</span><span class="th">What I kept or ruled out</span></div><div class="tr n2"><span class="td k">Phone only</span><span class="td">The app is useful when the screen is available. Reaching for it is the failure case I wanted to solve.</span></div><div class="tr n2"><span class="td k">Pendant</span><span class="td">Easy to reach with one hand. Pulling it into position could make the gesture visible.</span></div><div class="tr n2"><span class="td k">Bracelet</span><span class="td">Familiar wearable. I found the wrist gesture harder to conceal in the sketches.</span></div><div class="tr n2"><span class="td k">Ring / chosen</span><span class="td">The thumb can reach a palm-facing panel on the same hand. That gave me a plausible gesture to test by touch.</span></div></div>
+<figure class="rv fig"><img src="ux/halo/02.webp" alt="Original concept sketches explored band shape and where the thumb could find the trigger." loading="lazy" width="752" height="373"><figcaption>Original concept sketches explored band shape and where the thumb could find the trigger.</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The commuter can start on the ring or demonstrate the same hold on Home in the phone prototype.</p>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Ring trigger</b><span>Find the palm-facing panel by touch.</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>Home hold pad</b><span>A second entry point when the phone is accessible.</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>Hold for 2 seconds</b><span>The hold arms SOS. Releasing early resets it.</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>Silent confirmation window</b><span>5 seconds to cancel on the paired phone.</span></div></div><div class="step"><span class="num mono">05</span><div class="txt"><b>Cancel</b><span>Return to Home. No alert has gone out.</span></div></div><div class="step"><span class="num mono">06</span><div class="txt"><b>Countdown expires</b><span>SOS starts automatically.</span></div></div><div class="step"><span class="num mono">07</span><div class="txt"><b>Active SOS</b><span>The phone shows alert and location status.</span></div></div><div class="step"><span class="num mono">08</span><div class="txt"><b>I’m safe</b><span>Stand down, stop the alarm and send an all-clear.</span></div></div></div>
+<div class="rv callout"><span class="mono lbl">Emergency confirmation</span><p>The hold confirms intent. The countdown gives an accidental trigger a way out. A deliberate alert requires no second tap.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS / User flow</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Live Location &amp; Alerts</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">At the end of the countdown, the concept starts the local and remote actions in parallel.</p>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Paired phone starts SOS</b><span>Uses the configured recipients and location.</span></div></div></div>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Trusted contacts</h4><p>Share live location through the available data channel.</p></div><div class="rv hard card"><h4 class="display">Nearby HalO users</h4><p>Send the proposed community alert where available.</p></div><div class="rv hard card"><h4 class="display">Ring</h4><p>Start the alarm and flash in the concept.</p></div></div>
+<div class="rv mono lbl sub">When connectivity changes</div>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Condition</span><span class="th">Proposed behaviour</span></div><div class="tr n2"><span class="td k">Mobile data available</span><span class="td">Use app-based live sharing and show progress by recipient or channel.</span></div><div class="tr n2"><span class="td k">SMS coverage only</span><span class="td">Explore an SMS alert to saved contacts with the latest available location. This would send a snapshot.</span></div><div class="tr n2"><span class="td k">No data or SMS service</span><span class="td">Communicate that the remote alert cannot be sent. A cached map or local alarm does not establish delivery.</span></div></div>
+<div class="rv callout"><span class="mono lbl">Shared dependency</span><p>Parallel actions avoid waiting for each other. The phone and available communication channels still determine which remote actions can complete.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS / User flow</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Ring &amp; Trusted Contacts</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Setup puts the decisions that can wait ahead of the commute.</p>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Home</b><span>Open the Ring tab or Emergency Contacts.</span></div></div></div>
+<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">Ring tab</h4><p>Check connection, battery and trigger readiness.</p><p><strong>Configuration.</strong> Adjust the alarm and flashlight ahead of time.</p><p><strong>Return to ring status.</strong> Check whether the app reports that it is listening.</p></div><div class="rv hard card"><h4 class="display">Emergency Contacts</h4><p>See the saved recipients before you need them.</p><p><strong>Add or remove a contact.</strong> Choose who should receive an SOS.</p><p><strong>Return to the recipient list.</strong> Keep SOS recipients distinct from optional trip sharing.</p></div></div>
+<div class="rv callout"><span class="mono lbl">Design rationale</span><p>A saved recipient list removes a decision from the SOS moment. An upfront connection check tells the commuter whether the ring and phone are ready to hand off the gesture.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Ring &amp; SOS UI</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Before leaving, the commuter can check whether the ring is paired, has charge and is listening.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/halo/03.webp" alt="The original HalO ring concept. Everyday jewellery was the visual brief. The gesture drove the form." loading="lazy" width="693" height="523"><figcaption>The original HalO ring concept. Everyday jewellery was the visual brief. The gesture drove the form.</figcaption></figure><figure class="rv fig"><img src="ux/halo/04.webp" alt="Ring status · Connection, battery and trigger readiness in one view." loading="lazy" width="440" height="954"><figcaption>Ring status · Connection, battery and trigger readiness in one view.</figcaption></figure></div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Make readiness visible</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The ring page answers a different question from Home. Home is for deciding what to do next. Ring status is for checking whether the wearable is ready before you need it.</p>
+<div class="rv callout"><span class="mono lbl">Prototype boundary</span><p>The battery and connection indicators are sample states. The prototype does not measure the ring’s radio range or battery life.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS / Ring &amp; SOS UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The Hold &amp; Cancel</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A bag strap can press a ring. The activation needs to feel deliberate when the user means it.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/halo/05.webp" alt="Hold to arm. The app stand-in fills a progress arc. Releasing before the threshold resets the gesture." loading="lazy" width="459" height="996"><figcaption><strong>Hold to arm.</strong> The app stand-in fills a progress arc. Releasing before the threshold resets the gesture.</figcaption></figure><figure class="rv fig"><img src="ux/halo/06.webp" alt="Cancel in silence. The countdown tells the commuter when the alert will go out and gives an accidental trigger a way back." loading="lazy" width="459" height="996"><figcaption><strong>Cancel in silence.</strong> The countdown tells the commuter when the alert will go out and gives an accidental trigger a way back.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">Why two seconds, then five?</span><p>The hold is meant to filter brief contact. The cancel window gives the commuter time to recover from an accidental hold. It also delays an intentional alert. Both timings need testing on a physical ring.</p></div>
+<p class="rv small">The phone prototype demonstrates the timing. Whether the wearer can perceive confirmation with the phone in a bag is a hardware research question.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS / Ring &amp; SOS UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Active SOS &amp; Stand-Down</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Once SOS starts, the interface shifts from asking for input to showing what is happening.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/halo/07.webp" alt="SOS active. Large status text, icons and an elapsed timer make the simulated actions easy to scan." loading="lazy" width="459" height="996"><figcaption><strong>SOS active.</strong> Large status text, icons and an elapsed timer make the simulated actions easy to scan.</figcaption></figure><figure class="rv fig"><img src="ux/halo/08.webp" alt="Stand-down. “I’m safe” leads to the all-clear screen. The prototype shows the alarm off and contacts notified." loading="lazy" width="459" height="996"><figcaption><strong>Stand-down.</strong> “I’m safe” leads to the all-clear screen. The prototype shows the alarm off and contacts notified.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">What a real status must say</span><p>In a live system, “sending,” “sent” and “received” need distinct meanings. A green check in the demo stands in for a system event that engineering would need to verify.</p></div>
+<p class="rv small">The prototype simulates messages and nearby alerts. A production design would also need a way to surface failed or delayed delivery.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Wearable + SOS / Ring &amp; SOS UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Configuration &amp; Contacts</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I kept settings in a part of the app the commuter can use when there is time to read and decide.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/halo/09.webp" alt="Ring configuration. Gesture mappings, alarm volume and flashlight brightness live together. The screen also shows an exploratory deterrent control." loading="lazy" width="459" height="996"><figcaption><strong>Ring configuration.</strong> Gesture mappings, alarm volume and flashlight brightness live together. The screen also shows an exploratory deterrent control.</figcaption></figure><figure class="rv fig"><img src="ux/halo/10.webp" alt="Emergency contacts. View, add or remove the people the app would contact during an SOS." loading="lazy" width="459" height="996"><figcaption><strong>Emergency contacts.</strong> View, add or remove the people the app would contact during an SOS.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">Hardware scope</span><p>The early concept explored a deterrent and a damage-triggered alert using the last known location. The core SOS depends on the gesture and alert handoff. Any additional hardware or dispatch integration would need its own review.</p></div>
+<p class="rv small">The primary flow uses trusted contacts and a proposed nearby-user alert. Authority notification was an early exploration. The original contacts screen overstates coverage. Alert delivery needs data or SMS service.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Splash leads to onboarding and then Home. From Home the commuter chooses the response that fits the moment.</p>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Splash → Onboarding → Home</b><span>Choose language, meet and pair the ring, add contacts.</span></div></div></div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">SOS</span><span class="td">Hold → confirmation countdown → SOS active → live location to trusted contacts → stand down.</span></div><div class="tr defs"><span class="td k">Tag Along</span><span class="td">Find a route match → request → wait for acceptance → see pickup ETA → walk → arrive and rate.</span></div><div class="tr defs"><span class="td k">Fake Call</span><span class="td">Start a simulated incoming call → answer or dismiss → end the call.</span></div><div class="tr defs"><span class="td k">Route planning</span><span class="td">Search for a destination → compare a suggested route → start → choose whether to share live location.</span></div><div class="tr defs"><span class="td k">Ring and contacts</span><span class="td">Check and configure the ring or manage trusted recipients from Home.</span></div></div>
+<div class="rv callout"><span class="mono lbl">Sharing in Tag Along</span><p>The commuter can call or message in the app without exchanging phone numbers. Sharing with emergency contacts is a separate choice, and she can end the session early.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Mobile App UI</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Home makes the next action easy to find. A commuter can choose Fake Call, Tag Along or SOS without moving through them in order.</p>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/halo/11.webp" alt="Home. Search and the main safety actions share one screen." loading="lazy" width="255" height="552"><figcaption><strong>Home.</strong> Search and the main safety actions share one screen.</figcaption></figure><figure class="rv fig"><img src="ux/halo/12.webp" alt="Fake Call / incoming. Familiar answer and dismiss controls make the simulated call legible." loading="lazy" width="255" height="552"><figcaption><strong>Fake Call / incoming.</strong> Familiar answer and dismiss controls make the simulated call legible.</figcaption></figure><figure class="rv fig"><img src="ux/halo/13.webp" alt="Fake Call / connected. Keeps the appearance of an ordinary call while the commuter steps away." loading="lazy" width="255" height="552"><figcaption><strong>Fake Call / connected.</strong> Keeps the appearance of an ordinary call while the commuter steps away.</figcaption></figure><figure class="rv fig"><img src="ux/halo/14.webp" alt="Tag Along / choose. Shows potential companions before a request is sent." loading="lazy" width="255" height="552"><figcaption><strong>Tag Along / choose.</strong> Shows potential companions before a request is sent.</figcaption></figure><figure class="rv fig"><img src="ux/halo/15.webp" alt="Tag Along / asking. Shows that the request is pending." loading="lazy" width="255" height="552"><figcaption><strong>Tag Along / asking.</strong> Shows that the request is pending.</figcaption></figure><figure class="rv fig"><img src="ux/halo/16.webp" alt="Tag Along / active. Keeps pickup ETA, call, message and the exit control in view." loading="lazy" width="255" height="552"><figcaption><strong>Tag Along / active.</strong> Keeps pickup ETA, call, message and the exit control in view.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">Sharing boundary</span><p>Tag Along is opt-in and scoped to the session in the concept. The sample profiles and reviews illustrate the interface. Identity checks and controls against misuse need testing before launch.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The Walk &amp; Arrival</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The commuter can share progress on her terms, end the session and leave feedback after arrival.</p>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/halo/17.webp" alt="Tag Along / share. Asks before sharing live location with emergency contacts." loading="lazy" width="253" height="549"><figcaption><strong>Tag Along / share.</strong> Asks before sharing live location with emergency contacts.</figcaption></figure><figure class="rv fig"><img src="ux/halo/18.webp" alt="Tag Along / rate. After arrival, a star rating and optional written review close the session." loading="lazy" width="253" height="549"><figcaption><strong>Tag Along / rate.</strong> After arrival, a star rating and optional written review close the session.</figcaption></figure><figure class="rv fig"><img src="ux/halo/19.webp" alt="Choose a destination. Recent and saved places reduce typing. Search stays available." loading="lazy" width="253" height="549"><figcaption><strong>Choose a destination.</strong> Recent and saved places reduce typing. Search stays available.</figcaption></figure><figure class="rv fig"><img src="ux/halo/20.webp" alt="Review a route. Shows travel time alongside factors such as lighting, foot traffic and nearby safe spots." loading="lazy" width="253" height="549"><figcaption><strong>Review a route.</strong> Shows travel time alongside factors such as lighting, foot traffic and nearby safe spots.</figcaption></figure><figure class="rv fig"><img src="ux/halo/21.webp" alt="Follow the journey. Keeps the route, estimated time and safety shortcuts available." loading="lazy" width="253" height="549"><figcaption><strong>Follow the journey.</strong> Keeps the route, estimated time and safety shortcuts available.</figcaption></figure><figure class="rv fig"><img src="ux/halo/22.webp" alt="Share the journey. Asks before sending trip location to emergency contacts." loading="lazy" width="253" height="549"><figcaption><strong>Share the journey.</strong> Asks before sending trip location to emergency contacts.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">Route language</span><p>“Safest route” is a prototype label. Lighting, foot traffic and reports can change. I would test a label that explains the route factors and when the information was last updated.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Onboarding</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Language comes before the welcome copy. Pairing and choosing two contacts put the critical decisions before the first commute.</p>
+<div class="phones" style="--n:4"><figure class="rv fig"><img src="ux/halo/23.webp" alt="Splash. Opens HalO." loading="lazy" width="239" height="519"><figcaption><strong>Splash.</strong> Opens HalO.</figcaption></figure><figure class="rv fig"><img src="ux/halo/24.webp" alt="Language. Offers English, Hindi, Kannada and Tamil." loading="lazy" width="239" height="519"><figcaption><strong>Language.</strong> Offers English, Hindi, Kannada and Tamil.</figcaption></figure><figure class="rv fig"><img src="ux/halo/25.webp" alt="The promise. Explains why the trigger is on the ring." loading="lazy" width="239" height="519"><figcaption><strong>The promise.</strong> Explains why the trigger is on the ring.</figcaption></figure><figure class="rv fig"><img src="ux/halo/26.webp" alt="Three responses. Introduces Fake Call, Tag Along and SOS." loading="lazy" width="239" height="519"><figcaption><strong>Three responses.</strong> Introduces Fake Call, Tag Along and SOS.</figcaption></figure><figure class="rv fig"><img src="ux/halo/27.webp" alt="Meet the ring. Shows where to find the trigger by touch." loading="lazy" width="239" height="519"><figcaption><strong>Meet the ring.</strong> Shows where to find the trigger by touch.</figcaption></figure><figure class="rv fig"><img src="ux/halo/28.webp" alt="Pairing. Shows that the phone is looking for the ring." loading="lazy" width="239" height="519"><figcaption><strong>Pairing.</strong> Shows that the phone is looking for the ring.</figcaption></figure><figure class="rv fig"><img src="ux/halo/29.webp" alt="Ring ready. Confirms the simulated connection." loading="lazy" width="239" height="519"><figcaption><strong>Ring ready.</strong> Confirms the simulated connection.</figcaption></figure><figure class="rv fig"><img src="ux/halo/30.webp" alt="Trusted contacts. Prompts the user to add two people." loading="lazy" width="239" height="519"><figcaption><strong>Trusted contacts.</strong> Prompts the user to add two people.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">Accessibility to validate</span><p>Status combines text, icons and colour. The phone hold uses visual progress and can use haptics on supported devices. The language selector is demonstrated. Translation, screen-reader behaviour, touch target size and reduced motion need verification.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Key takeaways</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Key Takeaways</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The concept is a wearable and an interactive walkthrough. The next decision is whether the handoff earns enough trust to pilot.</p>
+<div class="rv mono lbl sub">01 / What did I learn?</div>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Start with the hand.</h4><p>When the phone is hard to reach, simplifying its screens only helps once the commuter can use it. The wearable moves the first action.</p></div><div class="rv hard card"><h4 class="display">Make waiting visible.</h4><p>A cancel window can prevent a false alarm and delay a real one. The timing should earn its place through testing.</p></div><div class="rv hard card"><h4 class="display">Design for delivery.</h4><p>An alert starting, an alert leaving the phone and someone receiving it are different events. Each needs a distinct status.</p></div></div>
+<div class="rv mono lbl sub">02 / What’s next?</div>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Run primary research.</h4><p>Interview urban and rural commuters about recent journeys, language needs and what “discreet” means to them. Include trusted contacts.</p></div><div class="rv hard card"><h4 class="display">Test the physical gesture.</h4><p>Use a test ring, simulated scenarios and consented time pressure. Compare hold and cancel timings, including hands-busy and accidental presses.</p></div><div class="rv hard card"><h4 class="display">Review privacy and reliability.</h4><p>Test Bluetooth loss and intermittent service. For Tag Along and route reports, review consent, verification, misuse and stale information.</p></div></div>
+<div class="rv callout"><span class="mono lbl">What I’d test in a pilot</span><p>Compare phone-only and ring-triggered tasks. Record first-attempt activation without coaching, accidental sends, successful cancellations and time to confirmed receipt. Compare outcomes by commute context and connectivity. Treat every unrecognised delivery failure as a blocker to resolve.</p></div>
+<p class="rv small">Scope at handoff · Ring form concept, Figma designs and an interactive app walkthrough. Physical hardware, operational alerts and field outcomes remain to be validated.</p>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="reframe.dc.html" style="display:block;margin:0;font-size:clamp(40px,8vw,120px);line-height:.9;max-width:16ch">Reframe</a>
+      <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.5;opacity:.78">Make the page easier to read. Keep the reader in charge.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="reframe.dc.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#process" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All five projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-lime: var(--lime);
+  --color-forest: var(--forest);
+  --color-tomato: var(--tomato);
+  --color-blue: var(--blue);
+  --color-pink: var(--pink);
+  --color-sun: var(--sun);
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --ink: #121110;
+  --ink-2: #1d1c1a;
+  --paper: #f2eee3;
+  --paper-2: #e6dfcd;
+  --lime: #c8f53c;
+  --forest: #0e3a22;
+  --tomato: #ff4f1f;
+  --blue: #2e3bff;
+  --pink: #ff8fcf;
+  --sun: #ffc22e;
+  --gutter: clamp(16px, 2.4vw, 40px);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-back: cubic-bezier(.34, 1.56, .64, 1);
+  --crumple: url(/textures/crumple.png);
+  --grain: url(/textures/grain.png);
+
+  --font-anton: "Anton", "Anton Fallback";
+  --font-inter-tight: "Inter Tight", "Inter Tight Fallback";
+  --font-instrument-serif: "Instrument Serif", "Instrument Serif Fallback";
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-caveat: "Caveat", "Caveat Fallback";
+  --font-display: var(--font-anton), "Impact", "Arial Narrow", sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+html.is-locked,
+html.is-locked body {
+  overflow: hidden;
+}
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+html.has-cursor input,
+html.has-cursor textarea {
+  cursor: text !important;
+}
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+@layer components {
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -.004em;
+  font-weight: 400;
+  line-height: calc(.86em + max(10px, .08em)) !important; /* at least a 10px gap between lines */
+}
+.serif-i {
+  font-family: var(--font-serif);
+  text-transform: none;
+  letter-spacing: -.025em;
+  font-style: italic;
+  font-weight: 400;
+}
+.hand {
+  font-family: var(--font-hand);
+}
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: .02em;
+}
+.tag {
+  font-family: var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 6px;
+  align-items: center;
+  gap: .55em;
+  padding: .5em .85em .45em;
+  font-size: 11px;
+  line-height: 1;
+  display: inline-flex;
+}
+
+.paper-tex {
+  isolation: isolate;
+  position: relative;
+}
+.paper-tex::before {
+  content: "";
+  z-index: -1;
+  background-image: var(--crumple);
+  opacity: var(--tex-opacity, .42);
+  pointer-events: none;
+  border-radius: inherit;
+  background-size: 512px 512px;
+  position: absolute;
+  inset: 0;
+}
+.grain {
+  z-index: 90;
+  pointer-events: none;
+  background-image: var(--grain);
+  opacity: .07;
+  background-size: 192px 192px;
+  position: fixed;
+  inset: 0;
+}
+.grid-bg {
+  background-image: linear-gradient(90deg, #ffffff0b 1px, #0000 1px), linear-gradient(#ffffff0b 1px, #0000 1px);
+  background-size: 64px 64px;
+}
+
+/* Button */
+.btn {
+  --btn-bg: var(--pink);
+  --btn-fg: var(--ink);
+  background: var(--btn-bg);
+  height: 52px;
+  color: var(--btn-fg);
+  border: 2px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink);
+  letter-spacing: -.01em;
+  transition: transform .35s var(--ease-back), box-shadow .35s var(--ease-back);
+  white-space: nowrap;
+  border-radius: 999px;
+  align-items: stretch;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  overflow: hidden;
+}
+.btn-arrow {
+  aspect-ratio: 1;
+  border-right: 2px solid var(--ink);
+  background: var(--ink);
+  height: 100%;
+  color: var(--paper);
+  border-radius: 999px 0 0 999px;
+  place-items: center;
+  display: grid;
+  overflow: hidden;
+}
+.btn-label {
+  align-items: center;
+  padding: 0 22px 0 16px;
+  display: flex;
+}
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: currentColor;
+  box-shadow: none;
+  border-color: currentColor;
+}
+.btn:hover {
+  box-shadow: 0 7px 0 var(--ink);
+  transform: translateY(-3px) rotate(-1.5deg);
+}
+.btn:hover .btn-arrow svg {
+  animation: arrow-loop .55s var(--ease-out);
+}
+@keyframes arrow-loop {
+  0% { transform: translate(0); }
+  49% { transform: translate(140%); }
+  50% { transform: translate(-140%); }
+  to { transform: translate(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Draggables / floats */
+.sticker-pos,
+.h-float {
+  position: absolute;
+  z-index: 5;
+}
+.sticker {
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+}
+
+/* SplitText mask wrappers clip; give descenders room */
+.rline {
+  padding-bottom: .08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-spin { animation: none !important; }
+}
+
+/* Gate hole */
+.gate {
+  --r: 0px;
+  --cx: 50vw;
+  --cy: 50vh;
+  -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
+  mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 1px));
+}
+
+/* Pull cord ticket */
+.pull-ticket {
+  box-shadow: 3px 3px 0 var(--ink);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 87.5% 100%, 75% 88%, 62.5% 100%, 50% 88%, 37.5% 100%, 25% 88%, 12.5% 100%, 0 88%);
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-size: 100% 2px;
+  background-position: 0 42%;
+  background-repeat: no-repeat;
+  touch-action: none;
+}
+
+/* Type caret */
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  vertical-align: -0.12em;
+  margin-left: 2px;
+  animation: caret 1s steps(1) infinite;
+}
+@keyframes caret { 50% { opacity: 0; } }
+
+/* Hero tile */
+.tile-slide { animation: tile 6s infinite; opacity: 0; }
+@keyframes tile {
+  0% { opacity: 0; scale: 1.18; }
+  3%, 33% { opacity: 1; scale: 1; }
+  37%, 100% { opacity: 0; }
+}
+.beat { animation: beat 1.2s infinite; }
+@keyframes beat { 15% { scale: 1.35; } 30% { scale: 1; } }
+.sun-ticket {
+  border: 2px solid var(--ink);
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 96% 50%, 100% 65%, 100% 100%, 0 100%, 0 65%, 4% 50%, 0 35%);
+}
+
+/* Arc-topped sections */
+.arc-top {
+  border-top-left-radius: 50% calc(var(--arc, 16) * 1vw);
+  border-top-right-radius: 50% calc(var(--arc, 16) * 1vw);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc-top { --arc: 0 !important; }
+  .h-pin { height: auto !important; }
+  .h-track {
+    position: relative !important;
+    top: auto !important;
+    translate: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    white-space: normal !important;
+    font-size: 18vw !important;
+    padding: 120px var(--gutter) 80px !important;
+  }
+  .h-float { display: none !important; }
+}
+
+/* Google demo highlight */
+.sd-ad {
+  box-shadow: 0 0 0 calc(var(--hl, 0) * 3px) var(--lime), 0 0 0 calc(var(--hl, 0) * 5px) var(--ink);
+  background: rgb(200 245 60 / calc(var(--hl, 0) * .14));
+}
+
+.receipt-teeth {
+  background: linear-gradient(-45deg, transparent 8px, #fbf9f3 0) 0 0 / 16px 16px repeat-x, linear-gradient(45deg, transparent 8px, #fbf9f3 0) 0 0 / 16px 16px repeat-x;
+}
+}
+
+/* Highlight band sized to the Anton caps, so on wrapped lines it never runs
+   into the line above or below (a plain background fills the font's tall box). */
+.manifesto-hl {
+  background: linear-gradient(var(--forest), var(--forest)) 0 49% / 100% 1em no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "loud-studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "textures": "node scripts/make-textures.mjs"
+  },
+  "dependencies": {
+    "@fontsource/anton": "^5.2.0",
+    "@fontsource/caveat": "^5.2.0",
+    "@fontsource/geist-mono": "^5.2.0",
+    "@fontsource/instrument-serif": "^5.2.0",
+    "@fontsource/inter-tight": "^5.2.0",
+    "@gsap/react": "2.1.2",
+    "gsap": "3.15.0",
+    "lenis": "1.3.27",
+    "next": "16.4.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "0.186.0",
+    "pngjs": "^7.0.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5.6"
+  }
+}

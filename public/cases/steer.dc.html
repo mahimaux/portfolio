@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-case="steer">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steer · Mahima Shastry</title>
+<meta name="description" content="Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.">
+<link rel="stylesheet" href="site.css">
+<script src="nav-hide.js" defer></script>
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--ink)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.hard{border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
+.mono{font-size:inherit}
+.lbl{font-size:11px !important;text-transform:uppercase;letter-spacing:.12em}
+.sub{margin-top:14px;color:var(--tomato);font-weight:700}
+.body p a,.td a{border-bottom:2px solid var(--ink)}
+.body p a:hover{background:var(--lime)}
+.body code{font-family:var(--font-mono,ui-monospace,monospace);font-size:.9em;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:6px;padding:1px 6px}
+.tbl{display:flex;flex-direction:column;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 6px 0 var(--ink)}
+.tr{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-bottom:2px solid rgb(18 17 16 / .18)}
+.tr:last-child{border-bottom:0}
+.tr.head{background:var(--ink);color:var(--lime);border-bottom:0}
+.tr.defs{grid-template-columns:minmax(0,1fr) minmax(0,3fr)}
+.td,.th{padding:12px 16px;font-size:15.5px;line-height:1.45;min-width:0;overflow-wrap:anywhere}
+.th{padding:11px 16px}
+.th strong{font-weight:700}
+.td.k{border-right:2px solid rgb(18 17 16 / .18);background:var(--paper-2)}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px}
+.card{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:9px;border-radius:14px}
+.fig{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.fig img{display:block;width:100%;height:auto;border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);background:#fff}
+.fig figcaption{opacity:.75;line-height:1.6}
+.dots{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:70ch}
+.dots li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16.5px;line-height:1.55}
+.dot{display:inline-block;width:14px;height:14px;margin-top:6px;background:var(--lime);border:2px solid var(--ink);border-radius:999px}
+.note{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;font-size:15px;line-height:1.5;max-width:70ch;box-shadow:0 5px 0 var(--ink)}
+h4 + .note{margin-top:0}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:899px){.sec-head{position:static !important;top:auto !important}h1.display{word-break:break-word}.cards{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}}
+@media (max-width:599px){.cards{grid-template-columns:1fr}.tr,.tr.defs{grid-template-columns:1fr}.td.k{border-right:0;border-bottom:2px dashed rgb(18 17 16 / .18)}.tr.head .th:first-child{border-bottom:0}}
+@media (max-width:479px){.nav-all{display:none}}
+.pdf-btn{max-width:100%;height:auto;min-height:52px}.pdf-btn .btn-label{white-space:normal;line-height:1.25;padding:10px 18px 10px 14px !important}
+
+.small{margin:0;max-width:70ch;font-size:13.5px;line-height:1.6;opacity:.72}
+.callout{margin:4px 0 0;background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:18px 20px;max-width:72ch;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+.callout p{margin:0;font-size:15.5px;line-height:1.55}
+.callout .lbl{color:var(--ink);opacity:.8;font-weight:700}
+.hmw{margin:6px 0;display:flex;flex-direction:column;gap:10px;padding-left:22px;border-left:4px solid var(--tomato)}
+.hmw .q{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.22;max-width:34ch}
+.tr.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tr.n3 .td + .td,.tr.n2 .td + .td{border-left:2px solid rgb(18 17 16 / .12)}
+.tr.n3 .td.k{border-right:0}
+.tr.head .th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-mono,ui-monospace,monospace)}
+.td strong{font-weight:700}
+.cards .card .lbl{color:var(--tomato);font-weight:700}
+.card p{margin:0;font-size:15.5px;line-height:1.5}
+.card h4{margin:0;font-size:22px;line-height:1.08}
+.person{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.person img{width:120px;height:auto;border:3px solid var(--ink);border-radius:12px;display:block;filter:grayscale(1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px}
+.stat{background:var(--forest);color:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 0 var(--ink)}
+.stat .display{font-size:clamp(38px,4.4vw,60px);line-height:.95;color:var(--lime)}
+.stat span:last-child{font-size:14px;line-height:1.4;opacity:.9}
+.figrow{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:18px;align-items:start}
+.figrow .fig{margin:0}
+.fig figcaption{font-size:14px;line-height:1.5;opacity:.8}
+.phones{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:16px 14px;align-items:start}
+.phones .fig img{border-radius:18px;background:#111}
+.phones .fig figcaption{font-size:13px}
+.flow{display:flex;flex-direction:column;gap:0;max-width:640px}
+.flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
+.flow .step:not(:last-child) .num{position:relative}
+.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
+.flow .txt b{font-size:18px;line-height:1.2}
+.flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
+.flow .step:last-child .txt{padding-bottom:0}
+.dots.ol .dot{width:26px;height:26px;margin-top:0;display:grid;place-items:center;font-size:12px;font-weight:700}
+.swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw{display:flex;flex-direction:column;gap:6px;width:110px}
+.sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
+.hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
+.hero-fig img{display:block;width:100%;height:auto}
+.readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+@media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
+@media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="bar" style="position:fixed;top:0;left:0;height:5px;background:var(--lime);border-bottom:2px solid var(--ink);z-index:120;width:0" aria-hidden="true"></div>
+<header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px var(--gutter);background:var(--paper);border-bottom:3px solid var(--ink)">
+  <a class="mono" href="../index.html#top" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;display:inline-flex;align-items:center;gap:8px;white-space:nowrap">
+    <span style="display:inline-block;width:9px;height:9px;background:var(--tomato);border:2px solid var(--ink);border-radius:999px"></span>Mahima Shastry
+  </a>
+  <nav style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <a class="mono nav-all" href="../index.html#process" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap">All work</a>
+    <a class="btn" href="../index.html#contact" style="--btn-bg:var(--lime);height:40px;box-shadow:0 3px 0 var(--ink)">
+      <span class="btn-label mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;padding:0 16px">Say hi</span>
+    </a>
+  </nav>
+</header>
+<main class="paper-tex" style="position:relative">
+  <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">UX portfolio case study</span>
+      <span class="mono readtime">10 min read</span>
+    </div>
+    <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">Steer</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
+      <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Running a driving school takes more than a group chat.</h2>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.</p>
+        <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">Discovery interviews, information architecture, interaction design and visual design across both platforms.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px"><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Research</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Web app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Instructor app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Key takeaways</span></div>
+      </div>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">My role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Solo UX designer</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Duration</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">3 months</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Deliverables</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Web + mobile prototypes</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Status</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Concept project</dd></dl>
+    </div>
+    <figure class="rv hero-fig" style="background:#1c1d21;margin-top:44px"><img src="ux/steer/02.webp" alt="Steer prototype" width="881" height="476" fetchpriority="high"></figure>
+  </section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Backstory</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">I signed up to learn to ride.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The school wrote student records by hand. Updating a record was awkward. Finding an old one meant going back through the books. I wanted to see what happened when the same school had to keep track of lessons, fees, instructor assignments and vehicle maintenance.</p>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Understanding the users</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Primary research.</strong> I visited nine small to midsize driving schools and conducted ten semi-structured interviews with supervisors and instructors on site. I asked how they teach lessons, manage student and instructor records, and coordinate the work around each booking.</p>
+<div class="rv mono lbl sub">How schools teach</div>
+<div class="stats"><div class="rv stat"><span class="display">100%</span><span>Practical</span></div><div class="rv stat"><span class="display">50%</span><span>Theory</span></div><div class="rv stat"><span class="display">10%</span><span>Simulation</span></div></div>
+<div class="rv mono lbl sub">How schools keep records</div>
+<div class="stats"><div class="rv stat"><span class="display">60%</span><span>Registers or notebooks</span></div><div class="rv stat"><span class="display">40%</span><span>Excel sheets</span></div></div>
+<p class="rv small">Percentages are reproduced from the project reference. The denominator for each question is undocumented, so these figures describe the research as reported.</p>
+<div class="rv mono lbl sub">Secondary research / Portfolio update</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Local context.</strong> India’s Parivahan Form 5 ties a driving-school training certificate to a register entry, vehicle class and training dates. That shows why an enrolment record needs to be easy to retrieve.</p>
+<p class="rv small">Parivahan • Driving certificate, Form 5</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Product benchmark.</strong> Drive Scout already combines scheduling, payments and records. For Steer, the specific design opportunity was carrying the same lesson from the office schedule to the instructor’s next action and back.</p>
+<p class="rv small">Drive Scout • Driving school management software</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Personas</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Two composite personas capture where a manager and an instructor get stuck in the same workflow.</p>
+<div class="rv hard card person"><img src="ux/steer/04.webp" alt="" loading="lazy" width="355" height="540"><div style="display:flex;flex-direction:column;gap:9px"><span class="mono lbl">32 / Manager, Swift Drive School</span><h4 class="display">Monica Adams</h4><p><strong>Pain points.</strong> Schedules and payments are hard to reconcile. Changes take too long to reach instructors and students. Documents are easy to misfile, and vehicle maintenance adds another record to keep current.</p><p><strong>Needs.</strong> A current schedule, a way to review student progress, and a shared place to coordinate changes and assignments.</p><p><em>What changed across the school today?</em></p></div></div>
+<div class="rv hard card person"><img src="ux/steer/05.webp" alt="" loading="lazy" width="352" height="538"><div style="display:flex;flex-direction:column;gap:9px"><span class="mono lbl">40 / Instructor, Ace Drivers Academy</span><h4 class="display">Rajesh Nair</h4><p><strong>Pain points.</strong> Schedules and cancellations arrive late. Paperwork takes time away from teaching. Progress is hard to track from one lesson to the next.</p><p><strong>Needs.</strong> Current assignments, a quick way to record attendance and performance, and a direct channel for coordinating with managers and students.</p><p><em>Who am I teaching next, and where?</em></p></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Processes</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Affinity Mapping</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I grouped the research by recurring problem and compared how each one showed up at the desk and in the car.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Theme</span><span class="th">Managers</span><span class="th">Instructors</span></div><div class="tr n3"><span class="td k">Scheduling issues</span><span class="td">Payments, records and vehicle logs take time to reconcile.</span><span class="td">Progress sheets and paperwork cut into teaching time.</span></div><div class="tr n3"><span class="td k">User experience</span><span class="td">A clean, simple tool matters because training time is limited.</span><span class="td">A phone app should feel familiar and easy to pick up.</span></div><div class="tr n3"><span class="td k">Performance tracking</span><span class="td">Manual reporting makes it hard to spot where students or instructors need support.</span><span class="td">Progress is hard to follow lesson by lesson. Better records would inform the next lesson.</span></div><div class="tr n3"><span class="td k">Technology adoption</span><span class="td">Teams need to see a clear payoff for learning a new tool.</span><span class="td">A busy schedule leaves little time to learn new software.</span></div><div class="tr n3"><span class="td k">Safety compliance</span><span class="td">Vehicle and driver documentation needs upkeep.</span><span class="td">Routine vehicle checks are essential and easy to put off.</span></div><div class="tr n3"><span class="td k">Payments</span><span class="td">It is hard to see who has paid and who needs a reminder.</span><span class="td">Late fees can interrupt classes and slow learner progress.</span></div><div class="tr n3"><span class="td k">Document collection</span><span class="td">Physical files go missing and delay onboarding or scheduling.</span><span class="td">A missing document can interrupt a lesson. A shared record would help.</span></div></div>
+<div class="rv callout"><span class="mono lbl">The handoff to fix.</span><p>A schedule update should reach the instructor, and a lesson outcome should make it back to the office. Both teams needed to see the same record.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Themes</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv tbl"><div class="tr defs"><span class="td k">01 Visibility</span><span class="td">See schedules, payments and daily operations as they change.</span></div><div class="tr defs"><span class="td k">02 Vehicle checks</span><span class="td">Keep safety, maintenance and compliance information easy to find.</span></div><div class="tr defs"><span class="td k">03 Shared records</span><span class="td">Keep student progress, payments and vehicle health together.</span></div><div class="tr defs"><span class="td k">04 Adoption</span><span class="td">Keep the tool affordable and easy to learn around a full workday.</span></div><div class="tr defs"><span class="td k">05 Repetitive work</span><span class="td">Reduce time spent on reminders, document checks and scheduling.</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Problem statement</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Problem Statement</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A schedule change could live in a message while the office worked from an older copy. A fee or a missing document could go unnoticed until it delayed a lesson. Each task was manageable on its own. The failures happened between them.</p>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">How might we create a unified digital solution that streamlines communication, scheduling, record management and daily operations so managers and instructors can spend more time on their core work and improve the experience for students?</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">The concept</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Digital Solutions</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I designed two ways into the same system. Supervisors need to see the whole school at a glance. Instructors need to know what to do before the next lesson starts.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">01 / Web application</h4><p><strong>For managers and owners at a desk.</strong> Track active lessons, maintain student and instructor records, monitor vehicles, and manage payments, documents and calendars.</p></div><div class="rv hard card"><h4 class="display">02 / Mobile application</h4><p><strong>For instructors between lessons.</strong> Check the schedule, contact students, record attendance, see the route and log performance after class.</p></div></div>
+<div class="rv mono lbl sub">Ideation</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Where should a supervisor look first?</h3>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">List-first</h4><p>Familiar and quick to sort. Supervisors still asked where everyone was.</p></div><div class="rv hard card"><h4 class="display">Session cards</h4><p>Showed more per lesson. Location still took effort to piece together.</p></div><div class="rv hard card"><h4 class="display">Map-first</h4><p>Put active vehicles in view and kept lesson details within reach. I chose this direction.</p></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I brought rough paper versions of all three to supervisors. Their first question was about location. I kept session status and reminders visible on the dashboard and put editing and history in detail views.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>On mobile, the trade-off reversed.</strong> I chose one tap on Begin session from Session Details, where the instructor can already check the learner, time and vehicle. The prototype notes favour one tap. A false start still matters because it initiates tracking, so I’d measure start errors and recovery alongside speed.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">After onboarding, six destinations cover the supervisor’s day. The Dashboard and Students branches connect the live operation to each learner’s record.</p>
+<figure class="rv fig"><img src="ux/steer/06.webp" alt="Prototype screen" loading="lazy" width="1059" height="260"></figure>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/07.webp" alt="01 Dashboard. See active vehicles, reminders and profile." loading="lazy" width="303" height="233"><figcaption><strong>01 Dashboard.</strong> See active vehicles, reminders and profile.</figcaption></figure><figure class="rv fig"><img src="ux/steer/08.webp" alt="02 Students. Add a student or open the registry to reach enrolment, schedule, progress, payments and documents." loading="lazy" width="682" height="993"><figcaption><strong>02 Students.</strong> Add a student or open the registry to reach enrolment, schedule, progress, payments and documents.</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / User flow</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructors and Vehicles</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Both branches split by two- or four-wheeler. Each keeps the add flow separate from the registry and detailed record.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/09.webp" alt="03 Instructors. Open an instructor record to see assigned students, schedules, vehicles, performance and documents." loading="lazy" width="688" height="1160"><figcaption><strong>03 Instructors.</strong> Open an instructor record to see assigned students, schedules, vehicles, performance and documents.</figcaption></figure><figure class="rv fig"><img src="ux/steer/10.webp" alt="04 Vehicles. Open a vehicle record for health, maintenance, assignment, usage and documents." loading="lazy" width="743" height="1101"><figcaption><strong>04 Vehicles.</strong> Open a vehicle record for health, maintenance, assignment, usage and documents.</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / User flow</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Payments and Calendar</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The remaining branches give supervisors a place to close out fees and organise upcoming work.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/11.webp" alt="05 Payments. Open the payment summary to review, edit, message, filter or export. Individual records carry the fee, payment and student details." loading="lazy" width="513" height="553"><figcaption><strong>05 Payments.</strong> Open the payment summary to review, edit, message, filter or export. Individual records carry the fee, payment and student details.</figcaption></figure><figure class="rv fig"><img src="ux/steer/12.webp" alt="06 Calendar. Check the schedule, add an event or capture a to-do that doesn’t need a calendar slot." loading="lazy" width="297" height="278"><figcaption><strong>06 Calendar.</strong> Check the schedule, add an event or capture a to-do that doesn’t need a calendar slot.</figcaption></figure></div>
+<div class="rv callout"><span class="mono lbl">The workflow in practice</span><p>A supervisor can update a lesson from a student’s schedule. The instructor’s schedule is intended to reflect the change, and the supervisor can follow up from the same student record.</p></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Web App UI</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv mono lbl sub">01 / The dashboard</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Where is everyone, and what needs attention?</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The map pairs each active session with its student, instructor and vehicle. The notification panel keeps pending and upcoming tasks beside it, so a fee reminder or service date can surface while the supervisor is checking the day’s lessons.</p>
+<figure class="rv fig"><img src="ux/steer/13.webp" alt="Prototype screen" loading="lazy" width="1400" height="756"></figure>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Make monitoring visible</span><span class="td">The map keeps session location in view. A pin opens the lesson’s details. Search is designed to help a supervisor jump to a known student without scanning the map.</span></div><div class="tr defs"><span class="td k">Make status readable</span><span class="td">The yellow and charcoal palette borrows from road signage. The design calls for status labels and distinct pin shapes alongside colour. Those cues still need testing with colour-blind users.</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The Students Page</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv mono lbl sub">02 / Student records</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The registry can be sorted by student ID, name, instructor, attendance or vehicle type. Supervisors can narrow it by enrolment or payment status and date. Filters help answer a specific question without opening every student record.</p>
+<figure class="rv fig"><img src="ux/steer/14.webp" alt="Student registry. Sort and filter, then open or edit the relevant record." loading="lazy" width="1400" height="756"><figcaption><strong>Student registry.</strong> Sort and filter, then open or edit the relevant record.</figcaption></figure>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/15.webp" alt="Add student. Create a record and upload documents." loading="lazy" width="1400" height="741"><figcaption><strong>Add student.</strong> Create a record and upload documents.</figcaption></figure><figure class="rv fig"><img src="ux/steer/16.webp" alt="View student. See enrolment, progress, schedule and fees." loading="lazy" width="1400" height="741"><figcaption><strong>View student.</strong> See enrolment, progress, schedule and fees.</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructors and Vehicles</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv mono lbl sub">03 / The instructors page</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Separate two- and four-wheeler registries match how the schools organise instructors. A profile brings together assigned students, vehicles, schedules, performance and feedback.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/17.webp" alt="Instructor registry" loading="lazy" width="1400" height="756"><figcaption>Instructor registry</figcaption></figure><figure class="rv fig"><img src="ux/steer/18.webp" alt="Instructor record" loading="lazy" width="1400" height="741"><figcaption>Instructor record</figcaption></figure></div>
+<div class="rv mono lbl sub">04 / The vehicles page</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Filter two- and four-wheelers by health, then open the record for maintenance, assignments, usage and documents. Keeping these details together gives managers context before assigning a car or bike to a lesson.</p>
+<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/19.webp" alt="Vehicle registry" loading="lazy" width="1400" height="756"><figcaption>Vehicle registry</figcaption></figure><figure class="rv fig"><img src="ux/steer/20.webp" alt="Vehicle overview" loading="lazy" width="1400" height="741"><figcaption>Vehicle overview</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Payments and Calendar</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="rv mono lbl sub">05 / The payments page</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The payment summary puts the amount due beside each learner’s status. Supervisors can filter, record payments, follow up and export the summary.</p>
+<figure class="rv fig"><img src="ux/steer/21.webp" alt="Prototype screen" loading="lazy" width="1400" height="756"></figure>
+<div class="rv mono lbl sub">06 / The calendar</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Supervisors can add events and switch between daily, weekly, monthly and yearly views. A to-do list keeps untimed work, such as following up on a document, beside the schedule.</p>
+<figure class="rv fig"><img src="ux/steer/22.webp" alt="Prototype screen" loading="lazy" width="1400" height="741"></figure>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The instructor lands on Today. From there, they can check Students, Schedule or Notifications, or open the next lesson and record what happened.</p>
+<figure class="rv fig"><img src="ux/steer/23.webp" alt="Prototype screen" loading="lazy" width="833" height="589"></figure>
+<div class="rv callout"><span class="mono lbl">From lesson to record</span><p>On the original flow, the instructor can begin the lesson or mark the learner absent. Beginning opens the map. Ending the session leads to a performance rating. The updated lesson is intended to be visible from the supervisor’s student record.</p></div>
+<p class="rv small">The original design opened lesson details five minutes before start time and offered a Simulation filter. The Lane preview shows Practical, Theory and All.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Mobile App UI</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Lane Instructor is the mobile prototype for Steer. The instructor can see the day’s lessons, check the next learner’s details and close out the session without saving paperwork for the end of the day.</p>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/24.webp" alt="01 Today. The next lesson stands out in a list with time, class and vehicle." loading="lazy" width="780" height="1690"><figcaption><strong>01 Today.</strong> The next lesson stands out in a list with time, class and vehicle.</figcaption></figure><figure class="rv fig"><img src="ux/steer/25.webp" alt="02 Session Details. Check pickup and prior notes. Begin in one tap, or confirm an absence." loading="lazy" width="780" height="1690"><figcaption><strong>02 Session Details.</strong> Check pickup and prior notes. Begin in one tap, or confirm an absence.</figcaption></figure><figure class="rv fig"><img src="ux/steer/26.webp" alt="03 Live Session. The route, recording status and end control stay visible during the active lesson." loading="lazy" width="780" height="1690"><figcaption><strong>03 Live Session.</strong> The route, recording status and end control stay visible during the active lesson.</figcaption></figure></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Tracking boundary.</strong> Lane explains that location recording begins with the lesson and ends when the instructor stops it. The instructor can see when recording is active. What the school can retain and who can access it still need to be agreed with instructors.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">After the Lesson</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The close-out turns a completed drive into something the instructor can use to teach the next lesson.</p>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/27.webp" alt="04 Rate the session. Add a rating, choose skills to revisit and leave a note for next time." loading="lazy" width="780" height="1690"><figcaption><strong>04 Rate the session.</strong> Add a rating, choose skills to revisit and leave a note for next time.</figcaption></figure><figure class="rv fig"><img src="ux/steer/28.webp" alt="05 Back to Today. The completed lesson stays visible and the next one takes its place." loading="lazy" width="780" height="1690"><figcaption><strong>05 Back to Today.</strong> The completed lesson stays visible and the next one takes its place.</figcaption></figure></div>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/29.webp" alt="Students. Roster and progress" loading="lazy" width="780" height="1690"><figcaption><strong>Students.</strong> Roster and progress</figcaption></figure><figure class="rv fig"><img src="ux/steer/30.webp" alt="Schedule. Lessons by day" loading="lazy" width="780" height="1690"><figcaption><strong>Schedule.</strong> Lessons by day</figcaption></figure><figure class="rv fig"><img src="ux/steer/31.webp" alt="Notifications. Changes and reminders" loading="lazy" width="780" height="1690"><figcaption><strong>Notifications.</strong> Changes and reminders</figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructor Onboarding</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Lane adds setup before the first lesson. It collects the instructor’s details, vehicles and teaching hours, then explains why the app asks for location and reminder permissions.</p>
+<div class="phones" style="--n:5"><figure class="rv fig"><img src="ux/steer/32.webp" alt="Splash" loading="lazy" width="780" height="1690"><figcaption>Splash</figcaption></figure><figure class="rv fig"><img src="ux/steer/33.webp" alt="Mobile number" loading="lazy" width="780" height="1690"><figcaption>Mobile number</figcaption></figure><figure class="rv fig"><img src="ux/steer/34.webp" alt="Verify code" loading="lazy" width="780" height="1690"><figcaption>Verify code</figcaption></figure><figure class="rv fig"><img src="ux/steer/35.webp" alt="Your profile" loading="lazy" width="780" height="1690"><figcaption>Your profile</figcaption></figure><figure class="rv fig"><img src="ux/steer/36.webp" alt="Vehicles" loading="lazy" width="780" height="1690"><figcaption>Vehicles</figcaption></figure><figure class="rv fig"><img src="ux/steer/37.webp" alt="Teaching hours" loading="lazy" width="780" height="1690"><figcaption>Teaching hours</figcaption></figure><figure class="rv fig"><img src="ux/steer/38.webp" alt="Location access" loading="lazy" width="780" height="1690"><figcaption>Location access</figcaption></figure><figure class="rv fig"><img src="ux/steer/39.webp" alt="Reminders" loading="lazy" width="780" height="1690"><figcaption>Reminders</figcaption></figure><figure class="rv fig"><img src="ux/steer/40.webp" alt="All set" loading="lazy" width="780" height="1690"><figcaption>All set</figcaption></figure></div>
+<p class="rv small">The location screen explains the session boundary before the permission request. The instructor can also choose to set up location access or reminders later.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Key takeaways</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Key Takeaways</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The two interfaces changed how I think about the handoff between office work and field work.</p>
+<div class="rv mono lbl sub">01 / What did I learn?</div>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Design for both sides of the handoff.</h4><p>Fees and progress matter to the business. The instructor needs a quick way to update the lesson that feeds those records.</p></div><div class="rv hard card"><h4 class="display">Start with the context of use.</h4><p>A supervisor can scan several sessions. An instructor in a parked car needs one clear next step.</p></div><div class="rv hard card"><h4 class="display">Work with habits already in place.</h4><p>A pilot needs to account for how schools move from paper or Excel and how much training they can spare.</p></div><div class="rv hard card"><h4 class="display">Research both roles.</h4><p>Talking to managers and instructors showed where information got stuck between them.</p></div></div>
+<div class="rv mono lbl sub">02 / What’s next?</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Instructor copilot</span><span class="td">I’m currently working on a copilot for the instructor app.</span></div><div class="tr defs"><span class="td k">Instructor salary payments</span><span class="td">Explore pay calculations and payouts based on completed lessons.</span></div><div class="tr defs"><span class="td k">Instructor rescheduling</span><span class="td">Let instructors move lessons within school-defined rules.</span></div><div class="tr defs"><span class="td k">Mobile lesson materials</span><span class="td">Bring teaching guides and progress reports into the instructor app.</span></div><div class="tr defs"><span class="td k">Student app</span><span class="td">Let learners track lessons, see feedback and pay fees.</span></div><div class="tr defs"><span class="td k">AI-powered insights</span><span class="td">Explore recommendations for progress, schedules and vehicle maintenance.</span></div></div>
+<div class="rv callout"><span class="mono lbl">What I’d test in a pilot</span><p>Compare one paper-based and one Excel-based school with their own baselines. Measure time to locate an active session, morning calls, scheduling clashes, time to act on overdue items and instructor usage. Co-design tracking and test map labels and shapes before piloting.</p></div>
+    </div>
+  </div>
+</section>
+  <section class="arc-top" style="--arc:12;background:var(--ink);color:var(--paper);padding:clamp(110px,13vw,190px) var(--gutter) clamp(40px,5vw,64px)">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px">
+      <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)">Next up</span>
+      <a class="display" href="atlas.dc.html" style="display:block;margin:0;font-size:clamp(40px,8vw,120px);line-height:.9;max-width:16ch">Atlas</a>
+      <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.5;opacity:.78">Delegate the work. Keep the judgment.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <a class="btn" href="atlas.dc.html" style="--btn-bg:var(--lime)">
+          <span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          <span class="btn-label" style="padding:0 22px 0 16px;color:var(--ink)">Read it</span>
+        </a>
+        <a class="btn" href="../index.html#process" style="--btn-bg:transparent;--btn-fg:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 var(--paper)">
+          <span class="btn-label" style="padding:0 22px">All five projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var bar=document.getElementById('bar');
+function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}
+addEventListener('scroll',s,{passive:true});s();
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+kicker: UX and accessibility case study / Self-directed concept / Web prototype + Chrome extension
+name: Reframe
+title: Make the page easier to read. Keep the reader in charge.
+lede: I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version.
+meta: My role | Research, UX, UI, content design and prototype development.
+meta: The test case | A fictional benefits page with income limits, deadlines and exceptions.
+meta: What I measured | The rewrite checks caught 9 of 12 meaning-changing examples in a hand-labelled benchmark.
+hero: 01 | 01 A simplified eligibility passage, with an explanation of the change and access to the published wording.
+intro: I built CivicConnect to make the design problem concrete. Imagine trying to find out whether you qualify for help with an energy bill. The deadline is buried, several parts of the page compete for attention, and a single “unless” can change your answer.
+intro_small: CivicConnect, its energy-assistance program and all example eligibility details are fictional.
+cardsub: AI explainability · Accessibility
+
+# 01 Research & problem framing || The deadline is in there somewhere
+p: The project began with desk research and self-testing on CivicConnect. I looked at browser reading tools, operating-system settings, plain-language guidance and criticism of accessibility overlays.
+rows: Reading controls | Firefox Reader View supports changes to size, width and spacing. Edge also offers translation and Copilot summaries. That set a baseline for support readers can already turn on. [1, 2]
+rows: Plain language and control | W3C cognitive accessibility guidance recommends clearer language, reader control over content changes and an easy way back. Those patterns support the preview and recovery decisions. [3]
+rows: Overlay criticism | The European Disability Forum and IAAP describe how some overlays can interfere with assistive technology. I kept activation reader-led and treated compatibility as a question to test. [4]
+h: Personas grounded in reading situations
+p: These are scenario-based personas synthesized from the desk research. One reader can move between them over the course of a single visit.
+card: The tired applicant :: Dense text and competing alerts make it hard to keep a place. Needs comfortable reading, simpler wording, focus and reduced motion.
+card: The reader in glare :: Small type, weak contrast and color-only cues make details hard to see. Needs more legible text, bigger controls and clearer visual cues.
+card: The multilingual reader :: A term or eligibility condition is unclear in English. Needs an explanation or a translation with the original close at hand.
+quote: How might we :: How might we help a reader find and understand the rule that applies to them, without asking them to disclose a diagnosis or giving up access to the published text?
+small: Two questions guided the design: Where should a change take effect immediately? Where does the reader need to stop and inspect it first?
+
+# 02 Ideation & onboarding || One panel, two ways to make a change
+p: I organized the panel around what the reader wants to do: read, understand, see, focus, reduce motion or switch language. How the change takes effect depends on what it touches.
+rows: Apply immediately | Type, spacing, contrast, larger controls, reduced motion and focus mode give immediate feedback. People can adjust them while looking at the page.
+rows: Preview before applying | Simplification, everyday wording, generated translations and proposed color cues get a review step. Selected-text explanations open beside the source and leave the page wording in place.
+h: Ask what would help
+p: The optional setup asks one question in everyday language and lets readers skip it. Preferences stay on the device. A single launcher opens the same panel later, with a separate Active changes view for reviewing and undoing adjustments.
+figs: 02 | 02 Setup offers needs-based choices. The reader can also skip setup. ;; 03 | 03 The launcher opens reading settings next to the page.
+note: :: A preview for every change slows down visible adjustments. An immediate rewrite makes readers discover changed rules after the fact. I gave these two kinds of change different paths.
+small: I carried the same approach into the interface: plain labels, warm paper tones, a restrained accent and no chat window to learn.
+
+# 03 Solution / Presentation || Turn down the noise
+p: The page should stay usable while the reader changes it. Comfortable reading, text size and line height make the article easier to scan. Larger interface controls and high contrast address different parts of the same problem.
+figs: 04 | 04 Focus mode quiets peripheral content. The status message explains how to reveal it or exit. ;; 05 | 05 The color tools add cues that can be read alongside color. Changes can be reviewed and reversed.
+h: Keep the deadline in view
+p: Focus mode dims peripheral navigation, sidebar material and the footer. Hover or keyboard focus brings those areas back into view. Warnings, eligibility rules, requirements, deadlines, rights information and help lines are protected from dimming.
+h: Give color a second cue
+p: The vision tools can improve color distinction, add labels or visual cues, and emphasize links. Reframe looks for a label in the page first. When the page cannot support a proposed interpretation, the element stays as published.
+small: The guided tour also demonstrates individual undo, the reduced-motion setting for a moving alert ticker, and the control for larger interface elements.
+
+# 04 Solution / Content review || Show the rewrite before it touches the page
+p: A shorter sentence can be easier to read and still send someone to the wrong office. I split permission to send text from permission to apply the result.
+figs: 06 | 06 Before sending, the consent screen explains the request and what leaves the device. ;; 07 | 07 The review shows the proposed wording alongside the original, with checks and passage-level choices.
+rows: 1. Explain the request | The prototype explains what will be sent before a rewrite. The service receives the relevant page text. Setup preferences and anything the reader types stay out of the request.
+rows: 2. Review the proposal | The server checks the rewrite and the browser checks it again. The review names checks such as numbers, dates, obligations and conditions. A failed passage defaults to the published wording.
+rows: 3. Apply and recover | The reader can keep the page as published or apply reviewed passages. Changed passages are marked, with a way to inspect the source and undo the change.
+note: :: The review says what it checked. It gives the reader the evidence it has, without a confidence percentage.
+small: The prototype also supports an Everyday words review for lighter edits and adds an overview to the simplified page.
+
+# 05 Solution / Meaning & language || Keep the original within reach
+p: Sometimes the sticking point is one phrase. Sometimes the reader needs a different language for the whole task. Each path keeps the source close enough to consult.
+figs: 08 | 08 Select a phrase to open an explanation beside the original. ;; 09 | 09 Kannada preview shows the source and translation before application.
+figs: 10 | 10 A change marker opens the rationale and offers View original and Undo. ;; 11 | 11 Guided tour, 4:42. When the proposed change cannot be checked, the page stays as it is.
+rows: Explain a phrase | A small card pairs the selected wording with a simpler explanation. The original passage remains in place.
+rows: Switch languages | English and Spanish use published site copy and switch immediately. Hindi and Kannada use the reviewed translation flow. Readers can view the original again or reset the translation.
+
+# 06 Evaluation & reflection || What the checks caught and missed
+p: I hand-labelled 19 pairs of original passages and rewrites from CivicConnect: 12 that changed the meaning and 7 that preserved it. I ran them through the prototype’s rule-based checks.
+stat: 9 of 12 | Meaning-changing rewrites caught.
+stat: 3 of 12 | Meaning-changing rewrites missed.
+stat: 1 of 7 | Faithful rewrites refused.
+h: Same deadline, different person
+table: Published example | Rewrite the checks missed
+tr: The office must contact you within 30 days. | You must contact the office within 30 days.
+p: Both sentences kept “must” and “30 days.” The duty changed hands. The other misses reversed cause and effect or introduced a claim about the office while retaining the expected names. The checks also refused one faithful rewrite that split a sentence into steps.
+h: What I’d test next
+rows: Reader comprehension | Ask people who use screen readers, reading adjustments or translation to find an eligibility rule, review a rewrite and recover the source. Track task completion, correct interpretation and independent recovery.
+rows: Compatibility and meaning | Check keyboard order, announcements, zoom and translation on more real pages. Expand the benchmark to cover swapped actors, negation, exceptions and causal reversals.
+small: The benchmark measures the checks on one fictional page. Participant outcomes, translation accuracy across sites and accessibility conformance remain open. The extension is a concept build.
+small: 1 Mozilla Firefox Reader View · 2 Microsoft Edge Reading mode · 3 W3C cognitive accessibility guidance · 4 EDF and IAAP statement on overlays
+small: Project evidence: original case study PDF and archive, guided tour, and Reframe’s evaluation notes. Prototype screenshots appear throughout.
