@@ -222,7 +222,7 @@ function Menu() {
           {brand.email}
         </a>
         <div className="flex flex-wrap gap-2">
-          {brand.socials.map((s) => (
+          {brand.socials.filter((s) => s.href && s.href !== "#").map((s) => (
             <a key={s.label} href={s.href} {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="rounded-full border-2 border-forest px-3.5 py-1.5 text-[13px] font-semibold transition-colors hover:bg-forest hover:text-lime">
               {s.label}
             </a>

@@ -15,3 +15,7 @@
 
 /* line gap: at least 10px between lines of every display heading (Anton caps are .86em tall) */
 .display{line-height:calc(.86em + max(10px,.08em)) !important}
+
+/* Readability floor for small labels and captions on case pages. */
+[style*="font-size:11px"]{font-size:12px!important}
+.small{font-size:14px!important}

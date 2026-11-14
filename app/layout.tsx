@@ -23,6 +23,14 @@ import { brand } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Mahima Shastry | UX designer",
   description: "UX designer working on agent experience, AI explainability and accessibility. Around four years at IBM on webMethods.",
+  icons: { icon: [{ url: "./favicon.svg", type: "image/svg+xml" }], apple: "./apple-touch-icon.png" },
+  // Add og:image here once the site has its own domain (it needs an absolute URL).
+  openGraph: {
+    type: "website",
+    title: "Mahima Shastry | UX designer",
+    description: "UX designer working on agent experience, AI explainability and accessibility. Around four years at IBM on webMethods.",
+  },
+  twitter: { card: "summary", title: "Mahima Shastry | UX designer" },
 };
 export const viewport: Viewport = { themeColor: "#f2eee3" };
 
@@ -36,6 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SmoothScroll />
         <Gate />
+        <a href="#process" className="skip-link">
+          Skip to work
+        </a>
         <Cursor />
         <Nav />
         <SoundToggle />

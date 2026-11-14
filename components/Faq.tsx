@@ -20,14 +20,18 @@ export function Faq() {
   );
 
   return (
-    <section id="faq" ref={root} className="relative bg-paper px-[var(--gutter)] pb-[10vw] pt-[12vw]">
-      <div className="text-center">
-        <span className="tag bg-tomato text-ink">{copy.faq.tag}</span>
-        <h2 data-reveal="lines" className="display mx-auto mt-6 text-[clamp(64px,12vw,220px)] leading-[0.84] text-tomato">
-          {copy.faq.title}
-        </h2>
-      </div>
-      <div className="mx-auto mt-16 grid max-w-[1300px] gap-x-12 md:grid-cols-2">
+    <section id="faq" ref={root} className="relative bg-paper px-[var(--gutter)] pb-[10vw] pt-[8vw]">
+      {(copy.faq.tag || copy.faq.title) && (
+        <div className="mb-16 text-center">
+          {copy.faq.tag && <span className="tag bg-tomato text-ink">{copy.faq.tag}</span>}
+          {copy.faq.title && (
+            <h2 data-reveal="lines" className="display mx-auto mt-6 text-[clamp(64px,12vw,220px)] leading-[0.84] text-tomato">
+              {copy.faq.title}
+            </h2>
+          )}
+        </div>
+      )}
+      <div className="mx-auto grid max-w-[1300px] gap-x-12 md:grid-cols-2">
         {faqs.map((f, i) => (
           <div key={f.q} className="faq-item border-t-2 border-ink py-7 md:py-9">
             <div className="mono text-[12px] text-tomato">{String(i + 1).padStart(2, "0")}</div>

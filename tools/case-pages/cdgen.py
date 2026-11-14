@@ -217,7 +217,9 @@ def page(pg, data, nxt, imgmap):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{H.escape(pg["short"])} · Content design · Mahima Shastry</title>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
+<script src="case-enhance.js" defer></script>
 <style>{CSS}</style>
 </head>
 <body>

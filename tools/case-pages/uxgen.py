@@ -283,7 +283,9 @@ def page(slug, head, secs, nxt, nhead, mins):
 <title>{H.escape(head["name"])} · Mahima Shastry</title>
 <meta name="description" content="{H.escape(head["lede"], quote=True)}">
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
+<script src="case-enhance.js" defer></script>
 <style>{BASE_CSS}{EXTRA_CSS}</style>
 </head>
 <body>

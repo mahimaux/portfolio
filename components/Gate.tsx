@@ -20,7 +20,13 @@ export function Gate() {
     const hash = location.hash;
     const target = hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
     if (!target) window.scrollTo(0, 0);
-    if (target || new URLSearchParams(location.search).has("nogate")) {
+    // A visitor who already came through the gate this session (e.g. back from a
+    // case study) goes straight to the page instead of waiting again.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("ms-entered") === "1";
+    } catch {}
+    if (target || seen || new URLSearchParams(location.search).has("nogate")) {
       document.documentElement.classList.remove("is-locked");
       store.set({ entered: true });
       setGone(true);
@@ -60,7 +66,7 @@ export function Gate() {
       const counted = new Promise<void>((res) => {
         gsap.to(counter, {
           v: 100,
-          duration: rm ? 0.6 : 2.6,
+          duration: rm ? 0.4 : 1.2,
           ease: "power2.inOut",
           onUpdate: () => {
             count.textContent = String(Math.round(counter.v)).padStart(3, "0");
@@ -72,14 +78,13 @@ export function Gate() {
         if (leaving.current) return;
         if (rm) {
           gsap.set(".gate-status", { autoAlpha: 0 });
-          gsap.set([".gate-choice > *", ".gate-quiet"], { autoAlpha: 1 });
+          gsap.set(".gate-choice > *", { autoAlpha: 1 });
           return;
         }
         gsap
           .timeline()
           .to(".gate-status", { autoAlpha: 0, y: -10, duration: 0.3 })
-          .fromTo(".gate-choice > *", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08, ease: "expo.out" }, "-=0.05")
-          .fromTo(".gate-quiet", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, "<0.2");
+          .fromTo(".gate-choice > *", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.06, ease: "expo.out" }, "-=0.05");
       });
     },
     { scope: root, dependencies: [gone] }
@@ -88,6 +93,9 @@ export function Gate() {
   const enter = (withSound: boolean) => {
     if (leaving.current) return;
     leaving.current = true;
+    try {
+      sessionStorage.setItem("ms-entered", "1");
+    } catch {}
     setSound(withSound);
     sfx.chime();
     sfx.whoosh(1.1);
@@ -117,8 +125,19 @@ export function Gate() {
       .to(q(".gate-choice, .gate-quiet, .gate-corner, .gate-count"), { autoAlpha: 0, y: -14, duration: 0.35, stagger: 0.02, ease: "power2.in" }, 0)
       .to(blobWrap.current, { scale: 0, duration: 0.55, ease: "back.in(2.2)" }, 0)
       .add(() => store.set({ entered: true }), 0.5)
-      .to(hole, { r: R, duration: 1.35, ease: "expo.inOut", onUpdate: () => el.style.setProperty("--r", `${hole.r}px`) }, 0.42);
+      .to(hole, { r: R, duration: 0.95, ease: "expo.inOut", onUpdate: () => el.style.setProperty("--r", `${hole.r}px`) }, 0.42);
   };
+
+  // Escape skips the welcome screen from the very first frame.
+  useEffect(() => {
+    if (gone) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") enter(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gone]);
 
   if (gone) return null;
 
@@ -167,7 +186,7 @@ export function Gate() {
         </div>
       </div>
 
-      <button type="button" onClick={() => enter(false)} className="gate-quiet invisible absolute bottom-[26px] left-1/2 -translate-x-1/2 text-[13px] text-paper/70 underline underline-offset-4 hover:text-paper">
+      <button type="button" onClick={() => enter(false)} className="gate-quiet absolute bottom-[26px] left-1/2 -translate-x-1/2 text-[13px] text-paper/70 underline underline-offset-4 hover:text-paper">
         {copy.gate.enterQuiet}
       </button>
       <div className="gate-count display absolute bottom-[10px] left-[var(--gutter)] text-[clamp(56px,10vw,150px)] leading-none text-paper">000</div>

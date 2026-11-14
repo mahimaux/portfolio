@@ -60,7 +60,7 @@ function ArcZone() {
     { scope: root }
   );
   return (
-    <div ref={root} className="arc-zone relative h-[150vh] bg-blue motion-reduce:h-[100svh]">
+    <div ref={root} className="arc-zone relative h-[115vh] bg-blue motion-reduce:h-[100svh]">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         <canvas ref={canvas} className="arc-canvas absolute inset-0 h-full w-full" />
         <div className="dive-text absolute inset-0 grid place-items-center text-center text-paper">
@@ -285,7 +285,7 @@ export function WorkHelix() {
       ScrollTrigger.create({
         trigger: el,
         start: "top top",
-        end: () => "+=" + 0.42 * N * innerHeight,
+        end: () => "+=" + 0.22 * N * innerHeight, // about five screens for all 24 frames
         pin: true,
         invalidateOnRefresh: true,
         onUpdate: (s) => {
