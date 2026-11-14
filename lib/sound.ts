@@ -3,7 +3,6 @@ import { store } from "./store";
 
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
-let pad: { gain: GainNode; stop: () => void } | null = null;
 let noiseBuf: AudioBuffer | null = null;
 let lastTick = 0;
 
@@ -22,55 +21,11 @@ function ac() {
 
 const live = () => store.get().sound && ac() && master;
 
-function startPad() {
-  const c = ac();
-  if (!c || !master || pad) return;
-  const g = c.createGain();
-  g.gain.value = 0;
-  g.gain.linearRampToValueAtTime(0.05, c.currentTime + 3);
-  const lp = c.createBiquadFilter();
-  lp.type = "lowpass";
-  lp.frequency.value = 520;
-  lp.Q.value = 0.6;
-  const lfo = c.createOscillator();
-  const depth = c.createGain();
-  lfo.frequency.value = 0.07;
-  depth.gain.value = 260;
-  lfo.connect(depth).connect(lp.frequency);
-  const oscs = [110, 164.81, 277.18, 110.6].map((f, i) => {
-    const o = c.createOscillator();
-    o.type = i === 3 ? "triangle" : "sine";
-    o.frequency.value = f;
-    o.connect(lp);
-    o.start();
-    return o;
-  });
-  lp.connect(g).connect(master);
-  lfo.start();
-  pad = {
-    gain: g,
-    stop() {
-      const t = c.currentTime;
-      g.gain.cancelScheduledValues(t);
-      g.gain.setValueAtTime(g.gain.value, t);
-      g.gain.linearRampToValueAtTime(0, t + 0.6);
-      setTimeout(() => {
-        oscs.forEach((o) => o.stop());
-        lfo.stop();
-      }, 700);
-    },
-  };
-}
-
+// Sound is interaction effects only (ticks, pops, whooshes, chimes).
+// There is deliberately no continuous background tone.
 export function setSound(on: boolean) {
   store.set({ sound: on });
-  if (on) {
-    ac();
-    startPad();
-  } else {
-    pad?.stop();
-    pad = null;
-  }
+  if (on) ac();
 }
 
 export const sfx = {
