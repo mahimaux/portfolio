@@ -19,3 +19,4 @@
 /* Readability floor for small labels and captions on case pages. */
 [style*="font-size:11px"]{font-size:12px!important}
 .small{font-size:14px!important}
+.mono.lbl{font-size:12px!important}
