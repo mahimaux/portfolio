@@ -621,7 +621,7 @@ export const copy = {
     "bodyPre": "I spent around 4 years at IBM and Software AG designing and writing content for webMethods, the software engineers use to run their APIs and integrations. I also contributed to the IBM Carbon design system. These days I design agent experiences: the screens where a person decides how much to trust a machine.",
     "bodyPost": "",
     "ctaPrimary": "See UX Work",
-    "ctaGhost": "Content design work",
+    "ctaGhost": "See Content Design work",
     "circle": "SCROLL · MAHIMA SHASTRY · ",
     "note": [
       "psst. these stick.",

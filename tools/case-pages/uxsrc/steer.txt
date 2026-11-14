@@ -11,6 +11,7 @@ hero: 02 |
 herobg: #1c1d21
 tags: Research | Web app | Instructor app | Key takeaways
 cardsub: Operations · Web + mobile
+proto: link | https://www.figma.com/proto/ZlzlXMaPPuVAcK6kSnrsQM/Steer---Driving-school-data-management-system?node-id=96-2264&p=f&viewport=134%2C182%2C0.03&t=yN7qZ9nTDfqhFVAL-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=201%3A3331&page-id=7%3A4
 
 # Backstory || I signed up to learn to ride.
 p: The school wrote student records by hand. Updating a record was awkward. Finding an old one meant going back through the books. I wanted to see what happened when the same school had to keep track of lessons, fees, instructor assignments and vehicle maintenance.
