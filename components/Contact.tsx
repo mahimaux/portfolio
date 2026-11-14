@@ -64,6 +64,7 @@ export function Contact() {
   const [sending, setSending] = useState(false);
   const [err, setErr] = useState("");
   const [sent, setSent] = useState(false);
+  const [mailto, setMailto] = useState("");
 
   useGSAP(
     () => {
@@ -123,22 +124,30 @@ export function Contact() {
     // If the request can't go out (offline, or a host that blocks it), fall back to
     // the visitor's own mail app with everything pre-filled.
     let ok = false;
+    let reason = "";
     try {
       const r = await fetch(`https://formsubmit.co/ajax/${brand.email}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...fields, _replyto: email, _subject: `Portfolio: new message from ${name}`, _template: "table", _captcha: "false" }),
       });
-      const j = await r.json().catch(() => ({}));
+      const j = (await r.json().catch(() => ({}))) as { success?: unknown; message?: string };
       ok = r.ok && String(j.success) !== "false";
+      reason = j.message ?? "";
     } catch {
       ok = false;
     }
     setSending(false);
     if (!ok) {
+      // Never show "sent" for a message that did not go out. Keep what they typed and
+      // hand them a pre-filled email instead.
       const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join("\n");
-      window.location.href = `mailto:${brand.email}?subject=${encodeURIComponent(`Portfolio: new message from ${name}`)}&body=${encodeURIComponent(body)}`;
+      setMailto(`mailto:${brand.email}?subject=${encodeURIComponent(`Portfolio: new message from ${name}`)}&body=${encodeURIComponent(body)}`);
+      setErr(/activat/i.test(reason) ? "the form is still being switched on." : "that didn't send.");
+      sfx.pop(0.5);
+      return;
     }
+    setMailto("");
     sfx.chime();
     form.reset();
     setBudget(-1);
@@ -219,7 +228,21 @@ export function Contact() {
                 </label>
                 <div className="mt-8 flex flex-wrap items-center gap-5">
                   <Btn type="submit">{sending ? "Sending…" : "Send it"}</Btn>
-                  {err ? <span className="text-[15px] font-semibold text-tomato">{err}</span> : <span className="hand text-[22px]">no spam. pinky promise.</span>}
+                  {err ? (
+                    <span role="alert" className="text-[15px] font-semibold text-tomato">
+                      {err}
+                      {mailto && (
+                        <>
+                          {" "}
+                          <a href={mailto} className="underline underline-offset-4">
+                            Send it by email instead
+                          </a>
+                        </>
+                      )}
+                    </span>
+                  ) : (
+                    <span className="hand text-[22px]">no spam. pinky promise.</span>
+                  )}
                 </div>
               </form>
             )}
