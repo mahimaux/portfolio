@@ -41,7 +41,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <div className={h}>Socials</div>
           <ul className="space-y-1.5 text-[15px]">
-            {brand.socials.map((s) => (
+            {brand.socials.filter((s) => s.href && s.href !== "#").map((s) => (
               <li key={s.label}>
                 <a href={s.href} {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="hover:text-lime">
                   {s.label}
@@ -57,12 +57,6 @@ export function Footer() {
       <div className="mono mt-8 flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.1em] text-paper/60">
         <span>{copy.footer.legal}</span>
         <span className="flex gap-5">
-          <a href="#" className="hover:text-paper">
-            Privacy
-          </a>
-          <a href="#" className="hover:text-paper">
-            Terms
-          </a>
           <button type="button" onClick={top} className="uppercase hover:text-paper">
             Back to top ↑
           </button>

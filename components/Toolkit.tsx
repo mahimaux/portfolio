@@ -58,7 +58,7 @@ export function Toolkit() {
               className="group flex w-full items-center gap-5 px-[var(--gutter)] py-6 text-left md:py-8"
             >
               <span className="mono text-[12px] opacity-70">{String(i + 1).padStart(2, "0")}</span>
-              <span className="display flex-1 text-[clamp(38px,5vw,84px)] leading-[0.9] transition-transform duration-500 [transition-timing-function:var(--ease-out)] group-hover:translate-x-3 group-hover:-rotate-1">
+              <span className="display flex-1 text-[clamp(38px,5vw,84px)] leading-[1.05] transition-transform duration-500 [transition-timing-function:var(--ease-out)] group-hover:translate-x-3 group-hover:-rotate-1">
                 {t.name}
               </span>
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-current">
@@ -68,14 +68,32 @@ export function Toolkit() {
               </span>
             </button>
             <div className="tk-body h-0 overflow-hidden">
-              <div className="px-[var(--gutter)] pb-8 md:pl-[calc(var(--gutter)+52px)]">
-                <p className="max-w-[640px] text-[19px] leading-snug">{t.body}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {t.tags.map((g) => (
-                    <span key={g} className="rounded-full border-2 border-current px-3 py-1 text-[13px] font-semibold">
-                      {g}
-                    </span>
-                  ))}
+              <div className="grid gap-7 px-[var(--gutter)] pb-10 md:pl-[calc(var(--gutter)+52px)]">
+                {t.areas.map((a) => (
+                  <div key={a.label}>
+                    <h3 className="mono text-[12px] uppercase tracking-[0.08em] opacity-75">{a.label}</h3>
+                    <ul className="mt-3 flex max-w-[920px] flex-wrap gap-2" aria-label={`${a.label} skills`}>
+                      {a.tags.map((g) => (
+                        <li key={g} className="max-w-full rounded-full border-2 border-current px-3 py-1 text-[13px] font-semibold leading-snug">
+                          {g}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                <div>
+                  <h3 className="mono text-[12px] uppercase tracking-[0.08em] opacity-75">Tools</h3>
+                  <ul className="mt-3 flex max-w-[920px] flex-wrap gap-2" aria-label={`${t.name} tools`}>
+                    {t.tools.map((g) => (
+                      <li
+                        key={g}
+                        className="max-w-full rounded-full border-2 px-3 py-1 text-[13px] font-semibold leading-snug"
+                        style={{ background: t.fg, color: t.color, borderColor: t.fg }}
+                      >
+                        {g}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

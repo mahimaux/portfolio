@@ -6,7 +6,9 @@
 <title>Lineage · Mahima Shastry</title>
 <meta name="description" content="Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.">
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
+<script src="case-enhance.js" defer></script>
 <style>
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:clip;text-wrap:pretty}
 a{color:inherit;text-decoration:none}
@@ -86,6 +88,15 @@ h4 + .note{margin-top:0}
 .sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
 .hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
 .hero-fig img{display:block;width:100%;height:auto}
+.proto-btn{align-self:flex-start;margin-top:4px}
+.proto-btn .btn-label{padding:0 22px 0 16px;color:var(--ink)}
+.vdlg{position:fixed;inset:0;margin:auto;height:fit-content;width:min(1100px,94vw);max-height:92vh;padding:0;border:3px solid var(--ink);border-radius:18px;background:var(--ink);color:var(--paper);box-shadow:0 8px 0 var(--ink);overflow:hidden}
+.vdlg::backdrop{background:rgb(18 17 16 / .78)}
+.vdlg .vbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px}
+.vdlg .vbar span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)}
+.vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+.vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
 .readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 @media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
 @media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
@@ -116,6 +127,7 @@ h4 + .note{margin-top:0}
       <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
         <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Creative Lineage Canvas - Recover the shadow. Keep the progress.</h2>
         <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.</p>
+        <a class="btn proto-btn rv" href="ux/lineage/prototype.html" target="_blank" rel="noopener" style="--btn-bg:var(--lime)"><span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></span><span class="btn-label">View tutorial/prototype<span class="sr-only"> (opens in a new tab)</span></span></a>
         <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">An independent desktop UX concept for small creative teams working with a mix of manual edits and AI-assisted artwork. The central question: can a recovery show its consequences clearly enough for someone to trust the next click?</p>
         
       </div>
@@ -372,6 +384,7 @@ h4 + .note{margin-top:0}
     </div>
   </section>
 </main>
+
 <script>
 (function(){var bar=document.getElementById('bar');
 function s(){var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}

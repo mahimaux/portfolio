@@ -5,6 +5,7 @@ lede: ATLAS is a control center for supervising AI agent work to inspect the pla
 meta: My role | Product direction, information architecture, interaction design, UX writing, visual direction and prototype review. Implementation used AI-assisted coding in Codex.
 hero: 01 |
 cardsub: Agent experience · Human-in-the-loop
+proto: video | ux/atlas/tutorial.mp4
 
 # 02 / The problem || The difficult part is the handoff.
 h: The scenario

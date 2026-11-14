@@ -11,6 +11,7 @@ hero: 01 |
 herobg: #152321
 tags: Research | Ring + SOS | Mobile app | Key takeaways
 cardsub: Personal safety · Wearable + app
+proto: video | ux/halo/tutorial.mp4
 
 # Backstory || The phone was in the way.
 p: A woman on a crowded bus may have a phone in her bag and a reason to leave it there. On a quiet walk to the market, she may have the phone in hand and weak coverage. I wanted to design for both moments, starting with what it takes to ask for help.

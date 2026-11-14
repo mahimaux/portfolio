@@ -71,7 +71,9 @@ export function Manifesto() {
       );
 
       const dist = () => Math.max(0, track.scrollWidth - innerWidth + 0.08 * innerWidth);
-      const range = { trigger: pin, start: "top top", end: () => "+=" + dist(), scrub: 0.6, invalidateOnRefresh: true };
+      // Scroll distance is 45% of the horizontal travel so the three checks pass quickly
+      // and the projects arrive sooner for someone skimming.
+      const range = { trigger: pin, start: "top top", end: () => "+=" + 0.45 * dist(), scrub: 0.6, invalidateOnRefresh: true };
       const hTween = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { ...range, pin: true } });
       (q(".h-float") as HTMLElement[]).forEach((f) => {
         const sp = +f.dataset.speed!;

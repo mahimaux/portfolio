@@ -9,6 +9,7 @@ hero: 01 | 01 A simplified eligibility passage, with an explanation of the chang
 intro: I built CivicConnect to make the design problem concrete. Imagine trying to find out whether you qualify for help with an energy bill. The deadline is buried, several parts of the page compete for attention, and a single “unless” can change your answer.
 intro_small: CivicConnect, its energy-assistance program and all example eligibility details are fictional.
 cardsub: AI explainability · Accessibility
+proto: video | ux/reframe/tutorial.mp4
 
 # 01 Research & problem framing || The deadline is in there somewhere
 p: The project began with desk research and self-testing on CivicConnect. I looked at browser reading tools, operating-system settings, plain-language guidance and criticism of accessibility overlays.

@@ -36,7 +36,7 @@ html, body { overflow-x: clip; }
 .feed-strip [class*="text-[0.07em]"] { font-size: max(10px, 0.07em); }
 @media (max-width: 900px) {
   .h-float { font-size: 11px; }
-  .tag { font-size: 11px; }
+  .tag { font-size: 12px; }
 }
 
 /* 5. Tap targets. 44px minimum on anything clickable, phone only. */

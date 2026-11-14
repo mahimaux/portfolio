@@ -53,6 +53,15 @@ EXTRA_CSS = """
 .sw i{display:block;height:56px;border:3px solid var(--ink);border-radius:10px}
 .hero-fig{margin:0;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 8px 0 var(--ink)}
 .hero-fig img{display:block;width:100%;height:auto}
+.proto-btn{align-self:flex-start;margin-top:4px}
+.proto-btn .btn-label{padding:0 22px 0 16px;color:var(--ink)}
+.vdlg{position:fixed;inset:0;margin:auto;height:fit-content;width:min(1100px,94vw);max-height:92vh;padding:0;border:3px solid var(--ink);border-radius:18px;background:var(--ink);color:var(--paper);box-shadow:0 8px 0 var(--ink);overflow:hidden}
+.vdlg::backdrop{background:rgb(18 17 16 / .78)}
+.vdlg .vbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px}
+.vdlg .vbar span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--lime)}
+.vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+.vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
 .readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 @media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
 @media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
@@ -234,6 +243,18 @@ def page(slug, head, secs, nxt, nhead, mins):
     if head.get('tags'):
         tags = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px">' + ''.join(f'<span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">{inl(t.strip())}</span>' for t in head['tags'].split('|')) + '</div>'
     intro = ''.join(f'<p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">{inl(p)}</p>' for p in head['intro']) + ''.join(f'<p class="rv small">{inl(p)}</p>' for p in head['intro_small'])
+    proto = dlg = js = ''
+    if head.get('proto'):
+        kind, _, href = [x.strip() for x in head['proto'].partition('|')]
+        play = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg>'
+        ext = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>'
+        box = '<span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)">{}</span>'
+        if kind == 'video':
+            proto = f'<a class="btn proto-btn rv" id="proto" href="{H.escape(href, quote=True)}" style="--btn-bg:var(--lime)" aria-haspopup="dialog">{box.format(play)}<span class="btn-label">View tutorial/prototype</span></a>'
+            dlg = f'<dialog class="vdlg" id="vdlg" aria-label="{H.escape(head["name"], quote=True)} tutorial video"><div class="vbar"><span class="mono">{inl(head["name"])} · tutorial</span><button class="vx" type="button" id="vx" aria-label="Close video">&times;</button></div><video controls playsinline preload="none" poster="{H.escape(href[:-4], quote=True)}-p.jpg" src="{H.escape(href, quote=True)}"></video></dialog>'
+            js = "(function(){var b=document.getElementById('proto'),d=document.getElementById('vdlg');if(!b||!d||!d.showModal)return;var v=d.querySelector('video');b.addEventListener('click',function(e){e.preventDefault();d.showModal();v.play().catch(function(){});});document.getElementById('vx').addEventListener('click',function(){d.close()});d.addEventListener('click',function(e){if(e.target===d)d.close()});d.addEventListener('close',function(){v.pause()});})();"
+        else:
+            proto = f'<a class="btn proto-btn rv" href="{H.escape(href, quote=True)}" target="_blank" rel="noopener" style="--btn-bg:var(--lime)">{box.format(ext)}<span class="btn-label">View tutorial/prototype<span class="sr-only"> (opens in a new tab)</span></span></a>'
     hero = ''
     if head.get('hero'):
         n, _, cap = head['hero'].partition('|')
@@ -262,7 +283,9 @@ def page(slug, head, secs, nxt, nhead, mins):
 <title>{H.escape(head["name"])} · Mahima Shastry</title>
 <meta name="description" content="{H.escape(head["lede"], quote=True)}">
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
+<script src="case-enhance.js" defer></script>
 <style>{BASE_CSS}{EXTRA_CSS}</style>
 </head>
 <body>
@@ -290,6 +313,7 @@ def page(slug, head, secs, nxt, nhead, mins):
       <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
         <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">{inl(head["title"])}</h2>
         <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">{inl(head["lede"])}</p>
+        {proto}
         {intro}
         {tags}
       </div>
@@ -315,7 +339,8 @@ def page(slug, head, secs, nxt, nhead, mins):
     </div>
   </section>
 </main>
-<script>
+{dlg}
+<script>{js}
 (function(){{var bar=document.getElementById('bar');
 function s(){{var h=document.documentElement;var m=h.scrollHeight-innerHeight;bar.style.width=(m>0?Math.min(100,scrollY/m*100):0)+'%'}}
 addEventListener('scroll',s,{{passive:true}});s();

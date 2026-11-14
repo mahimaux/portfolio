@@ -263,75 +263,284 @@ export const aboutReceipt = {
 
 export const toolkit = [
   {
-    "name": "Agent experience",
+    "name": "Product design",
     "color": "#c8f53c",
     "fg": "#0e3a22",
-    "body": "Human-in-the-loop design for autonomous systems: plan review before execution, consequence preview, autonomy boundaries, permission separated from approval, and recovery that resumes instead of restarting.",
-    "tags": [
-      "Human-in-the-loop",
-      "Consequence preview",
-      "Autonomy boundaries",
-      "Failure recovery"
+    "areas": [
+      {
+        "label": "Interaction design",
+        "tags": [
+          "End-to-end product design",
+          "User-centered design",
+          "Information architecture",
+          "Task flows",
+          "User journeys",
+          "Interaction patterns",
+          "Responsive web design",
+          "Native iOS and Android design"
+        ]
+      },
+      {
+        "label": "Visual and motion design",
+        "tags": [
+          "Visual hierarchy",
+          "Typography",
+          "Layout",
+          "High-fidelity UI",
+          "Microinteractions",
+          "Motion design",
+          "Interaction states",
+          "Data visualization"
+        ]
+      },
+      {
+        "label": "Design systems",
+        "tags": [
+          "Systems thinking",
+          "Component libraries",
+          "Design tokens",
+          "Figma variables and variants",
+          "Pattern documentation",
+          "Design system contribution",
+          "Governance",
+          "Adoption"
+        ]
+      }
+    ],
+    "tools": [
+      "Figma (Auto Layout, components, variables, prototyping, Dev Mode)",
+      "FigJam",
+      "Storybook",
+      "Material Design 3"
     ]
   },
   {
-    "name": "AI explainability",
-    "color": "#ff8fcf",
-    "fg": "#121110",
-    "body": "Interfaces that say what a model did, what it changed and how to put it back. Preview before apply, show the original, explain in plain words, and never let a demo imply something real happened.",
-    "tags": [
-      "Explainability",
-      "Preview before apply",
-      "Provenance",
-      "Trust"
-    ]
-  },
-  {
-    "name": "Design",
+    "name": "Prototyping",
     "color": "#ff4f1f",
     "fg": "#121110",
-    "body": "Figma and FigJam all day, Framer when it needs to feel real. I prototype with logic, not just links between frames, and I ship working builds with AI assisted coding.",
-    "tags": [
-      "Figma",
-      "FigJam",
+    "areas": [
+      {
+        "label": "Prototyping and delivery",
+        "tags": [
+          "Rapid prototyping",
+          "Interactive prototyping",
+          "Code-based prototyping",
+          "Concept validation",
+          "Engineering handoff",
+          "Interaction specifications",
+          "Design QA"
+        ]
+      }
+    ],
+    "tools": [
+      "ProtoPie",
       "Framer",
-      "Working prototypes"
+      "Rive",
+      "Principle",
+      "After Effects",
+      "HTML/CSS/JavaScript",
+      "React",
+      "Google Stitch",
+      "Figma Make",
+      "Claude Design",
+      "Claude Code",
+      "Codex",
+      "Cursor"
     ]
   },
   {
-    "name": "Research",
+    "name": "Research & strategy",
     "color": "#ffc22e",
     "fg": "#121110",
-    "body": "Interviews, surveys, field visits, competitive teardowns and paper tests. I write my assumptions down first and label them as assumptions until a session kills them.",
-    "tags": [
-      "Interviews",
-      "Teardowns",
-      "Field research",
-      "Paper testing"
-    ]
-  },
-  {
-    "name": "Content design",
-    "color": "#2e3bff",
-    "fg": "#f2eee3",
-    "body": "UI copy, error messages, empty states, docs and naming. Around four years of it at IBM, for engineers who were already having a bad morning.",
-    "tags": [
-      "UX writing",
-      "Microcopy",
-      "Docs",
-      "Naming"
+    "areas": [
+      {
+        "label": "Research and validation",
+        "tags": [
+          "User interviews",
+          "Contextual inquiry",
+          "Usability testing",
+          "Research synthesis",
+          "Journey mapping",
+          "Concept testing",
+          "Qualitative and quantitative research",
+          "Iterative design"
+        ]
+      },
+      {
+        "label": "Product strategy and measurement",
+        "tags": [
+          "Problem framing",
+          "Opportunity sizing",
+          "Prioritization",
+          "Product strategy",
+          "Success metrics",
+          "Experimentation",
+          "A/B testing",
+          "Funnel analysis",
+          "Post-launch iteration"
+        ]
+      },
+      {
+        "label": "Senior design leadership",
+        "tags": [
+          "Design ownership",
+          "Cross-functional leadership",
+          "Stakeholder influence",
+          "Roadmap influence",
+          "Decision-making under ambiguity",
+          "Design critique",
+          "Facilitation",
+          "Mentoring",
+          "Communicating trade-offs"
+        ]
+      }
+    ],
+    "tools": [
+      "Maze",
+      "UserTesting",
+      "Dovetail",
+      "Optimal Workshop",
+      "Lookback",
+      "Miro",
+      "GA4",
+      "Amplitude",
+      "Mixpanel",
+      "Hotjar"
     ]
   },
   {
     "name": "Accessibility",
     "color": "#0e3a22",
     "fg": "#c8f53c",
-    "body": "WCAG AA as the floor. Status never on colour alone, reachable controls at 375px, and automated scans treated as a starting point rather than a pass mark.",
-    "tags": [
-      "WCAG AA",
-      "Screen readers",
-      "Reduced motion",
-      "Plain language"
+    "areas": [
+      {
+        "label": "Accessibility and inclusion",
+        "tags": [
+          "Inclusive design",
+          "Accessibility testing",
+          "WCAG 2.2 AA",
+          "Keyboard navigation",
+          "Screen-reader testing",
+          "Focus management",
+          "Reduced motion",
+          "Localization"
+        ]
+      }
+    ],
+    "tools": [
+      "Stark",
+      "axe DevTools",
+      "WAVE",
+      "VoiceOver",
+      "TalkBack",
+      "NVDA"
+    ]
+  },
+  {
+    "name": "AI experience",
+    "color": "#ff8fcf",
+    "fg": "#121110",
+    "areas": [
+      {
+        "label": "Human–AI interaction",
+        "tags": [
+          "Human-centered AI",
+          "Generative AI UX",
+          "AI onboarding",
+          "Mental models",
+          "Expectation setting",
+          "Explainability",
+          "Trust calibration",
+          "Feedback loops"
+        ]
+      },
+      {
+        "label": "Conversation and model behavior",
+        "tags": [
+          "Conversational UX",
+          "Conversation design",
+          "UX writing for AI",
+          "Intent handling",
+          "Multi-turn interactions",
+          "Clarification flows",
+          "Tone and response design",
+          "System prompting",
+          "Prompt iteration"
+        ]
+      },
+      {
+        "label": "Agentic and multimodal UX",
+        "tags": [
+          "Agentic workflow design",
+          "AI copilots",
+          "Task delegation",
+          "Human-in-the-loop review",
+          "Approval flows",
+          "Override and undo",
+          "Multimodal interaction",
+          "Voice and image inputs"
+        ]
+      },
+      {
+        "label": "Responsible AI and failure recovery",
+        "tags": [
+          "Uncertainty communication",
+          "Hallucination handling",
+          "Source attribution",
+          "Privacy and consent",
+          "Bias evaluation",
+          "Safety guardrails",
+          "Graceful failure",
+          "Fallback design"
+        ]
+      }
+    ],
+    "tools": [
+      "Google AI Studio",
+      "Gemini API",
+      "OpenAI Playground and API",
+      "Claude Console and Anthropic API"
+    ]
+  },
+  {
+    "name": "AI evaluation",
+    "color": "#2e3bff",
+    "fg": "#f2eee3",
+    "areas": [
+      {
+        "label": "AI evaluation",
+        "tags": [
+          "Model output evaluation",
+          "Evaluation rubrics",
+          "Test datasets",
+          "Human evaluation",
+          "Comparative prompt testing",
+          "Edge-case testing",
+          "Regression testing",
+          "Task success",
+          "Accuracy",
+          "Relevance"
+        ]
+      },
+      {
+        "label": "Technical fluency",
+        "tags": [
+          "Large language models (LLMs)",
+          "Model capabilities and limitations",
+          "Context windows",
+          "Retrieval-augmented generation (RAG)",
+          "Grounding",
+          "Tool/function calling",
+          "Structured outputs",
+          "Latency and streaming"
+        ]
+      }
+    ],
+    "tools": [
+      "Google Cloud Vertex AI Gen AI evaluation",
+      "OpenAI Evals",
+      "LangSmith",
+      "Promptfoo"
     ]
   }
 ];
@@ -621,7 +830,7 @@ export const copy = {
     "bodyPre": "I spent around 4 years at IBM and Software AG designing and writing content for webMethods, the software engineers use to run their APIs and integrations. I also contributed to the IBM Carbon design system. These days I design agent experiences: the screens where a person decides how much to trust a machine.",
     "bodyPost": "",
     "ctaPrimary": "See UX Work",
-    "ctaGhost": "Content design work",
+    "ctaGhost": "See Content Design work",
     "circle": "SCROLL · MAHIMA SHASTRY · ",
     "note": [
       "psst. these stick.",

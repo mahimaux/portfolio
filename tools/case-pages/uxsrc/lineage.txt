@@ -8,6 +8,7 @@ meta: Result | A working recovery flow that preserves unrelated work and marks t
 intro: An independent desktop UX concept for small creative teams working with a mix of manual edits and AI-assisted artwork. The central question: can a recovery show its consequences clearly enough for someone to trust the next click?
 hero: 01 |
 cardsub: Creative tools · Provenance
+proto: link | ux/lineage/prototype.html
 
 # Understanding the problem || One small shadow with several consequential decisions.
 p: A designer working on a project wants an older shadow. However, the current photograph, background and wording need to stay.
