@@ -241,7 +241,7 @@ def page(pg, data, nxt, imgmap):
   <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
     <div class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65;margin-bottom:18px">{H.escape(data["eyebrow"])}</div>
     <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-end">
-      <h1 class="display" style="flex:3 1 520px;min-width:0;margin:0;font-size:clamp(40px,6.6vw,104px);line-height:.98">{data["title"]}</h1>
+      <h1 class="display" style="flex:3 1 520px;min-width:0;margin:0;font-size:clamp(36px,4.6vw,72px);line-height:.98">{data["title"]}</h1>
       {metabox}
     </div>
   </section>
