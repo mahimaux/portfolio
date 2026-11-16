@@ -5,7 +5,7 @@ import re, json, math, html as H, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 S = HERE
 OUT = os.path.normpath(os.path.join(HERE, '..', '..', 'public', 'cases'))
-ORDER = ['halo', 'reframe', 'steer', 'atlas', 'lineage']
+ORDER = ['atlas', 'reframe', 'lineage', 'steer', 'halo']
 WPM = 220
 
 src = open(f'{S}/cdgen.py', encoding='utf-8').read()

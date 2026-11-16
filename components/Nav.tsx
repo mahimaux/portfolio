@@ -46,6 +46,9 @@ function Header() {
             {l.label}
           </a>
         ))}
+        <a href="./Mahima-Shastry-Resume.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.06em] transition-colors duration-200 hover:bg-ink hover:text-paper">
+          Resume
+        </a>
       </nav>
       <a
         href="#contact"
@@ -223,7 +226,7 @@ function Menu() {
         </a>
         <div className="flex flex-wrap gap-2">
           {brand.socials.filter((s) => s.href && s.href !== "#").map((s) => (
-            <a key={s.label} href={s.href} {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="rounded-full border-2 border-forest px-3.5 py-1.5 text-[13px] font-semibold transition-colors hover:bg-forest hover:text-lime">
+            <a key={s.label} href={s.href} {...(/^https?:|\.pdf$/.test(s.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="rounded-full border-2 border-forest px-3.5 py-1.5 text-[13px] font-semibold transition-colors hover:bg-forest hover:text-lime">
               {s.label}
             </a>
           ))}

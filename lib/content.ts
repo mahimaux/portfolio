@@ -11,7 +11,7 @@ export const brand = {
     },
     {
       "label": "Resume",
-      "href": "#"
+      "href": "./Mahima-Shastry-Resume.pdf"
     }
   ]
 };
@@ -548,19 +548,19 @@ export const toolkit = [
 export const process = [
   {
     "n": "01",
-    "title": "HalO",
-    "sub": "An SOS you can start with your phone in your bag.",
-    "body": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India.",
+    "title": "ATLAS",
+    "sub": "Delegate the work. Keep the judgment.",
+    "body": "ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.",
     "tags": [
-      "Personal safety",
-      "Wearable + app",
-      "Concept project"
+      "Agent experience",
+      "Human-in-the-loop",
+      "Prototype"
     ],
-    "color": "#ff4f1f",
-    "href": "cases/halo.dc.html",
-    "thumb": "work/halo.webp",
-    "thumbAlt": "The HalO ring and companion app on a phone",
-    "readTime": "13 min read"
+    "color": "#c8f53c",
+    "href": "cases/atlas.dc.html",
+    "thumb": "work/atlas.webp",
+    "thumbAlt": "ATLAS Mission Control on a tablet",
+    "readTime": "15 min read"
   },
   {
     "n": "02",
@@ -580,6 +580,22 @@ export const process = [
   },
   {
     "n": "03",
+    "title": "Lineage",
+    "sub": "Recover the shadow. Keep the progress.",
+    "body": "Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.",
+    "tags": [
+      "Provenance",
+      "Design tooling",
+      "Approvals"
+    ],
+    "color": "#2e3bff",
+    "href": "cases/lineage.dc.html",
+    "thumb": "work/lineage.webp",
+    "thumbAlt": "Creative Lineage Canvas on a laptop",
+    "readTime": "15 min read"
+  },
+  {
+    "n": "04",
     "title": "Steer",
     "sub": "Running a driving school takes more than a group chat.",
     "body": "Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.",
@@ -595,36 +611,20 @@ export const process = [
     "readTime": "10 min read"
   },
   {
-    "n": "04",
-    "title": "ATLAS",
-    "sub": "Delegate the work. Keep the judgment.",
-    "body": "ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.",
-    "tags": [
-      "Agent experience",
-      "Human-in-the-loop",
-      "Prototype"
-    ],
-    "color": "#c8f53c",
-    "href": "cases/atlas.dc.html",
-    "thumb": "work/atlas.webp",
-    "thumbAlt": "ATLAS Mission Control on a tablet",
-    "readTime": "15 min read"
-  },
-  {
     "n": "05",
-    "title": "Lineage",
-    "sub": "Recover the shadow. Keep the progress.",
-    "body": "Creative Lineage Canvas helps a designer bring back an earlier approved element while keeping the rest of the poster as it is today.",
+    "title": "HalO",
+    "sub": "An SOS you can start with your phone in your bag.",
+    "body": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India.",
     "tags": [
-      "Provenance",
-      "Design tooling",
-      "Approvals"
+      "Personal safety",
+      "Wearable + app",
+      "Concept project"
     ],
-    "color": "#2e3bff",
-    "href": "cases/lineage.dc.html",
-    "thumb": "work/lineage.webp",
-    "thumbAlt": "Creative Lineage Canvas on a laptop",
-    "readTime": "15 min read"
+    "color": "#ff4f1f",
+    "href": "cases/halo.dc.html",
+    "thumb": "work/halo.webp",
+    "thumbAlt": "The HalO ring and companion app on a phone",
+    "readTime": "13 min read"
   }
 ];
 

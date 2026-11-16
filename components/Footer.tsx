@@ -43,7 +43,7 @@ export function Footer() {
           <ul className="space-y-1.5 text-[15px]">
             {brand.socials.filter((s) => s.href && s.href !== "#").map((s) => (
               <li key={s.label}>
-                <a href={s.href} {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="hover:text-lime">
+                <a href={s.href} {...(/^https?:|\.pdf$/.test(s.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="hover:text-lime">
                   {s.label}
                 </a>
               </li>

@@ -172,6 +172,9 @@ export function Contact() {
         <p data-reveal="fade" className="mx-auto mt-8 max-w-[580px] text-[18px] leading-snug text-paper/80">
           {c.body}
         </p>
+        <a href="./Mahima-Shastry-Resume.pdf" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block rounded-full border-2 border-paper px-5 py-2 text-[14px] font-semibold lg:hidden">
+          View resume (PDF)
+        </a>
       </div>
 
       <div className="relative mt-16 grid items-center gap-12 lg:grid-cols-12">
@@ -184,6 +187,9 @@ export function Contact() {
             {brand.email}
           </a>
           <div className="mono mt-2 text-[12px] uppercase tracking-[0.1em] text-paper/60">{c.replies}</div>
+          <a href="./Mahima-Shastry-Resume.pdf" target="_blank" rel="noopener noreferrer" className="mt-5 rounded-full border-2 border-paper px-5 py-2 text-[14px] font-semibold transition-colors hover:bg-lime hover:text-forest">
+            View resume (PDF)
+          </a>
         </div>
 
         <div data-reveal="fade" className="lg:col-span-7">
