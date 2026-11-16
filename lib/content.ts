@@ -11,7 +11,7 @@ export const brand = {
     },
     {
       "label": "Resume",
-      "href": "#"
+      "href": "./Mahima-Shastry-Resume.pdf"
     }
   ]
 };
