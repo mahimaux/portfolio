@@ -26,6 +26,7 @@ def parse(name):
     h1i = next(i for i, e in enumerate(d) if e['t'] == 'h1')
     h1 = d[h1i]
     eyebrow = next((txt(e['html']) for e in d[:h1i] if e['t'] == 'p' and e['x'] == 60 and e['y'] > 400), '')
+    eyebrow = eyebrow.replace('Systems 8 ', 'Systems & ').replace('SYSTEMS 8 ', 'SYSTEMS & ')
     rest = d[h1i + 1:]
     first_h2 = min(e['y'] for e in rest if e['t'] == 'h2')
     metas = [e for e in rest if e['y'] < first_h2 - 60 and e['t'] == 'p']

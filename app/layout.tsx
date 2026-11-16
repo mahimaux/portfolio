@@ -24,13 +24,14 @@ export const metadata: Metadata = {
   title: "Mahima Shastry | UX designer",
   description: "UX designer working on agent experience, AI explainability and accessibility. Around four years at IBM on webMethods.",
   icons: { icon: [{ url: "./favicon.svg", type: "image/svg+xml" }], apple: "./apple-touch-icon.png" },
-  // Add og:image here once the site has its own domain (it needs an absolute URL).
   openGraph: {
     type: "website",
+    url: "https://designbymahima.vercel.app/",
+    images: [{ url: "https://designbymahima.vercel.app/og.jpg", width: 1200, height: 630, alt: "Mahima Shastry, UX designer: less \u201cwait, what?\u201d, more \u201coh, nice?\u201d" }],
     title: "Mahima Shastry | UX designer",
     description: "UX designer working on agent experience, AI explainability and accessibility. Around four years at IBM on webMethods.",
   },
-  twitter: { card: "summary", title: "Mahima Shastry | UX designer" },
+  twitter: { card: "summary_large_image", title: "Mahima Shastry | UX designer", images: ["https://designbymahima.vercel.app/og.jpg"] },
 };
 export const viewport: Viewport = { themeColor: "#f2eee3" };
 

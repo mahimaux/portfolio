@@ -6,11 +6,11 @@ import { DrawnArrow, Heart, Search, Sparkle } from "./Icons";
 
 function FeedPhone() {
   const cards = [
-    { bg: "var(--tomato)", t: "40% OFF" },
+    { bg: "var(--tomato)" },
     { bg: "var(--paper)" },
-    { bg: "var(--blue)", t: "NEW DROP", fg: "var(--paper)" },
+    { bg: "var(--blue)" },
     { bg: "var(--paper)" },
-    { bg: "var(--pink)", t: "GLOW UP" },
+    { bg: "var(--pink)" },
     { bg: "var(--sun)" },
   ];
   const all = [...cards, ...cards];
@@ -19,15 +19,11 @@ function FeedPhone() {
       <span className="absolute left-1/2 top-[0.02em] z-10 h-[0.03em] w-[0.12em] -translate-x-1/2 rounded-full bg-forest" />
       <span className="feed-strip flex flex-col gap-[0.02em] p-[0.025em]">
         {all.map((c, i) => (
-          <span key={i} className="relative grid h-[0.3em] shrink-0 place-items-center rounded-[0.025em] border-2 border-forest" style={{ background: c.bg, color: c.fg ?? "var(--ink)" }}>
-            {c.t ? (
-              <span className="text-[0.07em] leading-none">{c.t}</span>
-            ) : (
-              <span className="flex w-3/4 flex-col gap-[0.015em]">
-                <span className="h-[0.02em] w-full rounded bg-forest/25" />
-                <span className="h-[0.02em] w-2/3 rounded bg-forest/25" />
-              </span>
-            )}
+          <span key={i} className="relative grid h-[0.3em] shrink-0 place-items-center rounded-[0.025em] border-2 border-forest" style={{ background: c.bg }}>
+            <span className="flex w-3/4 flex-col gap-[0.015em]">
+              <span className="h-[0.02em] w-full rounded bg-forest/25" />
+              <span className="h-[0.02em] w-2/3 rounded bg-forest/25" />
+            </span>
           </span>
         ))}
       </span>
