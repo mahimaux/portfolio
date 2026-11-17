@@ -48,7 +48,7 @@ export function Toolkit() {
           </h2>
         </div>
       </div>
-      <div className="tk-bars overflow-hidden border-b-[6px] border-ink">
+      <div className="tk-bars overflow-hidden">
         <div className="px-[var(--gutter)] py-[clamp(40px,6vw,96px)]">
           <span className="tag bg-paper text-ink">{c.tag}</span>
           <p className="mt-6 max-w-[560px] text-[19px] leading-snug text-paper/80">{c.body}</p>
@@ -107,6 +107,9 @@ export function Toolkit() {
           </div>
         ))}
       </div>
+      {/* Full-width break between Skills and the Playground intro, so the
+          last (blue) row never runs straight into the blue "Dive in" block. */}
+      <div aria-hidden className="col-span-full h-4 border-y-[3px] border-ink bg-paper md:h-5" />
     </section>
   );
 }
