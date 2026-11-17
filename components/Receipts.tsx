@@ -47,15 +47,18 @@ export function Receipts() {
           scrollTrigger: { trigger: n, start: "top 88%", once: true },
         });
       });
-      gsap.fromTo(".receipt", { yPercent: -100 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: ".receipt-wrap", start: "top 75%", end: "bottom 70%", scrub: 0.5 } });
+      gsap.fromTo(".receipt", { yPercent: -100 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: ".receipt-wrap", start: "top 95%", end: "top 50%", scrub: 0.5 } });
       gsap.fromTo(".receipt-wrap", { rotate: 5 }, { rotate: -3, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
     },
     { scope: root }
   );
 
+  // The section uses overflow-clip, not overflow-hidden: a hidden-overflow
+  // ancestor becomes the sticky container and the receipt stops sticking,
+  // so it used to scroll away before the reader got to it.
   const bars = Array.from({ length: 46 }, (_, i) => [1, 2, 3, 1, 4, 2, 1, 3][i % 8]);
   return (
-    <section id="receipts" ref={root} className="arc-top paper-tex relative z-10 -mt-[6vw] overflow-hidden bg-tomato px-[var(--gutter)] pb-[10vw] pt-[14vw] text-ink [--tex-opacity:.5]" style={{ "--arc": 14 } as React.CSSProperties}>
+    <section id="receipts" ref={root} className="arc-top paper-tex relative z-10 -mt-[6vw] overflow-clip bg-tomato px-[var(--gutter)] pb-[10vw] pt-[14vw] text-ink [--tex-opacity:.5]" style={{ "--arc": 14 } as React.CSSProperties}>
       <div className="grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <span data-reveal="fade" className="tag bg-ink text-tomato">
