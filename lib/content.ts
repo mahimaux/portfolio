@@ -560,7 +560,7 @@ export const process = [
     "href": "cases/halo.dc.html",
     "thumb": "work/halo.webp",
     "thumbAlt": "The HalO ring and companion app on a phone",
-    "readTime": "13 min read"
+    "readTime": "16 min read"
   },
   {
     "n": "02",

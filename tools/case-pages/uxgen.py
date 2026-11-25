@@ -229,7 +229,9 @@ def render(slug, blocks):
             dn, alt = dn.strip(), alt.strip()
             w, h = dims(slug, dn)
             wide = w > 1600
-            o.append(f'<figure class="rv hero-fig diag{" wide" if wide else ""}" style="background:#1c1d21;max-width:{w // 2}px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="{img(slug, dn)}" alt="{H.escape(alt, quote=True)}" loading="lazy" width="{w}" height="{h}"></div></figure>'); i += 1
+            from PIL import Image
+            bg = '#%02x%02x%02x' % Image.open(f'{OUT}/ux/{slug}/{dn}.webp').convert('RGB').getpixel((2, 2))
+            o.append(f'<figure class="rv hero-fig diag{" wide" if wide else ""}" style="background:{bg};max-width:{max(w // 2, 560)}px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="{img(slug, dn)}" alt="{H.escape(alt, quote=True)}" loading="lazy" width="{w}" height="{h}"></div></figure>'); i += 1
         elif k == 'video':
             vn, _, cap = v.partition('|')
             vn, cap = vn.strip(), cap.strip()
