@@ -76,8 +76,9 @@ h4 + .note{margin-top:0}
 .flow{display:flex;flex-direction:column;gap:0;max-width:640px}
 .flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
 .flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
-.flow .step:not(:last-child) .num{position:relative}
-.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .step{position:relative}
+.flow .num{position:relative;z-index:1}
+.flow .step:not(:last-child)::before{content:"";position:absolute;left:20.5px;top:42px;bottom:-2px;width:3px;background:var(--ink)}
 .flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
 .flow .txt b{font-size:18px;line-height:1.2}
 .flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
@@ -97,6 +98,11 @@ h4 + .note{margin-top:0}
 .vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
 .vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
 .vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
+.diag .sc{overflow-x:auto}
+@media (max-width:599px){.diag.wide img{width:640px;max-width:none}}
+.tbl.gaps{border-style:dashed;box-shadow:none;background:transparent}
+.tbl.gaps .tr{border-top-style:dashed}
+.tbl.gaps .td.k{background:transparent}
 .readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 @media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
 @media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}

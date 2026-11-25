@@ -41,8 +41,9 @@ EXTRA_CSS = """
 .flow{display:flex;flex-direction:column;gap:0;max-width:640px}
 .flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
 .flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
-.flow .step:not(:last-child) .num{position:relative}
-.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .step{position:relative}
+.flow .num{position:relative;z-index:1}
+.flow .step:not(:last-child)::before{content:"";position:absolute;left:20.5px;top:42px;bottom:-2px;width:3px;background:var(--ink)}
 .flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
 .flow .txt b{font-size:18px;line-height:1.2}
 .flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
@@ -62,6 +63,11 @@ EXTRA_CSS = """
 .vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
 .vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
 .vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
+.diag .sc{overflow-x:auto}
+@media (max-width:599px){.diag.wide img{width:640px;max-width:none}}
+.tbl.gaps{border-style:dashed;box-shadow:none;background:transparent}
+.tbl.gaps .tr{border-top-style:dashed}
+.tbl.gaps .td.k{background:transparent}
 .readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 @media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
 @media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
@@ -168,10 +174,11 @@ def render(slug, blocks):
             l, _, t = v.partition('::')
             l, t = l.strip(), t.strip()
             o.append('<div class="rv hmw">' + (f'<span class="mono lbl" style="color:var(--tomato);font-weight:700">{inl(l)}</span>' if l else '') + f'<p class="serif-i q">{inl(t)}</p></div>'); i += 1
-        elif k == 'rows':
-            rows = run('rows')
+        elif k in ('rows', 'gaps'):
+            gap = k == 'gaps'
+            rows = run(k)
             body = ''.join('<div class="tr defs"><span class="td k">{}</span><span class="td">{}</span></div>'.format(*[inl(x.strip()) for x in r.split('|', 1)]) for r in rows)
-            o.append(f'<div class="rv tbl">{body}</div>')
+            o.append(f'<div class="rv tbl{" gaps" if gap else ""}">{body}</div>')
         elif k == 'table':
             hd = [x.strip() for x in v.split('|')]; i += 1
             rows = run('tr')
@@ -183,7 +190,7 @@ def render(slug, blocks):
             o.append(f'<div class="rv tbl">{h}{b}</div>')
         elif k == 'card':
             cs = run('card')
-            o.append(f'<div class="cards" style="--n:{min(len(cs), 3)}">' + ''.join(f'<div class="rv hard card">{card_html(c)}</div>' for c in cs) + '</div>')
+            o.append(f'<div class="cards" style="--n:{2 if len(cs) == 4 else min(len(cs), 3)}">' + ''.join(f'<div class="rv hard card">{card_html(c)}</div>' for c in cs) + '</div>')
         elif k == 'person':
             ps = run('person')
             for p in ps:
@@ -217,6 +224,19 @@ def render(slug, blocks):
         elif k == 'swatch':
             items = [x.split('|') for x in v.split(';;')]
             o.append('<div class="rv swatches">' + ''.join(f'<div class="sw"><i style="background:{c.strip()}"></i><span class="mono lbl">{inl(t.strip())}</span></div>' for c, t in items) + '</div>'); i += 1
+        elif k == 'diagram':
+            dn, _, alt = v.partition('|')
+            dn, alt = dn.strip(), alt.strip()
+            w, h = dims(slug, dn)
+            wide = w > 1600
+            from PIL import Image
+            bg = '#%02x%02x%02x' % Image.open(f'{OUT}/ux/{slug}/{dn}.webp').convert('RGB').getpixel((2, 2))
+            o.append(f'<figure class="rv hero-fig diag{" wide" if wide else ""}" style="background:{bg};max-width:{max(w // 2, 560)}px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="{img(slug, dn)}" alt="{H.escape(alt, quote=True)}" loading="lazy" width="{w}" height="{h}"></div></figure>'); i += 1
+        elif k == 'video':
+            vn, _, cap = v.partition('|')
+            vn, cap = vn.strip(), cap.strip()
+            w, h = dims(slug, vn)
+            o.append(f'<figure class="rv hero-fig" style="background:#1c1d21"><video src="ux/{slug}/{vn}.mp4" poster="{img(slug, vn)}" width="{w}" height="{h}" autoplay muted loop playsinline preload="metadata" aria-label="{H.escape(plain(cap), quote=True)}" style="display:block;width:100%;height:auto"></video></figure>'); i += 1
         else:
             raise SystemExit(f'unknown block {k} in {slug}')
     return '\n'.join(o)
@@ -238,7 +258,10 @@ def words(head, secs):
 
 
 def page(slug, head, secs, nxt, nhead, mins):
-    meta = ''.join(f'<dt class="mono lbl" style="padding-top:16px;opacity:.78">{inl(k)}</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">{inl(v)}</dd>' for k, v in head['meta'])
+    def mv(v):
+        a, _, b = v.partition(';;')
+        return inl(a.strip()) + (f'<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">{inl(b.strip())}</span>' if b else '')
+    meta = ''.join(f'<dt class="mono lbl" style="padding-top:16px;opacity:.78">{inl(k)}</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">{mv(v)}</dd>' for k, v in head['meta'])
     tags = ''
     if head.get('tags'):
         tags = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px">' + ''.join(f'<span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">{inl(t.strip())}</span>' for t in head['tags'].split('|')) + '</div>'

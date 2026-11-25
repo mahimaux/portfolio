@@ -1,9 +1,9 @@
 {
  "halo": {
-  "words": 2850,
-  "mins": 13,
+  "words": 3499,
+  "mins": 16,
   "title": "An SOS you can start with your phone in your bag.",
-  "lede": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India."
+  "lede": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India. The ring triggers the emergency. The app handles everything before and after it."
  },
  "reframe": {
   "words": 1430,
@@ -12,10 +12,10 @@
   "lede": "I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version."
  },
  "steer": {
-  "words": 2152,
-  "mins": 10,
-  "title": "Running a driving school takes more than a group chat.",
-  "lede": "Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records."
+  "words": 2494,
+  "mins": 12,
+  "title": "Taking a driving school off the group chat.",
+  "lede": "Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson. Both work from the same record, so a change made at the desk reaches the car, and a lesson logged in the car gets back to the desk."
  },
  "atlas": {
   "words": 3127,
