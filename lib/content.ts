@@ -592,7 +592,7 @@ export const process = [
     "href": "cases/steer.dc.html",
     "thumb": "work/steer.webp",
     "thumbAlt": "The Steer logo on a laptop",
-    "readTime": "13 min read"
+    "readTime": "12 min read"
   },
   {
     "n": "04",

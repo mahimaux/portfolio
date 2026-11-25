@@ -32,20 +32,13 @@ small: Share of the 9 schools by main record-keeping tool, as reported in my res
 label: Why the record matters
 h: The register is a legal trail, not just admin.
 p: A learner who trains at a school gets a Form 5 driving training certificate. The school fills it from its own register.
-table: Form 5 · training certificate | Parivahan
-tr: Register entry | enrolment no.
-tr: Vehicle class | 2W / 4W
-tr: Training dates | from – to
+diagram: dg-form5 | Form 5 training certificate fields: register entry, vehicle class, training dates
 p: A record that's hard to find or correct delays a learner's test, not just the office's paperwork.
 
 # 02 / Problem framing || They asked for better organisation. The work was breaking between people.
 card: What schools asked for // “Better organisation.” :: That points to a tidier register: one filing system, fewer versions of the same sheet.
 card: What I saw // A live, multi-vehicle operation coordinated through a group chat. :: That needs a shared record that moves between the office and the car while lessons are running.
-table: | Office | Car
-tr: Who | Supervisor at a desk | Instructor on the road
-tr: Tools | register · Excel · phone | WhatsApp · memory · paper
-tr: Schedule change → | sent to the WhatsApp group | Instructor works from an older message
-tr: ← Lesson outcome | Never reaches the register | remembered, written up later
+diagram: dg-handoff | Office and car with no shared lesson record: a schedule change goes to the WhatsApp group and the instructor works from an older message; the lesson outcome is remembered and never reaches the register
 small: Today a schedule change and a lesson outcome travel in opposite directions, through different tools, with nothing in the middle that both sides can read.
 label: Problem statement
 p: A schedule change could live in a message while the office worked from an older copy. A fee or a missing document could go unnoticed until it delayed a lesson. Each task was manageable on its own. The failures happened between them.
@@ -71,11 +64,7 @@ small: Secondary research: India's Form 5 training certificate (section 01), and
 
 # 04 / Synthesis and insights || Seven clusters, four insights, one through-line.
 p: I grouped interview notes by recurring problem. Every cluster came up with both supervisors and instructors.
-table: Affinity clusters · managers + instructors | Insight it feeds
-tr: Scheduling issues | 1 · Failures happen at the handoff between desk and car
-tr: Performance tracking | 2 · Supervisors need to monitor, not look things up
-tr: Payments · Document collection · Safety compliance | 3 · Fees, documents and vehicle checks fail silently
-tr: User experience · Technology adoption | 4 · Any new tool competes with teaching time
+diagram: dg-affinity | Seven affinity clusters from managers and instructors mapped to four insights
 small: Affinity clusters on the left, the insight each one feeds on the right. Insight 1 is the one the rest of the design hangs on.
 card: 1 // Failures happen at the handoff between desk and car. :: _“It's difficult to monitor student progress over time.”_ Instructor :: **Design implication.** One lesson record that both apps read and write. A change at the desk reaches the car, and a lesson outcome gets back to the office without a call.
 card: 2 // Supervisors need to monitor, not look things up. :: _“I need reports to identify which instructors need training or which students are lagging.”_ Manager :: **Design implication.** The supervisor's home screen shows live status for every lesson at once. Records are one click away, not the starting point.
@@ -95,12 +84,7 @@ card: Job to be done · Supervisor // When lessons are running across the city, 
 card: Job to be done · Instructor // When I start my day or my next lesson, I want to know who, when, where and what we covered last time, so I can teach instead of calling the office. :: **Functional.** An accurate schedule, the learner's history, a fast way to log the lesson :: **Emotional.** Go into each lesson prepared, without learning new software :: **Hired today.** A morning call, chat messages, memory, paper progress sheets
 label: One lesson, both roles
 h: The lesson crosses between them three times. Each crossing is where it breaks.
-flow: Schedule · Office | register · WhatsApp. Handoff: arrives late or wrong
-flow: Confirm · Car | morning call to office
-flow: Prepare · Car | no lesson history
-flow: Drive · Car | with the learner. Monitor from the office: calls, if anything. Handoff: no live view
-flow: Log · Car | memory, paper later. Handoff: written up late, or lost
-flow: Follow up · Office | fees, documents, Excel
+diagram: dg-journey | One lesson's path today across the office and car lanes, with three handoffs where information arrives late, can't be seen or gets lost
 small: The lesson's path today. Steps inside one lane mostly work. The crossings between office and car are where information arrives late, can't be seen, or gets lost.
 
 # 06 / Design principles || Four rules, one for each insight.
@@ -110,31 +94,12 @@ card: 3 // Let the system remember :: Overdue fees, missing documents and servic
 card: 4 // One clear next step :: In the car, show today and the next action, within reach of one thumb. :: **From.** Insight 4 · teaching time :: **Shows up as.** Today screen, one-tap start
 
 # 07 / Information architecture and flows || Six places at the desk, four steps in the car, one record between them.
-label: Web app · Supervisor
-rows: Onboarding | then six areas
-rows: Dashboard | live map · reminders
-rows: Students | enrolment · schedule · progress · payments · documents
-rows: Instructors | 2W / 4W · students · vehicles
-rows: Vehicles | health · service · usage
-rows: Payments | review · remind · export
-rows: Calendar | events · to-dos
-label: Mobile app · Instructor
-flow: Today | next lesson stands out
-flow: Session details | pickup · prior notes
-flow: Live session | route · recording · end
-flow: Rate the session | skills to revisit · note, or mark absent
-small: Tabs: Today · Students · Schedule · Alerts
-label: One lesson record
-ol: schedule change reaches Today
-ol: live status reaches the map
-ol: lesson outcome reaches the student record
+diagram: dg-ia | Information architecture: six areas in the supervisor web app, a four-step lesson loop in the instructor app, and one lesson record linking them through three journeys
 small: The supervisor's web app branches into six areas after onboarding. The instructor's app is a loop through each lesson. The three dashed journeys are the ones the design is built to protect.
 
 # 08 / Exploration and trade-offs || Where should a supervisor look first?
 p: I took rough paper versions of three dashboards to supervisors. With each one, their first question was about location.
-card: A · Set aside // List-first :: Familiar and quick to sort. Supervisors still asked where everyone was.
-card: B · Set aside // Session cards :: Showed more per lesson. Location still took effort to piece together.
-card: C · Chosen // Map-first :: Active vehicles in view, reminders alongside, details one click away.
+diagram: dg-explore | Three dashboard sketches: A list-first, set aside; B session cards, set aside; C map-first, chosen
 label: What each choice cost
 h: At the desk I traded simplicity for coverage. In the car I did the reverse.
 table: Decision | Why | Gave up
@@ -164,6 +129,7 @@ small: P1–P4 refer to the design principles in section 06.
 p: Lime and charcoal come from road markings, the visual language both users already read every day. Number plates and times are set in mono, the way they appear on a plate or a dashboard.
 swatch: #DFF20F | Lime · web #DFF20F ;; #D9F24B | Lime · mobile #D9F24B ;; #2E2F29 | Charcoal #2E2F29 ;; #0B0C08 | Ink #0B0C08 ;; #F5F6EF | Surface #F5F6EF ;; #858684 | Muted text #858684
 label: Shared across both apps
+diagram: dg-parts | Shared parts: status pills, Next up tag, Begin session button, number plate, time and initials avatar
 p: Status pills, the lesson card, the primary button, initials avatars and mono numerals look the same on desk and phone. The layouts differ; the parts don't.
 label: Two rules that keep it working
 list: Lime is a fill, never text on white. Ink on lime is 15.7:1. Lime on white is 1.25:1.
@@ -171,22 +137,7 @@ list: Status never relies on colour alone. Every pill has a word, every pin a sh
 note: Audit finding :: The web and mobile limes drifted apart. Next step is one shared token.
 
 # 11 / Edge cases and states || Most lessons don't go to plan. The design has to cover the ones that don't.
-label: One lesson, every state it can be in
-flow: Scheduled | office sets it
-flow: Next up | on Today, once the day starts
-flow: In session | recording, after Begin session
-flow: Rating | skills · note, after End session
-flow: Completed | saved to record, after Save and exit
-rows: Move requested | Accept / Decline
-rows: Absent | marked by instructor
-rows: Running late | red pin on the map
-rows: Cancelled | credit returned
-rows: Vehicle swapped | service due on the i20
-label: Not designed yet
-gaps: Offline mid-lesson | no signal in the car
-gaps: Empty day | no lessons booked
-gaps: Double-booked car | clash at scheduling
-gaps: Location denied | tracking off
+diagram: dg-states | Every state a lesson can be in, from scheduled to completed, with exceptions and four states not designed yet
 small: Solid boxes are designed in the prototype. Dashed boxes are known gaps I'd design next, starting with losing signal mid-lesson.
 label: Where the edge cases surface
 phones3: m-alerts | **Alerts.** A move request with Accept and Decline, a new assignment, a saved lesson, a service due date and a cancellation
@@ -206,10 +157,5 @@ small: Contrast measured from colours sampled in the prototype screens. Screen r
 card: Watch what people do, not just what they ask for. :: “Better organisation” and “running a school on WhatsApp” point to different products.
 card: Density helps people who are monitoring. :: Hiding detail behind clicks slowed supervisors down. At the desk, showing everything at once was the right call.
 card: Design both sides of the handoff. :: The office needs fees and progress. The instructor needs a fast way to update the lesson that feeds them.
-label: The road ahead
-rows: Now | **Pilot in two schools.** one paper, one Excel
-rows: Next | **Student app.** lessons, feedback, fees
-rows: Next | **Instructor rescheduling.** within school rules
-rows: Later | **Salary payouts.** from completed lessons
-rows: Later | **Instructor copilot** and AI insights
+diagram: dg-roadmap | Roadmap: now, pilot in two schools; next, student app and instructor rescheduling; later, salary payouts and an instructor copilot with AI insights
 small: The road ahead. I'm currently working on the instructor copilot.

@@ -63,6 +63,8 @@ EXTRA_CSS = """
 .vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
 .vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
 .vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
+.diag .sc{overflow-x:auto}
+@media (max-width:599px){.diag.wide img{width:640px;max-width:none}}
 .tbl.gaps{border-style:dashed;box-shadow:none;background:transparent}
 .tbl.gaps .tr{border-top-style:dashed}
 .tbl.gaps .td.k{background:transparent}
@@ -222,6 +224,12 @@ def render(slug, blocks):
         elif k == 'swatch':
             items = [x.split('|') for x in v.split(';;')]
             o.append('<div class="rv swatches">' + ''.join(f'<div class="sw"><i style="background:{c.strip()}"></i><span class="mono lbl">{inl(t.strip())}</span></div>' for c, t in items) + '</div>'); i += 1
+        elif k == 'diagram':
+            dn, _, alt = v.partition('|')
+            dn, alt = dn.strip(), alt.strip()
+            w, h = dims(slug, dn)
+            wide = w > 1600
+            o.append(f'<figure class="rv hero-fig diag{" wide" if wide else ""}" style="background:#1c1d21;max-width:{w // 2}px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="{img(slug, dn)}" alt="{H.escape(alt, quote=True)}" loading="lazy" width="{w}" height="{h}"></div></figure>'); i += 1
         elif k == 'video':
             vn, _, cap = v.partition('|')
             vn, cap = vn.strip(), cap.strip()
