@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Steer · Mahima Shastry</title>
-<meta name="description" content="Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.">
+<meta name="description" content="Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson. Both work from the same record, so a change made at the desk reaches the car, and a lesson logged in the car gets back to the desk.">
 <link rel="stylesheet" href="site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
@@ -76,8 +76,9 @@ h4 + .note{margin-top:0}
 .flow{display:flex;flex-direction:column;gap:0;max-width:640px}
 .flow .step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
 .flow .num{width:44px;height:44px;border:3px solid var(--ink);border-radius:999px;background:var(--lime);display:grid;place-items:center;font-weight:700;font-size:15px}
-.flow .step:not(:last-child) .num{position:relative}
-.flow .step:not(:last-child) .num::after{content:"";position:absolute;left:50%;top:41px;width:3px;height:calc(100% + 30px);background:var(--ink);transform:translateX(-50%)}
+.flow .step{position:relative}
+.flow .num{position:relative;z-index:1}
+.flow .step:not(:last-child)::before{content:"";position:absolute;left:20.5px;top:42px;bottom:-2px;width:3px;background:var(--ink)}
 .flow .txt{padding:6px 0 22px;display:flex;flex-direction:column;gap:4px}
 .flow .txt b{font-size:18px;line-height:1.2}
 .flow .txt span{font-size:15px;line-height:1.5;opacity:.85}
@@ -97,6 +98,9 @@ h4 + .note{margin-top:0}
 .vdlg .vx{width:40px;height:40px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
 .vdlg .vx:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
 .vdlg video{display:block;width:100%;height:auto;max-height:calc(92vh - 64px);background:#000}
+.tbl.gaps{border-style:dashed;box-shadow:none;background:transparent}
+.tbl.gaps .tr{border-top-style:dashed}
+.tbl.gaps .td.k{background:transparent}
 .readtime{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:var(--lime);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 @media (max-width:899px){.figrow{grid-template-columns:repeat(min(var(--n),2),minmax(0,1fr))}.phones{grid-template-columns:repeat(min(var(--n),3),minmax(0,1fr))}}
 @media (max-width:599px){.figrow{grid-template-columns:1fr}.phones{grid-template-columns:repeat(2,minmax(0,1fr))}.tr.n3{grid-template-columns:1fr}.tr.n3 .td + .td{border-left:0;border-top:2px dashed rgb(18 17 16 / .15)}.tr.n3.head .th + .th{display:none}.person{grid-template-columns:1fr}.person img{width:110px}}
@@ -119,276 +123,253 @@ h4 + .note{margin-top:0}
 <main class="paper-tex" style="position:relative">
   <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
-      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">UX portfolio case study</span>
-      <span class="mono readtime">10 min read</span>
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">Case study · Mahima Shastry</span>
+      <span class="mono readtime">13 min read</span>
     </div>
     <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">Steer</h1>
     <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
       <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
-        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Running a driving school takes more than a group chat.</h2>
-        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.</p>
+        <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Taking a driving school off the group chat.</h2>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson. Both work from the same record, so a change made at the desk reaches the car, and a lesson logged in the car gets back to the desk.</p>
         <a class="btn proto-btn rv" href="https://www.figma.com/proto/ZlzlXMaPPuVAcK6kSnrsQM/Steer---Driving-school-data-management-system?node-id=96-2264&amp;p=f&amp;viewport=134%2C182%2C0.03&amp;t=yN7qZ9nTDfqhFVAL-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=201%3A3331&amp;page-id=7%3A4" target="_blank" rel="noopener" style="--btn-bg:var(--lime)"><span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></span><span class="btn-label">View tutorial/prototype<span class="sr-only"> (opens in a new tab)</span></span></a>
-        <p class="rv" style="margin:0;max-width:62ch;font-size:17px;line-height:1.6">Discovery interviews, information architecture, interaction design and visual design across both platforms.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px"><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Research</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Web app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Instructor app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Key takeaways</span></div>
+        
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px"><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Field research</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Web app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Instructor app</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Accessibility</span></div>
       </div>
-      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">My role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Solo UX designer</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Duration</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">3 months</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Deliverables</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Web + mobile prototypes</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Status</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Concept project</dd></dl>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">Role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Solo UX/UI designer<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Research, IA, interaction and visual design</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Timeline</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">3 months<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Discovery through high-fidelity prototypes</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Platforms</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Web app for supervisors<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Mobile app for instructors</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Team</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Just me<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">No PM or engineering partner; decisions checked with schools directly</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Research</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">9 schools, 16 on-site interviews<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">5 supervisors and 11 instructors, small to mid-size schools</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Constraints</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Concept project, no live data<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Users with little time to learn new tools; instructors working one-handed from a car</span></dd></dl>
     </div>
-    <figure class="rv hero-fig" style="background:#1c1d21;margin-top:44px"><img src="ux/steer/02.webp" alt="Steer prototype" width="881" height="476" fetchpriority="high"></figure>
+    <figure class="rv hero-fig" style="background:#1c1d21;margin-top:44px"><img src="ux/steer/dashboard.webp" alt="Supervisor web app · live map dashboard" width="2000" height="1080" fetchpriority="high"></figure><p class="small" style="margin-top:12px">Supervisor web app · live map dashboard</p>
   </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Backstory</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">I signed up to learn to ride.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">00 / Overview</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Problem and solution</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The school wrote student records by hand. Updating a record was awkward. Finding an old one meant going back through the books. I wanted to see what happened when the same school had to keep track of lessons, fees, instructor assignments and vehicle maintenance.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Understanding the users</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Primary research.</strong> I visited nine small to midsize driving schools and conducted ten semi-structured interviews with supervisors and instructors on site. I asked how they teach lessons, manage student and instructor records, and coordinate the work around each booking.</p>
-<div class="rv mono lbl sub">How schools teach</div>
-<div class="stats"><div class="rv stat"><span class="display">100%</span><span>Practical</span></div><div class="rv stat"><span class="display">50%</span><span>Theory</span></div><div class="rv stat"><span class="display">10%</span><span>Simulation</span></div></div>
-<div class="rv mono lbl sub">How schools keep records</div>
-<div class="stats"><div class="rv stat"><span class="display">60%</span><span>Registers or notebooks</span></div><div class="rv stat"><span class="display">40%</span><span>Excel sheets</span></div></div>
-<p class="rv small">Percentages are reproduced from the project reference. The denominator for each question is undocumented, so these figures describe the research as reported.</p>
-<div class="rv mono lbl sub">Secondary research / Portfolio update</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Local context.</strong> India’s Parivahan Form 5 ties a driving-school training certificate to a register entry, vehicle class and training dates. That shows why an enrolment record needs to be easy to retrieve.</p>
-<p class="rv small">Parivahan • Driving certificate, Form 5</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Product benchmark.</strong> Drive Scout already combines scheduling, payments and records. For Steer, the specific design opportunity was carrying the same lesson from the office schedule to the instructor’s next action and back.</p>
-<p class="rv small">Drive Scout • Driving school management software</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">Problem</h4><p>Small driving schools keep lessons, fees, documents and vehicles in paper registers, Excel and WhatsApp. None of them update each other, so a clash, an unpaid fee or a missing document shows up only once it has already cost a lesson.</p></div><div class="rv hard card"><h4 class="display">Solution</h4><p>Two front ends on one shared record. A map-first web dashboard answers “where is everyone, and what needs attention?” A today-first mobile app tells an instructor who is next and lets them start and log the lesson in a tap.</p></div></div>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/instructor-app.webp" alt="Instructor mobile app. Today&#x27;s sessions" loading="lazy" width="640" height="1387"><figcaption><strong>Instructor mobile app.</strong> Today's sessions</figcaption></figure></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Personas</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">01 / Context and origin</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">It started with a register at the front desk.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Two composite personas capture where a manager and an instructor get stuck in the same workflow.</p>
-<div class="rv hard card person"><img src="ux/steer/04.webp" alt="" loading="lazy" width="355" height="540"><div style="display:flex;flex-direction:column;gap:9px"><span class="mono lbl">32 / Manager, Swift Drive School</span><h4 class="display">Monica Adams</h4><p><strong>Pain points.</strong> Schedules and payments are hard to reconcile. Changes take too long to reach instructors and students. Documents are easy to misfile, and vehicle maintenance adds another record to keep current.</p><p><strong>Needs.</strong> A current schedule, a way to review student progress, and a shared place to coordinate changes and assignments.</p><p><em>What changed across the school today?</em></p></div></div>
-<div class="rv hard card person"><img src="ux/steer/05.webp" alt="" loading="lazy" width="352" height="538"><div style="display:flex;flex-direction:column;gap:9px"><span class="mono lbl">40 / Instructor, Ace Drivers Academy</span><h4 class="display">Rajesh Nair</h4><p><strong>Pain points.</strong> Schedules and cancellations arrive late. Paperwork takes time away from teaching. Progress is hard to track from one lesson to the next.</p><p><strong>Needs.</strong> Current assignments, a quick way to record attendance and performance, and a direct channel for coordinating with managers and students.</p><p><em>Who am I teaching next, and where?</em></p></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I signed up to learn to ride. The school kept every student in a handwritten book.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">One learner's record was already awkward to manage. I wanted to know what happened when the same school had to keep lessons, fees, instructor assignments and vehicle maintenance straight at once, across a full day of cars on the road.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">So I went looking at how other schools did it, and ended up visiting nine of them.</p>
+<div class="rv mono lbl sub">Market signal</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Most schools I visited still run on paper.</h3>
+<div class="stats"><div class="rv stat"><span class="display">60%</span><span>Registers</span></div><div class="rv stat"><span class="display">40%</span><span>Excel</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">India's driving school market is fragmented and largely informal. Purpose-built software exists, but the schools I visited managed records on paper or in a general-purpose spreadsheet.</p>
+<p class="rv small">Share of the 9 schools by main record-keeping tool, as reported in my research notes. Full method in section 03.</p>
+<div class="rv mono lbl sub">Why the record matters</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The register is a legal trail, not just admin.</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A learner who trains at a school gets a Form 5 driving training certificate. The school fills it from its own register.</p>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Form 5 · training certificate</span><span class="th">Parivahan</span></div><div class="tr n2"><span class="td k">Register entry</span><span class="td">enrolment no.</span></div><div class="tr n2"><span class="td k">Vehicle class</span><span class="td">2W / 4W</span></div><div class="tr n2"><span class="td k">Training dates</span><span class="td">from – to</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A record that's hard to find or correct delays a learner's test, not just the office's paperwork.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Processes</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Affinity Mapping</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">02 / Problem framing</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">They asked for better organisation. The work was breaking between people.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I grouped the research by recurring problem and compared how each one showed up at the desk and in the car.</p>
-<div class="rv tbl"><div class="tr head n3"><span class="th">Theme</span><span class="th">Managers</span><span class="th">Instructors</span></div><div class="tr n3"><span class="td k">Scheduling issues</span><span class="td">Payments, records and vehicle logs take time to reconcile.</span><span class="td">Progress sheets and paperwork cut into teaching time.</span></div><div class="tr n3"><span class="td k">User experience</span><span class="td">A clean, simple tool matters because training time is limited.</span><span class="td">A phone app should feel familiar and easy to pick up.</span></div><div class="tr n3"><span class="td k">Performance tracking</span><span class="td">Manual reporting makes it hard to spot where students or instructors need support.</span><span class="td">Progress is hard to follow lesson by lesson. Better records would inform the next lesson.</span></div><div class="tr n3"><span class="td k">Technology adoption</span><span class="td">Teams need to see a clear payoff for learning a new tool.</span><span class="td">A busy schedule leaves little time to learn new software.</span></div><div class="tr n3"><span class="td k">Safety compliance</span><span class="td">Vehicle and driver documentation needs upkeep.</span><span class="td">Routine vehicle checks are essential and easy to put off.</span></div><div class="tr n3"><span class="td k">Payments</span><span class="td">It is hard to see who has paid and who needs a reminder.</span><span class="td">Late fees can interrupt classes and slow learner progress.</span></div><div class="tr n3"><span class="td k">Document collection</span><span class="td">Physical files go missing and delay onboarding or scheduling.</span><span class="td">A missing document can interrupt a lesson. A shared record would help.</span></div></div>
-<div class="rv callout"><span class="mono lbl">The handoff to fix.</span><p>A schedule update should reach the instructor, and a lesson outcome should make it back to the office. Both teams needed to see the same record.</p></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Interviews and insights</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Themes</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv tbl"><div class="tr defs"><span class="td k">01 Visibility</span><span class="td">See schedules, payments and daily operations as they change.</span></div><div class="tr defs"><span class="td k">02 Vehicle checks</span><span class="td">Keep safety, maintenance and compliance information easy to find.</span></div><div class="tr defs"><span class="td k">03 Shared records</span><span class="td">Keep student progress, payments and vehicle health together.</span></div><div class="tr defs"><span class="td k">04 Adoption</span><span class="td">Keep the tool affordable and easy to learn around a full workday.</span></div><div class="tr defs"><span class="td k">05 Repetitive work</span><span class="td">Reduce time spent on reminders, document checks and scheduling.</span></div></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Problem statement</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Problem Statement</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">What schools asked for</span><h4 class="display">“Better organisation.”</h4><p>That points to a tidier register: one filing system, fewer versions of the same sheet.</p></div><div class="rv hard card"><span class="mono lbl">What I saw</span><h4 class="display">A live, multi-vehicle operation coordinated through a group chat.</h4><p>That needs a shared record that moves between the office and the car while lessons are running.</p></div></div>
+<div class="rv tbl"><div class="tr head n3"><span class="th"></span><span class="th">Office</span><span class="th">Car</span></div><div class="tr n3"><span class="td k">Who</span><span class="td">Supervisor at a desk</span><span class="td">Instructor on the road</span></div><div class="tr n3"><span class="td k">Tools</span><span class="td">register · Excel · phone</span><span class="td">WhatsApp · memory · paper</span></div><div class="tr n3"><span class="td k">Schedule change →</span><span class="td">sent to the WhatsApp group</span><span class="td">Instructor works from an older message</span></div><div class="tr n3"><span class="td k">← Lesson outcome</span><span class="td">Never reaches the register</span><span class="td">remembered, written up later</span></div></div>
+<p class="rv small">Today a schedule change and a lesson outcome travel in opposite directions, through different tools, with nothing in the middle that both sides can read.</p>
+<div class="rv mono lbl sub">Problem statement</div>
 <p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A schedule change could live in a message while the office worked from an older copy. A fee or a missing document could go unnoticed until it delayed a lesson. Each task was manageable on its own. The failures happened between them.</p>
-<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">How might we create a unified digital solution that streamlines communication, scheduling, record management and daily operations so managers and instructors can spend more time on their core work and improve the experience for students?</p></div>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">carry one lesson record from the office schedule to the instructor's next action and back, without adding admin to either side?</p></div>
+<p class="rv small">Out of scope for now: a student app, instructor payouts and rescheduling, and an AI copilot. They are on the roadmap in section 13.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">The concept</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Digital Solutions</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">03 / Research</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">I went to the schools instead of sending a survey.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I designed two ways into the same system. Supervisors need to see the whole school at a glance. Instructors need to know what to do before the next lesson starts.</p>
-<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">01 / Web application</h4><p><strong>For managers and owners at a desk.</strong> Track active lessons, maintain student and instructor records, monitor vehicles, and manage payments, documents and calendars.</p></div><div class="rv hard card"><h4 class="display">02 / Mobile application</h4><p><strong>For instructors between lessons.</strong> Check the schedule, contact students, record attendance, see the route and log performance after class.</p></div></div>
-<div class="rv mono lbl sub">Ideation</div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Where should a supervisor look first?</h3>
-<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">List-first</h4><p>Familiar and quick to sort. Supervisors still asked where everyone was.</p></div><div class="rv hard card"><h4 class="display">Session cards</h4><p>Showed more per lesson. Location still took effort to piece together.</p></div><div class="rv hard card"><h4 class="display">Map-first</h4><p>Put active vehicles in view and kept lesson details within reach. I chose this direction.</p></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I brought rough paper versions of all three to supervisors. Their first question was about location. I kept session status and reminders visible on the dashboard and put editing and history in detail views.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>On mobile, the trade-off reversed.</strong> I chose one tap on Begin session from Session Details, where the instructor can already check the learner, time and vehicle. The prototype notes favour one tap. A false start still matters because it initiates tracking, so I’d measure start errors and recovery alongside speed.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">At each school I asked how they teach a lesson, keep records, and coordinate the work around each booking.</p>
+<div class="stats"><div class="rv stat"><span class="display">9</span><span><strong>Schools visited.</strong> Small to mid-size, on site</span></div><div class="rv stat"><span class="display">16</span><span><strong>Interviews.</strong> 5 supervisors, 11 instructors</span></div><div class="rv stat"><span class="display">2</span><span><strong>Roles.</strong> Supervisors and instructors</span></div><div class="rv stat"><span class="display">2</span><span><strong>Secondary sources.</strong> Regulation and a product benchmark</span></div></div>
+<div class="rv mono lbl sub">How schools teach</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Every school teaches on the road</h3>
+<div class="stats"><div class="rv stat"><span class="display">100%</span><span>Practical</span></div><div class="rv stat"><span class="display">50%</span><span>Theory</span></div><div class="rv stat"><span class="display">10%</span><span>Simulation</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The core product is a lesson in a moving vehicle, away from the office. That made the instructor's phone a primary surface, not an afterthought.</p>
+<p class="rv small">Share of schools, as reported in my research notes. The per-question base was not recorded, so read these as directional.</p>
+<div class="rv callout"><span class="mono lbl">Supervisor</span><p>“I have no idea which route my instructors are taking with students. I only find out if something goes wrong.”</p></div>
+<div class="rv callout"><span class="mono lbl">Instructor</span><p>“Every morning I call the office to find out which student I have and at what time. Half the time the information is wrong.”</p></div>
+<p class="rv small">Secondary research: India's Form 5 training certificate (section 01), and Drive Scout, a purpose-built tool that already combines scheduling, payments and records. Steer's angle is carrying one lesson from the office to the car and back.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">04 / Synthesis and insights</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Seven clusters, four insights, one through-line.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">After onboarding, six destinations cover the supervisor’s day. The Dashboard and Students branches connect the live operation to each learner’s record.</p>
-<figure class="rv fig"><img src="ux/steer/06.webp" alt="Prototype screen" loading="lazy" width="1059" height="260"></figure>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/07.webp" alt="01 Dashboard. See active vehicles, reminders and profile." loading="lazy" width="303" height="233"><figcaption><strong>01 Dashboard.</strong> See active vehicles, reminders and profile.</figcaption></figure><figure class="rv fig"><img src="ux/steer/08.webp" alt="02 Students. Add a student or open the registry to reach enrolment, schedule, progress, payments and documents." loading="lazy" width="682" height="993"><figcaption><strong>02 Students.</strong> Add a student or open the registry to reach enrolment, schedule, progress, payments and documents.</figcaption></figure></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I grouped interview notes by recurring problem. Every cluster came up with both supervisors and instructors.</p>
+<div class="rv tbl"><div class="tr head n2"><span class="th">Affinity clusters · managers + instructors</span><span class="th">Insight it feeds</span></div><div class="tr n2"><span class="td k">Scheduling issues</span><span class="td">1 · Failures happen at the handoff between desk and car</span></div><div class="tr n2"><span class="td k">Performance tracking</span><span class="td">2 · Supervisors need to monitor, not look things up</span></div><div class="tr n2"><span class="td k">Payments · Document collection · Safety compliance</span><span class="td">3 · Fees, documents and vehicle checks fail silently</span></div><div class="tr n2"><span class="td k">User experience · Technology adoption</span><span class="td">4 · Any new tool competes with teaching time</span></div></div>
+<p class="rv small">Affinity clusters on the left, the insight each one feeds on the right. Insight 1 is the one the rest of the design hangs on.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">1</span><h4 class="display">Failures happen at the handoff between desk and car.</h4><p><em>“It's difficult to monitor student progress over time.”</em> Instructor</p><p><strong>Design implication.</strong> One lesson record that both apps read and write. A change at the desk reaches the car, and a lesson outcome gets back to the office without a call.</p></div><div class="rv hard card"><span class="mono lbl">2</span><h4 class="display">Supervisors need to monitor, not look things up.</h4><p><em>“I need reports to identify which instructors need training or which students are lagging.”</em> Manager</p><p><strong>Design implication.</strong> The supervisor's home screen shows live status for every lesson at once. Records are one click away, not the starting point.</p></div><div class="rv hard card"><span class="mono lbl">3</span><h4 class="display">Fees, documents and vehicle checks fail silently.</h4><p><em>“Students often delay payments, and we don't have a proper system to send reminders.”</em> Manager</p><p><strong>Design implication.</strong> The system raises what's overdue, missing or due for service, so nobody has to remember to check.</p></div><div class="rv hard card"><span class="mono lbl">4</span><h4 class="display">Any new tool competes with teaching time.</h4><p><em>“Learning a new tool feels daunting when I already have a busy schedule.”</em> Instructor</p><p><strong>Design implication.</strong> Familiar patterns, no training to start, and logging that takes less effort than the paper it replaces.</p></div></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / User flow</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructors and Vehicles</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">05 / Users and contexts</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Same school, same lesson, two very different working days.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Both branches split by two- or four-wheeler. Each keeps the add flow separate from the registry and detailed record.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/09.webp" alt="03 Instructors. Open an instructor record to see assigned students, schedules, vehicles, performance and documents." loading="lazy" width="688" height="1160"><figcaption><strong>03 Instructors.</strong> Open an instructor record to see assigned students, schedules, vehicles, performance and documents.</figcaption></figure><figure class="rv fig"><img src="ux/steer/10.webp" alt="04 Vehicles. Open a vehicle record for health, maintenance, assignment, usage and documents." loading="lazy" width="743" height="1101"><figcaption><strong>04 Vehicles.</strong> Open a vehicle record for health, maintenance, assignment, usage and documents.</figcaption></figure></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Framed by context and jobs, not demographics. This is where the web and mobile split came from.</p>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Dimension</span><span class="th">Supervisor</span><span class="th">Instructor</span></div><div class="tr n3"><span class="td k">Where</span><span class="td">At a desk in the office</span><span class="td">In a car, between lessons</span></div><div class="tr n3"><span class="td k">Device</span><span class="td">Large screen</span><span class="td">Phone, often one hand free</span></div><div class="tr n3"><span class="td k">Time horizon</span><span class="td">The whole school, today</span><span class="td">The next lesson</span></div><div class="tr n3"><span class="td k">Attention</span><span class="td">Scans many lessons at once</span><span class="td">Glances, then drives</span></div><div class="tr n3"><span class="td k">Their question</span><span class="td">What changed across the school today?</span><span class="td">Who am I teaching next, and where?</span></div><div class="tr n3"><span class="td k">Cost of a miss</span><span class="td">A clash, an unpaid fee, a missing document</span><span class="td">A wasted trip or a lesson with no context</span></div></div>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">Job to be done · Supervisor</span><h4 class="display">When lessons are running across the city, I want to see where every lesson stands and what's overdue, so I can fix a problem before it costs a lesson.</h4><p><strong>Functional.</strong> Keep schedules, payments, documents and vehicles reconciled</p><p><strong>Emotional.</strong> Feel ahead of problems instead of hearing about them last</p><p><strong>Hired today.</strong> Register, Excel, the WhatsApp group, phone calls</p></div><div class="rv hard card"><span class="mono lbl">Job to be done · Instructor</span><h4 class="display">When I start my day or my next lesson, I want to know who, when, where and what we covered last time, so I can teach instead of calling the office.</h4><p><strong>Functional.</strong> An accurate schedule, the learner's history, a fast way to log the lesson</p><p><strong>Emotional.</strong> Go into each lesson prepared, without learning new software</p><p><strong>Hired today.</strong> A morning call, chat messages, memory, paper progress sheets</p></div></div>
+<div class="rv mono lbl sub">One lesson, both roles</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The lesson crosses between them three times. Each crossing is where it breaks.</h3>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Schedule · Office</b><span>register · WhatsApp. Handoff: arrives late or wrong</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>Confirm · Car</b><span>morning call to office</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>Prepare · Car</b><span>no lesson history</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>Drive · Car</b><span>with the learner. Monitor from the office: calls, if anything. Handoff: no live view</span></div></div><div class="step"><span class="num mono">05</span><div class="txt"><b>Log · Car</b><span>memory, paper later. Handoff: written up late, or lost</span></div></div><div class="step"><span class="num mono">06</span><div class="txt"><b>Follow up · Office</b><span>fees, documents, Excel</span></div></div></div>
+<p class="rv small">The lesson's path today. Steps inside one lane mostly work. The crossings between office and car are where information arrives late, can't be seen, or gets lost.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / User flow</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Payments and Calendar</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">06 / Design principles</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Four rules, one for each insight.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The remaining branches give supervisors a place to close out fees and organise upcoming work.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/11.webp" alt="05 Payments. Open the payment summary to review, edit, message, filter or export. Individual records carry the fee, payment and student details." loading="lazy" width="513" height="553"><figcaption><strong>05 Payments.</strong> Open the payment summary to review, edit, message, filter or export. Individual records carry the fee, payment and student details.</figcaption></figure><figure class="rv fig"><img src="ux/steer/12.webp" alt="06 Calendar. Check the schedule, add an event or capture a to-do that doesn’t need a calendar slot." loading="lazy" width="297" height="278"><figcaption><strong>06 Calendar.</strong> Check the schedule, add an event or capture a to-do that doesn’t need a calendar slot.</figcaption></figure></div>
-<div class="rv callout"><span class="mono lbl">The workflow in practice</span><p>A supervisor can update a lesson from a student’s schedule. The instructor’s schedule is intended to reflect the change, and the supervisor can follow up from the same student record.</p></div>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">1</span><h4 class="display">One lesson, one record</h4><p>Both apps read and write the same lesson. Nothing is typed twice.</p><p><strong>From.</strong> Insight 1 · the handoff</p><p><strong>Shows up as.</strong> A schedule edit reaching Today</p></div><div class="rv hard card"><span class="mono lbl">2</span><h4 class="display">Status before records</h4><p>The supervisor sees what's happening now before opening anything.</p><p><strong>From.</strong> Insight 2 · monitoring</p><p><strong>Shows up as.</strong> The map-first dashboard</p></div><div class="rv hard card"><span class="mono lbl">3</span><h4 class="display">Let the system remember</h4><p>Overdue fees, missing documents and service dates come to you.</p><p><strong>From.</strong> Insight 3 · silent failures</p><p><strong>Shows up as.</strong> Reminders beside the map</p></div><div class="rv hard card"><span class="mono lbl">4</span><h4 class="display">One clear next step</h4><p>In the car, show today and the next action, within reach of one thumb.</p><p><strong>From.</strong> Insight 4 · teaching time</p><p><strong>Shows up as.</strong> Today screen, one-tap start</p></div></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Web App UI</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">07 / Information architecture and flows</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Six places at the desk, four steps in the car, one record between them.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv mono lbl sub">01 / The dashboard</div>
+<div class="rv mono lbl sub">Web app · Supervisor</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Onboarding</span><span class="td">then six areas</span></div><div class="tr defs"><span class="td k">Dashboard</span><span class="td">live map · reminders</span></div><div class="tr defs"><span class="td k">Students</span><span class="td">enrolment · schedule · progress · payments · documents</span></div><div class="tr defs"><span class="td k">Instructors</span><span class="td">2W / 4W · students · vehicles</span></div><div class="tr defs"><span class="td k">Vehicles</span><span class="td">health · service · usage</span></div><div class="tr defs"><span class="td k">Payments</span><span class="td">review · remind · export</span></div><div class="tr defs"><span class="td k">Calendar</span><span class="td">events · to-dos</span></div></div>
+<div class="rv mono lbl sub">Mobile app · Instructor</div>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Today</b><span>next lesson stands out</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>Session details</b><span>pickup · prior notes</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>Live session</b><span>route · recording · end</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>Rate the session</b><span>skills to revisit · note, or mark absent</span></div></div></div>
+<p class="rv small">Tabs: Today · Students · Schedule · Alerts</p>
+<div class="rv mono lbl sub">One lesson record</div>
+<ul class="dots ol"><li class="rv"><span class="dot mono">1</span><span>schedule change reaches Today</span></li><li class="rv"><span class="dot mono">2</span><span>live status reaches the map</span></li><li class="rv"><span class="dot mono">3</span><span>lesson outcome reaches the student record</span></li></ul>
+<p class="rv small">The supervisor's web app branches into six areas after onboarding. The instructor's app is a loop through each lesson. The three dashed journeys are the ones the design is built to protect.</p>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">08 / Exploration and trade-offs</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Where should a supervisor look first?</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I took rough paper versions of three dashboards to supervisors. With each one, their first question was about location.</p>
+<div class="cards" style="--n:3"><div class="rv hard card"><span class="mono lbl">A · Set aside</span><h4 class="display">List-first</h4><p>Familiar and quick to sort. Supervisors still asked where everyone was.</p></div><div class="rv hard card"><span class="mono lbl">B · Set aside</span><h4 class="display">Session cards</h4><p>Showed more per lesson. Location still took effort to piece together.</p></div><div class="rv hard card"><span class="mono lbl">C · Chosen</span><h4 class="display">Map-first</h4><p>Active vehicles in view, reminders alongside, details one click away.</p></div></div>
+<div class="rv mono lbl sub">What each choice cost</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">At the desk I traded simplicity for coverage. In the car I did the reverse.</h3>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Decision</span><span class="th">Why</span><span class="th">Gave up</span></div><div class="tr n3"><span class="td k"><strong>Map-first dashboard</strong> · Web</span><span class="td">Location was the first question every time</span><span class="td">A sortable overview; editing and history moved into detail views</span></div><div class="tr n3"><span class="td k"><strong>One tap to begin a lesson</strong> · Mobile</span><span class="td">Learner, time and vehicle are already on screen</span><span class="td">A confirm step. A false start also starts tracking</span></div><div class="tr n3"><span class="td k"><strong>Location only during a lesson</strong> · Both</span><span class="td">Instructors need to trust what is recorded</span><span class="td">A view of vehicles between lessons</span></div><div class="tr n3"><span class="td k"><strong>Road-sign yellow and charcoal</strong> · Both</span><span class="td">Reads as driving at a glance</span><span class="td">Colour can't carry status alone</span></div></div>
+    </div>
+  </div>
+</section>
+<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
+    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">09 / Solution walkthrough</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Five moments, one lesson, two screens.</h2>
+    </div>
+    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
+<figure class="rv hero-fig" style="background:#1c1d21"><video src="ux/steer/dashboard.mp4" poster="ux/steer/dashboard.webp" width="2000" height="1080" autoplay muted loop playsinline preload="metadata" aria-label="Steer dashboard: the map with active lessons and the reminders panel" style="display:block;width:100%;height:auto"></video></figure>
+<div class="rv mono lbl sub">Web · Dashboard · P2 P3</div>
 <h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Where is everyone, and what needs attention?</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The map pairs each active session with its student, instructor and vehicle. The notification panel keeps pending and upcoming tasks beside it, so a fee reminder or service date can surface while the supervisor is checking the day’s lessons.</p>
-<figure class="rv fig"><img src="ux/steer/13.webp" alt="Prototype screen" loading="lazy" width="1400" height="756"></figure>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Make monitoring visible</span><span class="td">The map keeps session location in view. A pin opens the lesson’s details. Search is designed to help a supervisor jump to a known student without scanning the map.</span></div><div class="tr defs"><span class="td k">Make status readable</span><span class="td">The yellow and charcoal palette borrows from road signage. The design calls for status labels and distinct pin shapes alongside colour. Those cues still need testing with colour-blind users.</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Each pin carries student, instructor and vehicle. Fee dues and service dates sit beside the map, so they surface while the supervisor checks the day.</p>
+<div class="rv mono lbl sub">Web · Student record · P1</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Every learner has one record</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Enrolment, schedule, progress and fees are tabs in one place. Editing lives here, not on the dashboard.</p>
+<figure class="rv fig"><img src="ux/steer/web-student.webp" alt="Prototype screen" loading="lazy" width="1600" height="847"></figure>
+<div class="rv mono lbl sub">Web · Payments · P3</div>
+<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Who owes what is visible at a glance</h3>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The amount due sits beside each status. Filter, record a payment, follow up or export.</p>
+<figure class="rv fig"><img src="ux/steer/web-payments.webp" alt="Prototype screen" loading="lazy" width="1600" height="864"></figure>
+<div class="rv mono lbl sub">Mobile · Instructor app</div>
+<div class="phones" style="--n:4"><figure class="rv fig"><img src="ux/steer/m-today.webp" alt="Today. The next lesson stands out. P4" loading="lazy" width="480" height="1040"><figcaption><strong>Today.</strong> The next lesson stands out. P4</figcaption></figure><figure class="rv fig"><img src="ux/steer/m-details.webp" alt="Session details. Pickup and last time&#x27;s note, then Begin in one tap. P4" loading="lazy" width="480" height="1040"><figcaption><strong>Session details.</strong> Pickup and last time's note, then Begin in one tap. P4</figcaption></figure><figure class="rv fig"><img src="ux/steer/m-live.webp" alt="Live session. Recording is always visible, and so is the end control." loading="lazy" width="480" height="1040"><figcaption><strong>Live session.</strong> Recording is always visible, and so is the end control.</figcaption></figure><figure class="rv fig"><img src="ux/steer/m-rate.webp" alt="Rate the session. The note becomes next lesson&#x27;s “From last time”. P1" loading="lazy" width="480" height="1040"><figcaption><strong>Rate the session.</strong> The note becomes next lesson's “From last time”. P1</figcaption></figure></div>
+<p class="rv small">P1–P4 refer to the design principles in section 06.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The Students Page</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">10 / Design system and visual language</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Road paint on tarmac.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv mono lbl sub">02 / Student records</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The registry can be sorted by student ID, name, instructor, attendance or vehicle type. Supervisors can narrow it by enrolment or payment status and date. Filters help answer a specific question without opening every student record.</p>
-<figure class="rv fig"><img src="ux/steer/14.webp" alt="Student registry. Sort and filter, then open or edit the relevant record." loading="lazy" width="1400" height="756"><figcaption><strong>Student registry.</strong> Sort and filter, then open or edit the relevant record.</figcaption></figure>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/15.webp" alt="Add student. Create a record and upload documents." loading="lazy" width="1400" height="741"><figcaption><strong>Add student.</strong> Create a record and upload documents.</figcaption></figure><figure class="rv fig"><img src="ux/steer/16.webp" alt="View student. See enrolment, progress, schedule and fees." loading="lazy" width="1400" height="741"><figcaption><strong>View student.</strong> See enrolment, progress, schedule and fees.</figcaption></figure></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Lime and charcoal come from road markings, the visual language both users already read every day. Number plates and times are set in mono, the way they appear on a plate or a dashboard.</p>
+<div class="rv swatches"><div class="sw"><i style="background:#DFF20F"></i><span class="mono lbl">Lime · web #DFF20F</span></div><div class="sw"><i style="background:#D9F24B"></i><span class="mono lbl">Lime · mobile #D9F24B</span></div><div class="sw"><i style="background:#2E2F29"></i><span class="mono lbl">Charcoal #2E2F29</span></div><div class="sw"><i style="background:#0B0C08"></i><span class="mono lbl">Ink #0B0C08</span></div><div class="sw"><i style="background:#F5F6EF"></i><span class="mono lbl">Surface #F5F6EF</span></div><div class="sw"><i style="background:#858684"></i><span class="mono lbl">Muted text #858684</span></div></div>
+<div class="rv mono lbl sub">Shared across both apps</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Status pills, the lesson card, the primary button, initials avatars and mono numerals look the same on desk and phone. The layouts differ; the parts don't.</p>
+<div class="rv mono lbl sub">Two rules that keep it working</div>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>Lime is a fill, never text on white. Ink on lime is 15.7:1. Lime on white is 1.25:1.</span></li><li class="rv"><span class="dot"></span><span>Status never relies on colour alone. Every pill has a word, every pin a shape.</span></li></ul>
+<div class="rv callout"><span class="mono lbl">Audit finding</span><p>The web and mobile limes drifted apart. Next step is one shared token.</p></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructors and Vehicles</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">11 / Edge cases and states</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Most lessons don't go to plan. The design has to cover the ones that don't.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv mono lbl sub">03 / The instructors page</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Separate two- and four-wheeler registries match how the schools organise instructors. A profile brings together assigned students, vehicles, schedules, performance and feedback.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/17.webp" alt="Instructor registry" loading="lazy" width="1400" height="756"><figcaption>Instructor registry</figcaption></figure><figure class="rv fig"><img src="ux/steer/18.webp" alt="Instructor record" loading="lazy" width="1400" height="741"><figcaption>Instructor record</figcaption></figure></div>
-<div class="rv mono lbl sub">04 / The vehicles page</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Filter two- and four-wheelers by health, then open the record for maintenance, assignments, usage and documents. Keeping these details together gives managers context before assigning a car or bike to a lesson.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/steer/19.webp" alt="Vehicle registry" loading="lazy" width="1400" height="756"><figcaption>Vehicle registry</figcaption></figure><figure class="rv fig"><img src="ux/steer/20.webp" alt="Vehicle overview" loading="lazy" width="1400" height="741"><figcaption>Vehicle overview</figcaption></figure></div>
+<div class="rv mono lbl sub">One lesson, every state it can be in</div>
+<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>Scheduled</b><span>office sets it</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>Next up</b><span>on Today, once the day starts</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>In session</b><span>recording, after Begin session</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>Rating</b><span>skills · note, after End session</span></div></div><div class="step"><span class="num mono">05</span><div class="txt"><b>Completed</b><span>saved to record, after Save and exit</span></div></div></div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Move requested</span><span class="td">Accept / Decline</span></div><div class="tr defs"><span class="td k">Absent</span><span class="td">marked by instructor</span></div><div class="tr defs"><span class="td k">Running late</span><span class="td">red pin on the map</span></div><div class="tr defs"><span class="td k">Cancelled</span><span class="td">credit returned</span></div><div class="tr defs"><span class="td k">Vehicle swapped</span><span class="td">service due on the i20</span></div></div>
+<div class="rv mono lbl sub">Not designed yet</div>
+<div class="rv tbl gaps"><div class="tr defs"><span class="td k">Offline mid-lesson</span><span class="td">no signal in the car</span></div><div class="tr defs"><span class="td k">Empty day</span><span class="td">no lessons booked</span></div><div class="tr defs"><span class="td k">Double-booked car</span><span class="td">clash at scheduling</span></div><div class="tr defs"><span class="td k">Location denied</span><span class="td">tracking off</span></div></div>
+<p class="rv small">Solid boxes are designed in the prototype. Dashed boxes are known gaps I'd design next, starting with losing signal mid-lesson.</p>
+<div class="rv mono lbl sub">Where the edge cases surface</div>
+<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/m-alerts.webp" alt="Alerts. A move request with Accept and Decline, a new assignment, a saved lesson, a service due date and a cancellation" loading="lazy" width="480" height="1040"><figcaption><strong>Alerts.</strong> A move request with Accept and Decline, a new assignment, a saved lesson, a service due date and a cancellation</figcaption></figure></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The instructor's Alerts tab carries the exceptions: a learner asking to move a lesson, a new assignment, a car due for service that moves later lessons to another vehicle, and a cancellation with the credit returned. Each one has a single action or none.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Web application / Web app UI</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Payments and Calendar</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">12 / Accessibility</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">A bright yellow brand, checked against WCAG 2.1 AA.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv mono lbl sub">05 / The payments page</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The payment summary puts the amount due beside each learner’s status. Supervisors can filter, record payments, follow up and export the summary.</p>
-<figure class="rv fig"><img src="ux/steer/21.webp" alt="Prototype screen" loading="lazy" width="1400" height="756"></figure>
-<div class="rv mono lbl sub">06 / The calendar</div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Supervisors can add events and switch between daily, weekly, monthly and yearly views. A to-do list keeps untimed work, such as following up on a document, beside the schedule.</p>
-<figure class="rv fig"><img src="ux/steer/22.webp" alt="Prototype screen" loading="lazy" width="1400" height="741"></figure>
+<div class="rv tbl"><div class="tr head n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="th">Check</span><span class="th">Measured</span><span class="th">Result</span><span class="th">Fix</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>Ink on lime buttons</strong> · 1.4.3</span><span class="td">15.7 : 1</span><span class="td">Pass</span><span class="td">None needed</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>Lime as text on white</strong> · 1.4.3</span><span class="td">1.25 : 1</span><span class="td">Fail</span><span class="td">Never used as text; fill only</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>Muted grey labels</strong> · 1.4.3</span><span class="td">3.66 : 1</span><span class="td">Fail</span><span class="td">Darken to #6B6C69 (5.28 : 1)</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>Red and lime map pins</strong> · 1.4.1</span><span class="td">colour only</span><span class="td">Risk</span><span class="td">Add labels and distinct pin shapes; test with colour-blind users</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>In-car touch targets</strong> · 2.5.5</span><span class="td">full-width</span><span class="td">Pass</span><span class="td">Begin and Save span the screen; Mark absent kept apart to avoid a mistap</span></div><div class="tr n3" style="grid-template-columns:repeat(4,minmax(0,1fr))"><span class="td k"><strong>Location permission</strong> · 3.3.2</span><span class="td">explained first</span><span class="td">Pass</span><span class="td">Explains when tracking runs before the system prompt, with Not now</span></div></div>
+<p class="rv small">Contrast measured from colours sampled in the prototype screens. Screen reader and keyboard checks are still to do.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">User Flow</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">13 / Reflection and next steps</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">What I'd carry into the next project.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The instructor lands on Today. From there, they can check Students, Schedule or Notifications, or open the next lesson and record what happened.</p>
-<figure class="rv fig"><img src="ux/steer/23.webp" alt="Prototype screen" loading="lazy" width="833" height="589"></figure>
-<div class="rv callout"><span class="mono lbl">From lesson to record</span><p>On the original flow, the instructor can begin the lesson or mark the learner absent. Beginning opens the map. Ending the session leads to a performance rating. The updated lesson is intended to be visible from the supervisor’s student record.</p></div>
-<p class="rv small">The original design opened lesson details five minutes before start time and offered a Simulation filter. The Lane preview shows Practical, Theory and All.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Mobile App UI</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Lane Instructor is the mobile prototype for Steer. The instructor can see the day’s lessons, check the next learner’s details and close out the session without saving paperwork for the end of the day.</p>
-<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/24.webp" alt="01 Today. The next lesson stands out in a list with time, class and vehicle." loading="lazy" width="780" height="1690"><figcaption><strong>01 Today.</strong> The next lesson stands out in a list with time, class and vehicle.</figcaption></figure><figure class="rv fig"><img src="ux/steer/25.webp" alt="02 Session Details. Check pickup and prior notes. Begin in one tap, or confirm an absence." loading="lazy" width="780" height="1690"><figcaption><strong>02 Session Details.</strong> Check pickup and prior notes. Begin in one tap, or confirm an absence.</figcaption></figure><figure class="rv fig"><img src="ux/steer/26.webp" alt="03 Live Session. The route, recording status and end control stay visible during the active lesson." loading="lazy" width="780" height="1690"><figcaption><strong>03 Live Session.</strong> The route, recording status and end control stay visible during the active lesson.</figcaption></figure></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Tracking boundary.</strong> Lane explains that location recording begins with the lesson and ends when the instructor stops it. The instructor can see when recording is active. What the school can retain and who can access it still need to be agreed with instructors.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">After the Lesson</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The close-out turns a completed drive into something the instructor can use to teach the next lesson.</p>
-<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/27.webp" alt="04 Rate the session. Add a rating, choose skills to revisit and leave a note for next time." loading="lazy" width="780" height="1690"><figcaption><strong>04 Rate the session.</strong> Add a rating, choose skills to revisit and leave a note for next time.</figcaption></figure><figure class="rv fig"><img src="ux/steer/28.webp" alt="05 Back to Today. The completed lesson stays visible and the next one takes its place." loading="lazy" width="780" height="1690"><figcaption><strong>05 Back to Today.</strong> The completed lesson stays visible and the next one takes its place.</figcaption></figure></div>
-<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/steer/29.webp" alt="Students. Roster and progress" loading="lazy" width="780" height="1690"><figcaption><strong>Students.</strong> Roster and progress</figcaption></figure><figure class="rv fig"><img src="ux/steer/30.webp" alt="Schedule. Lessons by day" loading="lazy" width="780" height="1690"><figcaption><strong>Schedule.</strong> Lessons by day</figcaption></figure><figure class="rv fig"><img src="ux/steer/31.webp" alt="Notifications. Changes and reminders" loading="lazy" width="780" height="1690"><figcaption><strong>Notifications.</strong> Changes and reminders</figcaption></figure></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Mobile application / Mobile app UI</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Instructor Onboarding</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Lane adds setup before the first lesson. It collects the instructor’s details, vehicles and teaching hours, then explains why the app asks for location and reminder permissions.</p>
-<div class="phones" style="--n:5"><figure class="rv fig"><img src="ux/steer/32.webp" alt="Splash" loading="lazy" width="780" height="1690"><figcaption>Splash</figcaption></figure><figure class="rv fig"><img src="ux/steer/33.webp" alt="Mobile number" loading="lazy" width="780" height="1690"><figcaption>Mobile number</figcaption></figure><figure class="rv fig"><img src="ux/steer/34.webp" alt="Verify code" loading="lazy" width="780" height="1690"><figcaption>Verify code</figcaption></figure><figure class="rv fig"><img src="ux/steer/35.webp" alt="Your profile" loading="lazy" width="780" height="1690"><figcaption>Your profile</figcaption></figure><figure class="rv fig"><img src="ux/steer/36.webp" alt="Vehicles" loading="lazy" width="780" height="1690"><figcaption>Vehicles</figcaption></figure><figure class="rv fig"><img src="ux/steer/37.webp" alt="Teaching hours" loading="lazy" width="780" height="1690"><figcaption>Teaching hours</figcaption></figure><figure class="rv fig"><img src="ux/steer/38.webp" alt="Location access" loading="lazy" width="780" height="1690"><figcaption>Location access</figcaption></figure><figure class="rv fig"><img src="ux/steer/39.webp" alt="Reminders" loading="lazy" width="780" height="1690"><figcaption>Reminders</figcaption></figure><figure class="rv fig"><img src="ux/steer/40.webp" alt="All set" loading="lazy" width="780" height="1690"><figcaption>All set</figcaption></figure></div>
-<p class="rv small">The location screen explains the session boundary before the permission request. The instructor can also choose to set up location access or reminders later.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">Key takeaways</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Key Takeaways</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The two interfaces changed how I think about the handoff between office work and field work.</p>
-<div class="rv mono lbl sub">01 / What did I learn?</div>
-<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Design for both sides of the handoff.</h4><p>Fees and progress matter to the business. The instructor needs a quick way to update the lesson that feeds those records.</p></div><div class="rv hard card"><h4 class="display">Start with the context of use.</h4><p>A supervisor can scan several sessions. An instructor in a parked car needs one clear next step.</p></div><div class="rv hard card"><h4 class="display">Work with habits already in place.</h4><p>A pilot needs to account for how schools move from paper or Excel and how much training they can spare.</p></div><div class="rv hard card"><h4 class="display">Research both roles.</h4><p>Talking to managers and instructors showed where information got stuck between them.</p></div></div>
-<div class="rv mono lbl sub">02 / What’s next?</div>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Instructor copilot</span><span class="td">I’m currently working on a copilot for the instructor app.</span></div><div class="tr defs"><span class="td k">Instructor salary payments</span><span class="td">Explore pay calculations and payouts based on completed lessons.</span></div><div class="tr defs"><span class="td k">Instructor rescheduling</span><span class="td">Let instructors move lessons within school-defined rules.</span></div><div class="tr defs"><span class="td k">Mobile lesson materials</span><span class="td">Bring teaching guides and progress reports into the instructor app.</span></div><div class="tr defs"><span class="td k">Student app</span><span class="td">Let learners track lessons, see feedback and pay fees.</span></div><div class="tr defs"><span class="td k">AI-powered insights</span><span class="td">Explore recommendations for progress, schedules and vehicle maintenance.</span></div></div>
-<div class="rv callout"><span class="mono lbl">What I’d test in a pilot</span><p>Compare one paper-based and one Excel-based school with their own baselines. Measure time to locate an active session, morning calls, scheduling clashes, time to act on overdue items and instructor usage. Co-design tracking and test map labels and shapes before piloting.</p></div>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">Watch what people do, not just what they ask for.</h4><p>“Better organisation” and “running a school on WhatsApp” point to different products.</p></div><div class="rv hard card"><h4 class="display">Density helps people who are monitoring.</h4><p>Hiding detail behind clicks slowed supervisors down. At the desk, showing everything at once was the right call.</p></div><div class="rv hard card"><h4 class="display">Design both sides of the handoff.</h4><p>The office needs fees and progress. The instructor needs a fast way to update the lesson that feeds them.</p></div></div>
+<div class="rv mono lbl sub">The road ahead</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Now</span><span class="td"><strong>Pilot in two schools.</strong> one paper, one Excel</span></div><div class="tr defs"><span class="td k">Next</span><span class="td"><strong>Student app.</strong> lessons, feedback, fees</span></div><div class="tr defs"><span class="td k">Next</span><span class="td"><strong>Instructor rescheduling.</strong> within school rules</span></div><div class="tr defs"><span class="td k">Later</span><span class="td"><strong>Salary payouts.</strong> from completed lessons</span></div><div class="tr defs"><span class="td k">Later</span><span class="td"><strong>Instructor copilot</strong> and AI insights</span></div></div>
+<p class="rv small">The road ahead. I'm currently working on the instructor copilot.</p>
     </div>
   </div>
 </section>

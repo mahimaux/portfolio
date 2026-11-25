@@ -12,10 +12,10 @@
   "lede": "I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version."
  },
  "steer": {
-  "words": 2152,
-  "mins": 10,
-  "title": "Running a driving school takes more than a group chat.",
-  "lede": "Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records."
+  "words": 2776,
+  "mins": 13,
+  "title": "Taking a driving school off the group chat.",
+  "lede": "Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson. Both work from the same record, so a change made at the desk reaches the car, and a lesson logged in the car gets back to the desk."
  },
  "atlas": {
   "words": 3127,

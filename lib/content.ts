@@ -581,8 +581,8 @@ export const process = [
   {
     "n": "03",
     "title": "Steer",
-    "sub": "Running a driving school takes more than a group chat.",
-    "body": "Steer gives supervisors a view of the whole school and instructors a clear view of the next lesson. Both work from the same records.",
+    "sub": "Taking a driving school off the group chat.",
+    "body": "Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson.",
     "tags": [
       "Field research",
       "Web + mobile",
@@ -592,7 +592,7 @@ export const process = [
     "href": "cases/steer.dc.html",
     "thumb": "work/steer.webp",
     "thumbAlt": "The Steer logo on a laptop",
-    "readTime": "10 min read"
+    "readTime": "13 min read"
   },
   {
     "n": "04",
