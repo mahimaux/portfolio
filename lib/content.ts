@@ -598,7 +598,7 @@ export const process = [
     "n": "04",
     "title": "ATLAS",
     "sub": "Delegate the work. Keep the judgment.",
-    "body": "ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.",
+    "body": "A control center that lets people hand multi-step work to AI agents, approve exactly what goes out, and recover the work when a run breaks.",
     "tags": [
       "Agent experience",
       "Human-in-the-loop",
@@ -608,7 +608,7 @@ export const process = [
     "href": "cases/atlas.dc.html",
     "thumb": "work/atlas.webp",
     "thumbAlt": "ATLAS Mission Control on a tablet",
-    "readTime": "15 min read"
+    "readTime": "9 min read"
   },
   {
     "n": "05",

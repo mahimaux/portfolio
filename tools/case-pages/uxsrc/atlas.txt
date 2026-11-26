@@ -1,235 +1,112 @@
-kicker: 01 / The project
+kicker: ATLAS · Product design case study
 name: Atlas
 title: Delegate the work. Keep the judgment.
-lede: ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.
-meta: My role | Product direction, information architecture, interaction design, UX writing, visual direction and prototype review. Implementation used AI-assisted coding in Codex.
-hero: 01 |
+lede: A control center that lets people hand multi-step work to AI agents, approve exactly what goes out, and recover the work when a run breaks.
+meta: Role | Sole product designer ;; Product direction, IA, interaction design, UX writing, visual direction, QA
+meta: Timeframe | 4 weeks
+meta: Build | Coded with AI (Codex) ;; Under my direction
+meta: Prototype | Live prototype ;; Link coming
+hero: hero | **Mission Control.** The ATLAS workspace.
+herobg: #fafbf8
+tags: Agent experience | Human-in-the-loop | Prototype
 cardsub: Agent experience · Human-in-the-loop
 proto: video | ux/atlas/tutorial.mp4
 
-# 02 / The problem || The difficult part is the handoff.
-h: The scenario
-p: A product lead asks an agent to compare Northstar, Relay and Fieldwork, prepare a report, and draft an email for eight reviewers. These products, sources and recipients are fictional. The scenario pushes the question: what should the person know before sharing the result?
-p: In ATLAS, each agent is a simulation with a particular responsibility.
-p: **Term to know:** An **artifact** is a saved piece of work, such as extracted notes, a comparison or a report.
-table: Handoff risk | Question the interface must answer
-tr: Unclear scope | What will happen before I give up control?
-tr: Vague consent | Which content goes to which recipients, and can it be recalled?
-tr: Changing content | Does my earlier approval still apply after an edit?
-tr: Interrupted execution | What stopped, what survived, and where can I resume?
-note: The design opportunity: :: Make scope, ownership and the next human decision visible throughout delegated work.
-h: An assumed risk journey
-p: Brief the system > delegate > lose context > decide whether to intervene > reconstruct interrupted work.
-h: What I could investigate within the constraint
-p: With no paid services or live integrations, I focused on the interaction contract - What the user can
-list: Inspect
-list: Authorize
-list: Pause
-list: Reject
-list: Recover.
+# 01 / The problem || Handing work to an agent turns doing into supervising. Chat tools hide what supervision needs.
+p: The risk sits at the handoffs, every time control passes between the person and the agent. One everyday task shows all four.
+stat: 9 | screens
+stat: 4 | simulated agents
+stat: 9 | task states
+stat: 6 | per-task permissions
+quote: The scenario · A product lead types :: “Compare Northstar, Relay and Fieldwork, then email the summary to 8 reviewers.”
+small: Products and recipients are fictional.
+diagram: d-handoffs | One task, four handoffs: plan, send, edit and fail. Each break leaves the person with a question the chat can't answer
+small: Figure 1. One task, four handoffs. Each break leaves the person with a question the chat can't answer.
+card: 1 · Plan // Unclear scope :: The plan lives inside the model. Steps scroll past in the conversation. :: _What will it do next, and with which tools?_
+card: 2 · Send // Vague consent :: "Send the email?" is a plain yes or no. One yes feels like permission for every email. :: _Which email, to whom, saying what? Can I take it back?_
+card: 3 · Edit // Stale approval :: The agent edits the draft after I approve it. My old yes quietly carries forward. :: _Does my approval still cover this version?_
+card: 4 · Fail // Lost work :: The run stops at step three. Nothing shows which finished work survived. :: _What survived, and do I have to start over?_
+label: Problem statement
+p: **People who hand multi-step work to AI agents need to know three things at every handoff:**
+list: What will happen next
+list: Exactly what they are approving
+list: What survives a failure
 
-# 03 / Secondary research || Start with what the evidence supports.
-table: Published guidance | Interpretation for ATLAS
-tr: **Microsoft / CHI 2019 [1]** Human-AI interaction guidance addresses capability clarity, correction and user control. | Expose the fixed plan and available interventions. Test whether a user can predict what will happen next.
-tr: **Google PAIR [2]** Control should fit the task; users need ways to adjust outputs and understand what their feedback changes. | Keep edit, reject and clarification distinct. A local approval changes this proposal's state; it does not train a model.
-tr: **NIST AI RMF 1.0, Appendix C [3]** Human oversight roles and responsibilities need explicit definition; outcomes depend on context. | Name the specialist responsible for each stage and the person responsible for each consequential decision.
-h: Synthesis: three questions worth testing
-rows: Scope: | can a person explain the plan before it runs?
-rows: Consent: | can they identify the exact action they are authorizing?
-rows: Recovery: | can they tell completed work from work that still needs to run?
+# 02 / Research and the landscape || The guidance already says what oversight needs. Chat-style tools have nowhere to keep it.
+p: I built ATLAS first, then checked it against published guidance and my own QA audit. I kept evidence and assumptions apart.
+rows: Done: | a desk review of three published sources (5 Nov 2026) and a QA audit of my build.
+rows: Not done yet: | interviews or usability sessions. The study is planned, with targets set in advance.
+diagram: d-sources | Every source points at the same gap: Microsoft human-AI guidelines, Google PAIR, NIST AI RMF and my QA audit feed one insight, with one open assumption still to test
+small: Figure 2. Four sources, one insight. The open assumption is the first thing the study tests.
 
-# 04 / Empathize || Two roles. Different reasons to intervene.
-p: These provisional personas define whom I would recruit and what I would investigate. They are role hypotheses.
-card: Product lead :: **Job to support.** Delegate a comparison, assess its report and decide whether to share it. :: **Assumed need.** Inspect scope, sources, recipients and unresolved questions without watching every stage. :: **Question to test.** Does the lead need all recipients and the full payload together, or a different review sequence?
-card: Operations reviewer :: **Job to support.** Set task boundaries and investigate work that has stopped. :: **Assumed need.** Distinguish prepared, approved, blocked and completed work and finally find a justified next step. :: **Question to test.** Can the reviewer explain why retry is unavailable and what must change before it becomes eligible?
-h: The shared job
-note: :: Help me delegate the work while keeping enough context to make the decisions that remain mine.
-p: The lead's decision is about **the content and its reach.**
-p: The reviewer's decision is about **execution and recovery.**
-p: ATLAS connects both to the same task, so approval, permissions, saved work and history describe one underlying state.
-h: What would change these personas
-p: I would recruit people who already delegate multi-step knowledge work, ask them to walk through a recent task, and compare their actual responsibilities. If one person owns both roles, I would test whether the separate views help or add navigation.
+# 03 / Insight → How might we → Principles || One question, four principles. Every later decision points back here.
+quote: How might we :: How might we help people supervise delegated agent work, decide before consequential actions, and recover without losing finished work?
+diagram: d-spine | The insight leads to one how-might-we question, which splits into four principles, each leading to one design decision
+small: Figure 3. The spine of the case study. Each principle rules something out, and each one led to one decision.
 
-# 05 / Define || Make the transfer of control explicit.
-quote: :: How might we help knowledge workers supervise delegated work, make informed decisions before consequential actions, and recover without losing completed work?
-p: I translated the four handoff risks into interaction requirements. These criteria specify what the prototype must do.
-table: How might we... | Design response | Behavior to verify
-tr: Show the next action before it happens? | An inspectable plan, stage ownership and optional plan checkpoint. | A requested plan checkpoint holds execution with zero outputs.
-tr: Keep consent attached to exact scope? | Consequence Preview with recipients, content, shared data and reversibility. | Every simulated communication requires review and approval of the current revision.
-tr: Grant autonomy without granting blanket consent? | Task-specific permissions, checked separately from exact approval. | A revoked permission blocks the next affected operation.
-tr: Make failure resumable? | Save work per stage and expose retry eligibility. | A failed comparison retains earlier outputs; retry resumes at that stage.
-h: Design principles
-list: Explain the next action before asking for a decision.
-list: Keep approval specific.
-list: Preserve useful work when execution stops.
-list: Name the responsible specialist.
-list: Keep the simulation boundary visible.
+# 04 / Exploring directions || For each part of the job, the familiar pattern failed at a handoff.
+p: I compared the pattern most agent tools use with the direction ATLAS took, part by part.
+diagram: d-directions | For each part of the job, the familiar pattern, where it breaks, and the direction ATLAS took
+small: Figure 4. Familiar pattern vs. the direction I took. I compared them on paper, not as side-by-side prototypes.
+card: Why these directions won :: Each one keeps the state a supervisor needs in view, so the four questions from the problem section have an answer on screen.
+card: What they cost :: More to learn than one text box, and more reading at each gate. I chose that friction on purpose and made density the first thing to test.
 
-# 06 / Ideate || Where I put the friction.
-p: The comparison below explains the trade-offs behind the implemented patterns.
-table: Design choice | Why it fits this use case | Cost to watch
-tr: **Persistent workspace** Compared with a chat-only history. | Tasks, statuses and decisions remain available as stable objects to inspect. | Nine destinations can create navigation overhead.
-tr: **Exact payload review** Compared with a summary-only approval. | The decision can point to specific recipients and content. | Eight recipients plus a full report can encourage skim-reading.
-tr: **Required action gate** Compared with approving every preparation step. | The communication boundary always needs a decision; plan review can be added. | People may misunderstand which checkpoints are optional.
-tr: **Stage-level recovery** Compared with restarting the whole task. | Retained outputs make recovery inspectable and avoid repeated completed steps. | Dependencies and retry eligibility need explanation.
-h: What I prioritized
-rows: Core: | delegation, visible execution, exact approval, task permissions and recovery.
-rows: Supporting: | specialist views, workflow dependencies, event history, onboarding and local preferences.
-rows: Beyond the prototype: | dynamic AI planning, live integrations and a shared organization workspace.
+# 05 / Key design decisions || Four decisions shaped what ATLAS is.
+p: Each one uses the same format: problem, options, choice, trade-off, screen.
+label: 01 · Supervision is a workspace, not a chat · Principle: show the next action
+rows: Problem | Supervising means coming back and checking at a glance. In a chat, "where is my task?" means scrolling.
+rows: Options | Chat thread (ruled out) · **Supervision workspace** (chosen)
+rows: Choice | Nine named task states, not just "running" and "done". Every card, stage and event names the agent that owns it.
+rows: Trade-off | Nine screens are more to learn than one text box, and it's weaker for quick, open-ended requests. The workflow graph was unreadable at 375 px, so I added a list view.
+figs: s-workflows | Workflows: each stage shows the agent that owns it and its state.
+label: 02 · Consent is tied to one exact revision · Principle: one exact scope
+rows: Problem | "Approve this email?" asks people to vouch for something they haven't seen. Worse, an old yes carries over to a new edit.
+rows: Options | Approve a summary (ruled out) · **Approve one exact revision** (chosen)
+rows: Choice | Consequence Preview: all 8 recipients, exact subject and body, shared data, and whether it can be undone. Approve stays disabled until the person confirms they reviewed this revision. Any edit creates a new revision and clears the approval.
+rows: Trade-off | It's dense, especially at 375 px, and every edit means another review.
+figs: s-consequence | Consequence Preview: the reach of the action, before the decision.
+label: 03 · Permission is separate from approval · Principle: two separate checks
+rows: Problem | People read a toggle labelled "can send email" as "yes to all emails". Better copy can't fix that. The structure has to change.
+rows: Options | One "can send" toggle (ruled out) · **Permission + exact approval** (chosen)
+rows: Choice | Six permissions scoped to one task, checked before every step. Sending needs the permission and an exact approval. Revoking mid-run blocks future steps and keeps finished ones.
+rows: Trade-off | Two ideas to understand instead of one, so the screen carries explanatory copy: "A boundary, not a blank cheque."
+figs: s-permissions | Permissions: six task-scoped switches, with the rule spelled out.
+label: 04 · Failure keeps the work and retries from the break · Principle: keep the work
+rows: Problem | If a run that dies at stage 3 costs you stages 1 and 2, delegation stops being worth it.
+rows: Options | All-or-nothing restart (ruled out) · **Keep work, retry from the break** (chosen)
+rows: Choice | Outputs saved per stage. Recovery Center shows what survived. "Inspect saved work" comes before "Resume". Retry starts at the failed stage, with no duplicate outputs.
+rows: Trade-off | More states and retry rules to explain. Saved work lives only in the browser. A production version would need durable server-side jobs.
+figs: s-recovery | Preserved work: the banner says what's safe before it says what broke.
 
-# 07 / Information architecture || Nine screens, one supervision loop.
-table: Screen | The user question
-tr: Mission Control | What needs my attention?
-tr: My Tasks | What have I delegated, and where has it reached?
-tr: Agent Workspace | Which specialists are participating?
-tr: Approval Center | What needs my decision?
-tr: Workflows | Who owns each stage, and what does it depend on?
-tr: Permissions | What may this task do?
-tr: Activity History | What happened, when, and under whose name?
-tr: Recovery Center | What stopped, and what survived?
-tr: Settings | How do I manage local preferences and saved demo data?
-h: The core flow
-flow: 1 / Brief | Objective, context, tools and task boundaries.
-flow: 2 / Plan review | Inspect the plan; request a human gate if needed.
-flow: 3 / Execution | Five fixed stages, owned by four specialists.
-flow: 4 / Exact-action review | Review recipients, payload and consequences.
-flow: 5 / Record | Save the decision, exact payload and artifacts.
-p: **Exception paths:** pause > inspect > resume; failure > inspect saved work > eligible retry; denial > resolve the boundary > eligible retry. Rejection and cancellation stop future work while retaining prepared outputs.
+# 06 / Visual system and accessibility || Calm by default, loud on purpose.
+p: A quiet enterprise workspace with one restrained accent, so the single amber "Review required" badge stands out.
+swatch: #23695b | Teal · actions ;; #8c621a | Amber · held decisions ;; #b3261e | Red · failure
+small: Every badge: a dot and a word, never colour alone.
+diagram: s-mobile | Six ATLAS screens at 375 px: Mission Control, New Task, Consequence Preview, Workflows as a list and recovery
+small: At 375 px, navigation moves into a menu, the graph becomes a list, and every decision control stays within reach.
+card: Verified in the build :: Every text colour passes WCAG AA contrast :: Zero automated A/AA violations on checked screens :: Focus trap, Escape and return focus in dialogs, 3 px focus ring :: 44 px minimum targets, reduced motion, a list alternative to the graph :: A Demo Mode chip in the header and every dialog
+card: What I'd fix next :: Badges are 9 px. Set a 12 px floor. :: Collapse 18 type sizes into 6 steps :: Map 116 hard-coded colours onto the token set :: Test with a real screen reader and real zoom
 
-# 08 / Solution: delegation || Make the plan inspectable.
-p: Setup captures the objective, context, coordinating agent, tools and checkpoints.
-p: The pipeline stays fixed and entering a different objective does not create a new AI-generated plan.
-p: The optional before-execution gate holds the run until the user approves it.
-figs: 02 | **Setup:** choose tools and an optional plan checkpoint. Detail crop; Demo Mode retained. ;; 03 | **Plan:** five stages remain pending before execution. Detail crop from the guided scenario.
-p: **Why:** the user can examine scope before work advances.
-p: **Trade-off:** the fixed plan demonstrates checkpoints, but cannot establish whether people would detect a bad plan generated by a real model.
+# 07 / How I worked with AI || Codex wrote the code. I directed it, reviewed it and decided when it was done.
+diagram: d-ai | The loop for each milestone: I write the scope and acceptance criteria, Codex restates it, I say yes, Codex builds, automatic gates run, and I review it in the running app before it counts as done
+small: Figure 5. Nothing new was built without my yes, and nothing counted as done until I'd reviewed it in the running app.
+card: What I directed :: Scope for every milestone, restated back to me before building :: Acceptance criteria a test can check: "No approval survives an edit" :: All product, IA, interaction and UX writing decisions
+card: What the gates I set caught :: Status showed the coordinator, not the agent doing the work :: A stale tab lost a task made in another tab :: The guided demo ticked steps after a rejected plan :: Copy called a real-looking address "fictional"
+card: Where I said no :: A cloud code review that would have sent the source code off my machine :: A forced major downgrade to clear a lint-tooling warning. I documented it instead.
 
-# 09 / Solution: supervision || Show who is doing the work.
-p: Workflows exposes stage ownership, dependencies and saved outputs.
-p: Research Agent owns both research and extraction, so four specialists produce five stages.
-p: Users can inspect each stage through a graph or a list backed by the same task data.
-figs: 04 | Workflow detail. In this captured task, the early stages are complete and communication awaits review. The outlined card indicates selection.
-table: Specialist | Responsibility
-tr: Research Agent | Collect fictional source information and extract notes.
-tr: Analysis Agent | Compare the extracted information.
-tr: Writing Agent | Prepare the report.
-tr: Communication Agent | Prepare the draft and hold it for exact-action review.
-p: **Why:** ownership helps explain a stopped task.
-p: **Trade-off:** a graph adds visual complexity, so the list offers another way to inspect the same dependencies.
-
-# 10 / Solution: task states || Prepared is not approved.
-p: A progress bar answers how much selected work is prepared.
-figs: 05 | My Tasks detail: all work can be prepared while the final action still awaits approval.
-table: State | What it means / what happens next
-tr: Draft | The brief exists; planning has not started.
-tr: Planning | The fixed stages are available to inspect or submit for plan review.
-tr: Awaiting approval | A requested plan gate or mandatory exact-action gate holds execution.
-tr: Running | The next selected, permitted stage can advance.
-tr: Paused | Execution is held until the person resumes.
-tr: Failed | An error or denial stopped progress; inspect saved work and retry eligibility.
-tr: Cancelled | Future work is stopped; existing outputs remain.
-tr: Partially completed | Prepared work remains after omitted tools or rejection.
-tr: Completed | The run has finished and its required decisions are resolved.
-
-# 11 / Solution: consequence preview || Approve this. Exactly this.
-p: Consequence Preview brings together the agent, parent task, affected resource, all recipients, exact subject and body, shared data, possible consequences, reversibility and required permission.
-p: The default email has eight demo recipients.
-figs: 06 | Context and recipients, at the top of the proposal. Detail crop; lower recipients continue in the scroll area. ;; 07 | Decision-area crop: the review box and disabled approval control.
-h: The decision rules
-rows: Review the current revision. | Approval stays unavailable until its exact-review box is checked.
-rows: Check current permission. | Enabling communication does not bypass exact approval.
-rows: Explain reversibility. | A real email could be forwarded and cannot reliably be recalled. This demo sends nothing.
-p: **Why:** a specific decision can be explained and recorded later.
-p: **Cost:** completeness makes this a long review and a checkbox records acknowledgment. It cannot prove comprehension or prevent approval fatigue.
-
-# 12 / Solution: decision branches || A new draft needs a new yes.
-p: Changing the subject, body or recipients creates a new revision and clears both review and approval.
-figs: 08 | **Edit the proposal:** subject, recipients and body are editable. Saving creates a new revision with no inherited review or approval.
-h: Clarification holds the action
-p: Resolving the question returns the proposal to fresh exact review. It does not authorize communication.
-figs: 09 | Local simulation / clarification detail.
-h: Rejection ends the request
-p: Prepared work survives. The rejected action cannot execute or be edited around the decision.
-figs: 10 | Local simulation / rejection detail.
-note: The earlier decision stays intact. :: If a previously approved draft is edited, its old payload remains in history. The new proposal needs its own review and approval.
-
-# 13 / Solution: autonomy boundaries || Permission is not consent.
-p: Permission answers what a task may attempt. Approval answers whether this exact consequential action may proceed.
-figs: 11 | Permissions overview crop. Boundaries belong to the selected task; the complete permission model is summarized below.
-table: Boundary | Current prototype behavior
-tr: Read permission | Allows fictional fixture reading; denial can stop a read step.
-tr: Draft creation | Allows preparation of local notes, comparisons, reports and drafts.
-tr: External communication | Requires current permission plus exact revision review and approval. Records a simulation only.
-tr: Modify / Delete / Paid action | Stored settings for future scope. The current pipeline does not implement these Operations and they remain blocked even when enabled.
-p: Every future operation checks current boundaries. Revocation blocks the next affected step and preserves earlier work. Restoring the required boundary can make a failed step eligible for retry.
-p: **Trade-off:** unsupported switches communicate the broader model but may imply capabilities the prototype lacks. I would test that interpretation before expanding the permission set.
-
-# 14 / Solution: failure recovery || Resume from the break.
-p: A failure should reveal what stopped and what remains available before offering another attempt.
-list: The comparison-error scenario stops after research and extraction.
-list: The task is Failed with two saved artifacts.
-list: Recovery Center exposes the failed stage, retained work and retry eligibility.
-list: An eligible retry continues at comparison without duplicating earlier outputs.
-figs3: 12 | **1 / Failure.** Comparison stops. Two earlier outputs remain available. ;; 13 | **2 / Inspect.** Saved research and extracted notes can be inspected before retry. ;; 14 | **3 / Retry.** Five outputs are prepared. Exact-action review is still pending.
-note: Recovery has conditions. :: A permission, dependency or fixed simulation limit can keep retry blocked. A retry button is only useful when the next attempt is allowed to proceed.
-p: **Why:** preserved artifacts make recovery inspectable.
-p: **Limit:** these are local fixture outputs. The prototype does not resolve changed external data, duplicate real-world side effects or uncertain partial execution by a live agent.
-
-# 15 / Solution: history & saved work || Give the decision a receipt.
-p: Activity History is the Agent Flight Recorder. Task filters narrow the record - event details explain plans, attempts, denials, edits, decisions and retries. Approved payloads remain saved as snapshots, so later edits do not overwrite what was previously approved.
-figs: 15 | Activity History overview crop. This is a separate sample task, illustrating attributed events and filters.
-rows: Saved work travels with the task. | Outputs remain inspectable and downloadable after failure, rejection or cancellation. They are marked as simulated.
-rows: A useful limit. | The log lives in browser storage. It is inspectable product behavior, not a tamper-proof organizational audit trail.
-figs: 16 | Task history detail. The earlier exact approved payload is retained beneath its event.
-p: **Why:** supervision needs both the current state and the explanation of how it got there.
-p: **Trade-off:** a full log can overwhelm; filters and payload disclosure keep the overview compact while retaining detail.
-
-# 16 / Solution: the supporting screens || Keep the rest of the workspace useful.
-p: The supporting views make the core supervision flow easier to discover and return to.
-figs: 17 | **Onboarding.** Optional introduction explains the simulation and starts a guided mission. ;; 18 | **Agent Workspace.** Specialist cards lead into participating tasks and stage ownership.
-figs: 19 | **Approval Center.** A dedicated queue keeps pending human decisions discoverable. ;; 20 | **Settings.** Local preferences, data export and a confirmed reset stay accessible.
-h: Estimated resources and persistent guidance
-p: Resource monitors show labeled estimates and fixed local simulation limits, not measured model usage or charges. The guided mission follows actual task state and survives refresh; unfinished or cancelled steps do not gain completion checkmarks.
-
-# 17 / Visual system & accessibility || Quiet surfaces. Explicit signals.
-p: The visual system keeps attention on decisions: off-white canvas, white panels, charcoal text and restrained sage accents.
-swatch: #f4f6f2 | Canvas ;; #ffffff | Surface ;; #242d2a | Text ;; #23695b | Focus / accent ;; #8c621a | Warning
-p: System fonts, shared spacing and 12px card corners create consistency. Status badges include words as well as color. Amber identifies review or warning states; it does not replace an explanation.
-phones3: 21 | Delegate / 375px demo capture. ;; 22 | Clarify / 375px demo capture. ;; 23 | Recover / 375px demo capture.
-p: **Mobile.** Navigation becomes a menu. Content stacks; task inspection, exact review and recovery remain available.
-h: Access is part of the interaction model
-p: The prototype includes labeled controls, a skip link, visible focus, dialog focus handling, text statuses, reduced-motion support and a workflow list alternative. Documented checks covered keyboard behavior and reflow at narrow widths.
-note: Still to validate: :: real screen reader use, actual browser zoom and sessions with disabled participants. Automated scans reported zero violations only in the states checked; this is not a WCAG conformance claim.
-
-# 18 / Evaluate: iteration & checks || The audit changed the product.
-p: These are documented implementation and interaction fixes.
-table: Issue found | Change and supporting check
-tr: Fleet status named the coordinator while another specialist owned the active stage. | Attributed status and participating tasks to the responsible specialist. Covered by ownership tests.
-tr: A stale browser tab could overwrite a task created elsewhere. | Read the latest saved workspace before updates and allocate unique task IDs. Provider regression checks preserved both tasks.
-tr: Clarification copy called every entered address fictional. | Changed it to explain that addresses are used only in the local simulation. Retested with an edited address.
-tr: Small controls and an unreachable short-window sidebar profile. | Raised checked action targets to 44px and made the sidebar scrollable. Browser measurements confirmed the checked behavior
-h: What the recorded checks establish
-rows: Engine and storage: | revision-specific approval, denial, rejection, cancellation, dependency order, artifact preservation and saved-state behavior.
-rows: Browser journeys: | setup, plan review, exact review, edits, clarification, recovery, navigation, exports and responsive states.
-rows: Build checks: | lint, TypeScript and production compilation passed in the recorded runs.
-
-# 19 / Outcome & next validation || A working oversight model. A user-value hypothesis.
-p: The prototype connects nine screens, four simulated specialists and five fixed stages. It preserves task state across refresh, holds consequential actions for exact approval and retains earlier outputs during recovery. No usability improvement, adoption lift or business result was measured.
-h: What I would test next
-p: I would run an initial six to eight moderated sessions with intended product and operations users who already delegate multi-step work. This would be a formative study to locate misunderstandings, not a statistically representative performance benchmark.
-table: Task / hypothesis | What I would observe | What would prompt a change
-tr: **Delegate and review a plan.** Visible scope supports prediction. | Ask the person to explain what will happen next before execution. | They miss a selected tool or misunderstand an optional checkpoint.
-tr: **Inspect an email with a planted discrepancy.** Exact review supports informed consent. | Record whether they notice an unexpected recipient or changed content, without prompting. | They approve despite missing the discrepancy.
-tr: **Edit, clarify or reject a proposal.** The branches have distinct meanings. | Ask whether an older approval authorizes the new revision and what the current action may do. | They expect automatic approval or continued execution after rejection.
-tr: **Recover from comparison failure.** Retained work supports recovery. | Observe whether they find the two saved artifacts and retry at the failed stage. | They restart unnecessarily or expect blocked retry to work.
-p: I would report actual participant counts, observed errors, interventions, task completion and comprehension in the study context, alongside the design changes they led to. Timing would be descriptive at this sample size. A later comparison would be needed to claim improvement over another approach.
-
-# 20 / Reflection & sources || The interface can hold a boundary. People still have to understand it.
-p: ATLAS moved my attention from the output alone to the contract around it: what was permitted, what was reviewed, what changed and what survives. The most useful documented correction was ownership. A polished status card still misleads if it names the wrong specialist.
-p: My next design priority is the density of exact-action review, especially on mobile. I would test information order and disclosure while keeping recipients, changed content and consequences visible enough to support a deliberate decision.
-h: What production would require
-p: Browser storage can be cleared; closing the browser stops the simulation. Real execution needs authenticated identity, server-enforced permissions, durable jobs, secure integrations, reliable handling of repeated actions, and retained audit records. Dynamic plans introduce uncertainty the fixed pipeline does not test.
-h: Secondary sources
-small: [1] Amershi et al. / Guidelines for Human-AI Interaction / CHI 2019
-small: [2] Google PAIR / People + AI Guidebook / Feedback + Control
-small: [3] NIST / AI RMF 1.0 / Appendix C / 2023
+# 08 / Outcome and reflection || A working, tested oversight model. Not yet tested with people.
+diagram: d-evidence | How far the evidence goes: built and verified are done, observed and impact are not yet claimed. ATLAS is here
+small: Figure 6. Every claim in this case study sits on the first two rungs.
+card: What exists :: 9 screens, 4 agents, 9 states, 6 permissions, 14 seeded scenarios :: Passing engine, safety, journey and accessibility suites at desktop, tablet and 375 px :: A static build ready to host
+card: What doesn't exist yet :: Usability results, task success or business impact :: WCAG conformance. Only clean automated scans so far. :: Live AI. All agents are simulated.
+card: What production would need :: Durable server-side jobs, not browser storage :: Real security behind permissions :: An undo window for actions that can be reversed :: Plan review for plans that change between runs
+label: Success targets, set before the study
+table: Measure (5 to 6 people) | Target | Status
+tr: Names the recipients and shared data before approving | 5 of 6 | Not yet measured
+tr: Unsafe approval attempts across all sessions | 0 | Not yet measured
+tr: Chooses retry over a new task after a failure | 4 of 6 | Not yet measured
+tr: Explains what was sent and who approved it | 5 of 6 | Not yet measured
+label: Reflection
+p: **The worst bug was the problem I was designing against.** Status showed the wrong agent, which is exactly the "who did this?" confusion ATLAS exists to prevent. Visible responsibility needs a test, not just intent.
+p: **Honesty became a design constraint.** "Say what is simulated" shaped real UI: the Demo Mode chip, labelled sample charts, and milestones that tick only when work happened.
+p: **My riskiest decision is the one I most want tested.** Consequence Preview shows everything, and that may be too much.
