@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atlas · Mahima Shastry</title>
-<meta name="description" content="ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.">
+<meta name="description" content="A control center that lets people hand multi-step work to AI agents, approve exactly what goes out, and recover the work when a run breaks.">
 <link rel="stylesheet" href="site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script src="nav-hide.js" defer></script>
@@ -125,324 +125,151 @@ h4 + .note{margin-top:0}
 <main class="paper-tex" style="position:relative">
   <section style="padding:clamp(48px,7vw,104px) var(--gutter) clamp(48px,6vw,88px);max-width:1280px;margin:0 auto">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:18px">
-      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">01 / The project</span>
-      <span class="mono readtime">15 min read</span>
+      <span class="mono rv in" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;opacity:.65">ATLAS · Product design case study</span>
+      <span class="mono readtime">9 min read</span>
     </div>
     <h1 class="display" style="margin:0 0 10px;font-size:clamp(68px,15vw,210px);line-height:.82">Atlas</h1>
     <div style="display:flex;flex-wrap:wrap;gap:36px 48px;align-items:flex-start;margin-top:18px">
       <div style="flex:3 1 480px;min-width:0;display:flex;flex-direction:column;gap:20px">
         <h2 class="display" style="margin:0;font-size:clamp(28px,4vw,56px);line-height:1;max-width:20ch">Delegate the work. Keep the judgment.</h2>
-        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops.</p>
+        <p class="rv" style="margin:0;max-width:60ch;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-.015em">A control center that lets people hand multi-step work to AI agents, approve exactly what goes out, and recover the work when a run breaks.</p>
         <a class="btn proto-btn rv" id="proto" href="ux/atlas/tutorial.mp4" style="--btn-bg:var(--lime)" aria-haspopup="dialog"><span class="btn-arrow" style="background:var(--paper);color:var(--ink);border-right:2px solid var(--ink)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg></span><span class="btn-label">View tutorial/prototype</span></a>
         
-        
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px"><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Agent experience</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Human-in-the-loop</span><span class="tag" style="background:var(--paper-2);border:2px solid var(--ink)">Prototype</span></div>
       </div>
-      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">My role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Product direction, information architecture, interaction design, UX writing, visual direction and prototype review. Implementation used AI-assisted coding in Codex.</dd></dl>
+      <dl class="rv" style="flex:1 1 280px;max-width:420px;min-width:0;margin:0;background:var(--sun);border:3px solid var(--ink);border-radius:14px;box-shadow:0 6px 0 var(--ink);padding:8px 22px 18px"><dt class="mono lbl" style="padding-top:16px;opacity:.78">Role</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Sole product designer<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Product direction, IA, interaction design, UX writing, visual direction, QA</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Timeframe</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">4 weeks</dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Build</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Coded with AI (Codex)<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Under my direction</span></dd><dt class="mono lbl" style="padding-top:16px;opacity:.78">Prototype</dt><dd style="margin:4px 0 0;font-size:15px;line-height:1.4">Live prototype<span style="display:block;margin-top:2px;font-size:13.5px;opacity:.75">Link coming</span></dd></dl>
     </div>
-    <figure class="rv hero-fig" style="background:var(--paper-2);margin-top:44px"><img src="ux/atlas/01.webp" alt="Atlas prototype" width="1400" height="739" fetchpriority="high"></figure>
+    <figure class="rv hero-fig" style="background:#fafbf8;margin-top:44px"><img src="ux/atlas/hero.webp" alt="Mission Control. The ATLAS workspace." width="1440" height="1000" fetchpriority="high"></figure><p class="small" style="margin-top:12px"><strong>Mission Control.</strong> The ATLAS workspace.</p>
   </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">02 / The problem</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The difficult part is the handoff.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">01 / The problem</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Handing work to an agent turns doing into supervising. Chat tools hide what supervision needs.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The scenario</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A product lead asks an agent to compare Northstar, Relay and Fieldwork, prepare a report, and draft an email for eight reviewers. These products, sources and recipients are fictional. The scenario pushes the question: what should the person know before sharing the result?</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">In ATLAS, each agent is a simulation with a particular responsibility.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Term to know:</strong> An <strong>artifact</strong> is a saved piece of work, such as extracted notes, a comparison or a report.</p>
-<div class="rv tbl"><div class="tr head n2"><span class="th">Handoff risk</span><span class="th">Question the interface must answer</span></div><div class="tr n2"><span class="td k">Unclear scope</span><span class="td">What will happen before I give up control?</span></div><div class="tr n2"><span class="td k">Vague consent</span><span class="td">Which content goes to which recipients, and can it be recalled?</span></div><div class="tr n2"><span class="td k">Changing content</span><span class="td">Does my earlier approval still apply after an edit?</span></div><div class="tr n2"><span class="td k">Interrupted execution</span><span class="td">What stopped, what survived, and where can I resume?</span></div></div>
-<div class="rv callout"><span class="mono lbl">The design opportunity:</span><p>Make scope, ownership and the next human decision visible throughout delegated work.</p></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">An assumed risk journey</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Brief the system &gt; delegate &gt; lose context &gt; decide whether to intervene &gt; reconstruct interrupted work.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I could investigate within the constraint</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">With no paid services or live integrations, I focused on the interaction contract - What the user can</p>
-<ul class="dots"><li class="rv"><span class="dot"></span><span>Inspect</span></li><li class="rv"><span class="dot"></span><span>Authorize</span></li><li class="rv"><span class="dot"></span><span>Pause</span></li><li class="rv"><span class="dot"></span><span>Reject</span></li><li class="rv"><span class="dot"></span><span>Recover.</span></li></ul>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The risk sits at the handoffs, every time control passes between the person and the agent. One everyday task shows all four.</p>
+<div class="stats"><div class="rv stat"><span class="display">9</span><span>screens</span></div><div class="rv stat"><span class="display">4</span><span>simulated agents</span></div><div class="rv stat"><span class="display">9</span><span>task states</span></div><div class="rv stat"><span class="display">6</span><span>per-task permissions</span></div></div>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">The scenario · A product lead types</span><p class="serif-i q">“Compare Northstar, Relay and Fieldwork, then email the summary to 8 reviewers.”</p></div>
+<p class="rv small">Products and recipients are fictional.</p>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-handoffs.webp" alt="One task, four handoffs: plan, send, edit and fail. Each break leaves the person with a question the chat can&#x27;t answer" loading="lazy" width="2400" height="1229"></div></figure>
+<p class="rv small">Figure 1. One task, four handoffs. Each break leaves the person with a question the chat can't answer.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><span class="mono lbl">1 · Plan</span><h4 class="display">Unclear scope</h4><p>The plan lives inside the model. Steps scroll past in the conversation.</p><p><em>What will it do next, and with which tools?</em></p></div><div class="rv hard card"><span class="mono lbl">2 · Send</span><h4 class="display">Vague consent</h4><p>"Send the email?" is a plain yes or no. One yes feels like permission for every email.</p><p><em>Which email, to whom, saying what? Can I take it back?</em></p></div><div class="rv hard card"><span class="mono lbl">3 · Edit</span><h4 class="display">Stale approval</h4><p>The agent edits the draft after I approve it. My old yes quietly carries forward.</p><p><em>Does my approval still cover this version?</em></p></div><div class="rv hard card"><span class="mono lbl">4 · Fail</span><h4 class="display">Lost work</h4><p>The run stops at step three. Nothing shows which finished work survived.</p><p><em>What survived, and do I have to start over?</em></p></div></div>
+<div class="rv mono lbl sub">Problem statement</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>People who hand multi-step work to AI agents need to know three things at every handoff:</strong></p>
+<ul class="dots"><li class="rv"><span class="dot"></span><span>What will happen next</span></li><li class="rv"><span class="dot"></span><span>Exactly what they are approving</span></li><li class="rv"><span class="dot"></span><span>What survives a failure</span></li></ul>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">03 / Secondary research</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Start with what the evidence supports.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">02 / Research and the landscape</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The guidance already says what oversight needs. Chat-style tools have nowhere to keep it.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv tbl"><div class="tr head n2"><span class="th">Published guidance</span><span class="th">Interpretation for ATLAS</span></div><div class="tr n2"><span class="td k"><strong>Microsoft / CHI 2019 [1]</strong> Human-AI interaction guidance addresses capability clarity, correction and user control.</span><span class="td">Expose the fixed plan and available interventions. Test whether a user can predict what will happen next.</span></div><div class="tr n2"><span class="td k"><strong>Google PAIR [2]</strong> Control should fit the task; users need ways to adjust outputs and understand what their feedback changes.</span><span class="td">Keep edit, reject and clarification distinct. A local approval changes this proposal's state; it does not train a model.</span></div><div class="tr n2"><span class="td k"><strong>NIST AI RMF 1.0, Appendix C [3]</strong> Human oversight roles and responsibilities need explicit definition; outcomes depend on context.</span><span class="td">Name the specialist responsible for each stage and the person responsible for each consequential decision.</span></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Synthesis: three questions worth testing</h3>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Scope:</span><span class="td">can a person explain the plan before it runs?</span></div><div class="tr defs"><span class="td k">Consent:</span><span class="td">can they identify the exact action they are authorizing?</span></div><div class="tr defs"><span class="td k">Recovery:</span><span class="td">can they tell completed work from work that still needs to run?</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I built ATLAS first, then checked it against published guidance and my own QA audit. I kept evidence and assumptions apart.</p>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Done:</span><span class="td">a desk review of three published sources (5 Nov 2026) and a QA audit of my build.</span></div><div class="tr defs"><span class="td k">Not done yet:</span><span class="td">interviews or usability sessions. The study is planned, with targets set in advance.</span></div></div>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-sources.webp" alt="Every source points at the same gap: Microsoft human-AI guidelines, Google PAIR, NIST AI RMF and my QA audit feed one insight, with one open assumption still to test" loading="lazy" width="2400" height="1096"></div></figure>
+<p class="rv small">Figure 2. Four sources, one insight. The open assumption is the first thing the study tests.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">04 / Empathize</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Two roles. Different reasons to intervene.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">03 / Insight → How might we → Principles</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">One question, four principles. Every later decision points back here.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">These provisional personas define whom I would recruit and what I would investigate. They are role hypotheses.</p>
-<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">Product lead</h4><p><strong>Job to support.</strong> Delegate a comparison, assess its report and decide whether to share it.</p><p><strong>Assumed need.</strong> Inspect scope, sources, recipients and unresolved questions without watching every stage.</p><p><strong>Question to test.</strong> Does the lead need all recipients and the full payload together, or a different review sequence?</p></div><div class="rv hard card"><h4 class="display">Operations reviewer</h4><p><strong>Job to support.</strong> Set task boundaries and investigate work that has stopped.</p><p><strong>Assumed need.</strong> Distinguish prepared, approved, blocked and completed work and finally find a justified next step.</p><p><strong>Question to test.</strong> Can the reviewer explain why retry is unavailable and what must change before it becomes eligible?</p></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The shared job</h3>
-<div class="rv callout"><p>Help me delegate the work while keeping enough context to make the decisions that remain mine.</p></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The lead's decision is about <strong>the content and its reach.</strong></p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The reviewer's decision is about <strong>execution and recovery.</strong></p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">ATLAS connects both to the same task, so approval, permissions, saved work and history describe one underlying state.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What would change these personas</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I would recruit people who already delegate multi-step knowledge work, ask them to walk through a recent task, and compare their actual responsibilities. If one person owns both roles, I would test whether the separate views help or add navigation.</p>
+<div class="rv hmw"><span class="mono lbl" style="color:var(--tomato);font-weight:700">How might we</span><p class="serif-i q">How might we help people supervise delegated agent work, decide before consequential actions, and recover without losing finished work?</p></div>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-spine.webp" alt="The insight leads to one how-might-we question, which splits into four principles, each leading to one design decision" loading="lazy" width="2400" height="1243"></div></figure>
+<p class="rv small">Figure 3. The spine of the case study. Each principle rules something out, and each one led to one decision.</p>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">05 / Define</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Make the transfer of control explicit.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">04 / Exploring directions</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">For each part of the job, the familiar pattern failed at a handoff.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv hmw"><p class="serif-i q">How might we help knowledge workers supervise delegated work, make informed decisions before consequential actions, and recover without losing completed work?</p></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I translated the four handoff risks into interaction requirements. These criteria specify what the prototype must do.</p>
-<div class="rv tbl"><div class="tr head n3"><span class="th">How might we...</span><span class="th">Design response</span><span class="th">Behavior to verify</span></div><div class="tr n3"><span class="td k">Show the next action before it happens?</span><span class="td">An inspectable plan, stage ownership and optional plan checkpoint.</span><span class="td">A requested plan checkpoint holds execution with zero outputs.</span></div><div class="tr n3"><span class="td k">Keep consent attached to exact scope?</span><span class="td">Consequence Preview with recipients, content, shared data and reversibility.</span><span class="td">Every simulated communication requires review and approval of the current revision.</span></div><div class="tr n3"><span class="td k">Grant autonomy without granting blanket consent?</span><span class="td">Task-specific permissions, checked separately from exact approval.</span><span class="td">A revoked permission blocks the next affected operation.</span></div><div class="tr n3"><span class="td k">Make failure resumable?</span><span class="td">Save work per stage and expose retry eligibility.</span><span class="td">A failed comparison retains earlier outputs; retry resumes at that stage.</span></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Design principles</h3>
-<ul class="dots"><li class="rv"><span class="dot"></span><span>Explain the next action before asking for a decision.</span></li><li class="rv"><span class="dot"></span><span>Keep approval specific.</span></li><li class="rv"><span class="dot"></span><span>Preserve useful work when execution stops.</span></li><li class="rv"><span class="dot"></span><span>Name the responsible specialist.</span></li><li class="rv"><span class="dot"></span><span>Keep the simulation boundary visible.</span></li></ul>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I compared the pattern most agent tools use with the direction ATLAS took, part by part.</p>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-directions.webp" alt="For each part of the job, the familiar pattern, where it breaks, and the direction ATLAS took" loading="lazy" width="2400" height="890"></div></figure>
+<p class="rv small">Figure 4. Familiar pattern vs. the direction I took. I compared them on paper, not as side-by-side prototypes.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">Why these directions won</h4><p>Each one keeps the state a supervisor needs in view, so the four questions from the problem section have an answer on screen.</p></div><div class="rv hard card"><h4 class="display">What they cost</h4><p>More to learn than one text box, and more reading at each gate. I chose that friction on purpose and made density the first thing to test.</p></div></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">06 / Ideate</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Where I put the friction.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">05 / Key design decisions</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Four decisions shaped what ATLAS is.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The comparison below explains the trade-offs behind the implemented patterns.</p>
-<div class="rv tbl"><div class="tr head n3"><span class="th">Design choice</span><span class="th">Why it fits this use case</span><span class="th">Cost to watch</span></div><div class="tr n3"><span class="td k"><strong>Persistent workspace</strong> Compared with a chat-only history.</span><span class="td">Tasks, statuses and decisions remain available as stable objects to inspect.</span><span class="td">Nine destinations can create navigation overhead.</span></div><div class="tr n3"><span class="td k"><strong>Exact payload review</strong> Compared with a summary-only approval.</span><span class="td">The decision can point to specific recipients and content.</span><span class="td">Eight recipients plus a full report can encourage skim-reading.</span></div><div class="tr n3"><span class="td k"><strong>Required action gate</strong> Compared with approving every preparation step.</span><span class="td">The communication boundary always needs a decision; plan review can be added.</span><span class="td">People may misunderstand which checkpoints are optional.</span></div><div class="tr n3"><span class="td k"><strong>Stage-level recovery</strong> Compared with restarting the whole task.</span><span class="td">Retained outputs make recovery inspectable and avoid repeated completed steps.</span><span class="td">Dependencies and retry eligibility need explanation.</span></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I prioritized</h3>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Core:</span><span class="td">delegation, visible execution, exact approval, task permissions and recovery.</span></div><div class="tr defs"><span class="td k">Supporting:</span><span class="td">specialist views, workflow dependencies, event history, onboarding and local preferences.</span></div><div class="tr defs"><span class="td k">Beyond the prototype:</span><span class="td">dynamic AI planning, live integrations and a shared organization workspace.</span></div></div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Each one uses the same format: problem, options, choice, trade-off, screen.</p>
+<div class="rv mono lbl sub">01 · Supervision is a workspace, not a chat · Principle: show the next action</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Problem</span><span class="td">Supervising means coming back and checking at a glance. In a chat, "where is my task?" means scrolling.</span></div><div class="tr defs"><span class="td k">Options</span><span class="td">Chat thread (ruled out) · <strong>Supervision workspace</strong> (chosen)</span></div><div class="tr defs"><span class="td k">Choice</span><span class="td">Nine named task states, not just "running" and "done". Every card, stage and event names the agent that owns it.</span></div><div class="tr defs"><span class="td k">Trade-off</span><span class="td">Nine screens are more to learn than one text box, and it's weaker for quick, open-ended requests. The workflow graph was unreadable at 375 px, so I added a list view.</span></div></div>
+<figure class="rv fig"><img src="ux/atlas/s-workflows.webp" alt="Workflows: each stage shows the agent that owns it and its state." loading="lazy" width="1200" height="833"><figcaption>Workflows: each stage shows the agent that owns it and its state.</figcaption></figure>
+<div class="rv mono lbl sub">02 · Consent is tied to one exact revision · Principle: one exact scope</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Problem</span><span class="td">"Approve this email?" asks people to vouch for something they haven't seen. Worse, an old yes carries over to a new edit.</span></div><div class="tr defs"><span class="td k">Options</span><span class="td">Approve a summary (ruled out) · <strong>Approve one exact revision</strong> (chosen)</span></div><div class="tr defs"><span class="td k">Choice</span><span class="td">Consequence Preview: all 8 recipients, exact subject and body, shared data, and whether it can be undone. Approve stays disabled until the person confirms they reviewed this revision. Any edit creates a new revision and clears the approval.</span></div><div class="tr defs"><span class="td k">Trade-off</span><span class="td">It's dense, especially at 375 px, and every edit means another review.</span></div></div>
+<figure class="rv fig"><img src="ux/atlas/s-consequence.webp" alt="Consequence Preview: the reach of the action, before the decision." loading="lazy" width="1440" height="1000"><figcaption>Consequence Preview: the reach of the action, before the decision.</figcaption></figure>
+<div class="rv mono lbl sub">03 · Permission is separate from approval · Principle: two separate checks</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Problem</span><span class="td">People read a toggle labelled "can send email" as "yes to all emails". Better copy can't fix that. The structure has to change.</span></div><div class="tr defs"><span class="td k">Options</span><span class="td">One "can send" toggle (ruled out) · <strong>Permission + exact approval</strong> (chosen)</span></div><div class="tr defs"><span class="td k">Choice</span><span class="td">Six permissions scoped to one task, checked before every step. Sending needs the permission and an exact approval. Revoking mid-run blocks future steps and keeps finished ones.</span></div><div class="tr defs"><span class="td k">Trade-off</span><span class="td">Two ideas to understand instead of one, so the screen carries explanatory copy: "A boundary, not a blank cheque."</span></div></div>
+<figure class="rv fig"><img src="ux/atlas/s-permissions.webp" alt="Permissions: six task-scoped switches, with the rule spelled out." loading="lazy" width="1440" height="1000"><figcaption>Permissions: six task-scoped switches, with the rule spelled out.</figcaption></figure>
+<div class="rv mono lbl sub">04 · Failure keeps the work and retries from the break · Principle: keep the work</div>
+<div class="rv tbl"><div class="tr defs"><span class="td k">Problem</span><span class="td">If a run that dies at stage 3 costs you stages 1 and 2, delegation stops being worth it.</span></div><div class="tr defs"><span class="td k">Options</span><span class="td">All-or-nothing restart (ruled out) · <strong>Keep work, retry from the break</strong> (chosen)</span></div><div class="tr defs"><span class="td k">Choice</span><span class="td">Outputs saved per stage. Recovery Center shows what survived. "Inspect saved work" comes before "Resume". Retry starts at the failed stage, with no duplicate outputs.</span></div><div class="tr defs"><span class="td k">Trade-off</span><span class="td">More states and retry rules to explain. Saved work lives only in the browser. A production version would need durable server-side jobs.</span></div></div>
+<figure class="rv fig"><img src="ux/atlas/s-recovery.webp" alt="Preserved work: the banner says what&#x27;s safe before it says what broke." loading="lazy" width="1440" height="1000"><figcaption>Preserved work: the banner says what's safe before it says what broke.</figcaption></figure>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">07 / Information architecture</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Nine screens, one supervision loop.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">06 / Visual system and accessibility</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Calm by default, loud on purpose.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<div class="rv tbl"><div class="tr head n2"><span class="th">Screen</span><span class="th">The user question</span></div><div class="tr n2"><span class="td k">Mission Control</span><span class="td">What needs my attention?</span></div><div class="tr n2"><span class="td k">My Tasks</span><span class="td">What have I delegated, and where has it reached?</span></div><div class="tr n2"><span class="td k">Agent Workspace</span><span class="td">Which specialists are participating?</span></div><div class="tr n2"><span class="td k">Approval Center</span><span class="td">What needs my decision?</span></div><div class="tr n2"><span class="td k">Workflows</span><span class="td">Who owns each stage, and what does it depend on?</span></div><div class="tr n2"><span class="td k">Permissions</span><span class="td">What may this task do?</span></div><div class="tr n2"><span class="td k">Activity History</span><span class="td">What happened, when, and under whose name?</span></div><div class="tr n2"><span class="td k">Recovery Center</span><span class="td">What stopped, and what survived?</span></div><div class="tr n2"><span class="td k">Settings</span><span class="td">How do I manage local preferences and saved demo data?</span></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The core flow</h3>
-<div class="rv flow"><div class="step"><span class="num mono">01</span><div class="txt"><b>1 / Brief</b><span>Objective, context, tools and task boundaries.</span></div></div><div class="step"><span class="num mono">02</span><div class="txt"><b>2 / Plan review</b><span>Inspect the plan; request a human gate if needed.</span></div></div><div class="step"><span class="num mono">03</span><div class="txt"><b>3 / Execution</b><span>Five fixed stages, owned by four specialists.</span></div></div><div class="step"><span class="num mono">04</span><div class="txt"><b>4 / Exact-action review</b><span>Review recipients, payload and consequences.</span></div></div><div class="step"><span class="num mono">05</span><div class="txt"><b>5 / Record</b><span>Save the decision, exact payload and artifacts.</span></div></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Exception paths:</strong> pause &gt; inspect &gt; resume; failure &gt; inspect saved work &gt; eligible retry; denial &gt; resolve the boundary &gt; eligible retry. Rejection and cancellation stop future work while retaining prepared outputs.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A quiet enterprise workspace with one restrained accent, so the single amber "Review required" badge stands out.</p>
+<div class="rv swatches"><div class="sw"><i style="background:#23695b"></i><span class="mono lbl">Teal · actions</span></div><div class="sw"><i style="background:#8c621a"></i><span class="mono lbl">Amber · held decisions</span></div><div class="sw"><i style="background:#b3261e"></i><span class="mono lbl">Red · failure</span></div></div>
+<p class="rv small">Every badge: a dot and a word, never colour alone.</p>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1185px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/s-mobile.webp" alt="Six ATLAS screens at 375 px: Mission Control, New Task, Consequence Preview, Workflows as a list and recovery" loading="lazy" width="2370" height="812"></div></figure>
+<p class="rv small">At 375 px, navigation moves into a menu, the graph becomes a list, and every decision control stays within reach.</p>
+<div class="cards" style="--n:2"><div class="rv hard card"><h4 class="display">Verified in the build</h4><p>Every text colour passes WCAG AA contrast</p><p>Zero automated A/AA violations on checked screens</p><p>Focus trap, Escape and return focus in dialogs, 3 px focus ring</p><p>44 px minimum targets, reduced motion, a list alternative to the graph</p><p>A Demo Mode chip in the header and every dialog</p></div><div class="rv hard card"><h4 class="display">What I'd fix next</h4><p>Badges are 9 px. Set a 12 px floor.</p><p>Collapse 18 type sizes into 6 steps</p><p>Map 116 hard-coded colours onto the token set</p><p>Test with a real screen reader and real zoom</p></div></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">08 / Solution: delegation</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Make the plan inspectable.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">07 / How I worked with AI</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Codex wrote the code. I directed it, reviewed it and decided when it was done.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Setup captures the objective, context, coordinating agent, tools and checkpoints.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The pipeline stays fixed and entering a different objective does not create a new AI-generated plan.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The optional before-execution gate holds the run until the user approves it.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/atlas/02.webp" alt="Setup: choose tools and an optional plan checkpoint. Detail crop; Demo Mode retained." loading="lazy" width="590" height="960"><figcaption><strong>Setup:</strong> choose tools and an optional plan checkpoint. Detail crop; Demo Mode retained.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/03.webp" alt="Plan: five stages remain pending before execution. Detail crop from the guided scenario." loading="lazy" width="590" height="960"><figcaption><strong>Plan:</strong> five stages remain pending before execution. Detail crop from the guided scenario.</figcaption></figure></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Why:</strong> the user can examine scope before work advances.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Trade-off:</strong> the fixed plan demonstrates checkpoints, but cannot establish whether people would detect a bad plan generated by a real model.</p>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-ai.webp" alt="The loop for each milestone: I write the scope and acceptance criteria, Codex restates it, I say yes, Codex builds, automatic gates run, and I review it in the running app before it counts as done" loading="lazy" width="2400" height="1159"></div></figure>
+<p class="rv small">Figure 5. Nothing new was built without my yes, and nothing counted as done until I'd reviewed it in the running app.</p>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">What I directed</h4><p>Scope for every milestone, restated back to me before building</p><p>Acceptance criteria a test can check: "No approval survives an edit"</p><p>All product, IA, interaction and UX writing decisions</p></div><div class="rv hard card"><h4 class="display">What the gates I set caught</h4><p>Status showed the coordinator, not the agent doing the work</p><p>A stale tab lost a task made in another tab</p><p>The guided demo ticked steps after a rejected plan</p><p>Copy called a real-looking address "fictional"</p></div><div class="rv hard card"><h4 class="display">Where I said no</h4><p>A cloud code review that would have sent the source code off my machine</p><p>A forced major downgrade to clear a lint-tooling warning. I documented it instead.</p></div></div>
     </div>
   </div>
 </section>
 <section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
     <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">09 / Solution: supervision</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Show who is doing the work.</h2>
+      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">08 / Outcome and reflection</div>
+      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">A working, tested oversight model. Not yet tested with people.</h2>
     </div>
     <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Workflows exposes stage ownership, dependencies and saved outputs.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Research Agent owns both research and extraction, so four specialists produce five stages.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Users can inspect each stage through a graph or a list backed by the same task data.</p>
-<figure class="rv fig"><img src="ux/atlas/04.webp" alt="Workflow detail. In this captured task, the early stages are complete and communication awaits review. The outlined card indicates selection." loading="lazy" width="1138" height="734"><figcaption>Workflow detail. In this captured task, the early stages are complete and communication awaits review. The outlined card indicates selection.</figcaption></figure>
-<div class="rv tbl"><div class="tr head n2"><span class="th">Specialist</span><span class="th">Responsibility</span></div><div class="tr n2"><span class="td k">Research Agent</span><span class="td">Collect fictional source information and extract notes.</span></div><div class="tr n2"><span class="td k">Analysis Agent</span><span class="td">Compare the extracted information.</span></div><div class="tr n2"><span class="td k">Writing Agent</span><span class="td">Prepare the report.</span></div><div class="tr n2"><span class="td k">Communication Agent</span><span class="td">Prepare the draft and hold it for exact-action review.</span></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Why:</strong> ownership helps explain a stopped task.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Trade-off:</strong> a graph adds visual complexity, so the list offers another way to inspect the same dependencies.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">10 / Solution: task states</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Prepared is not approved.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A progress bar answers how much selected work is prepared.</p>
-<figure class="rv fig"><img src="ux/atlas/05.webp" alt="My Tasks detail: all work can be prepared while the final action still awaits approval." loading="lazy" width="1122" height="406"><figcaption>My Tasks detail: all work can be prepared while the final action still awaits approval.</figcaption></figure>
-<div class="rv tbl"><div class="tr head n2"><span class="th">State</span><span class="th">What it means / what happens next</span></div><div class="tr n2"><span class="td k">Draft</span><span class="td">The brief exists; planning has not started.</span></div><div class="tr n2"><span class="td k">Planning</span><span class="td">The fixed stages are available to inspect or submit for plan review.</span></div><div class="tr n2"><span class="td k">Awaiting approval</span><span class="td">A requested plan gate or mandatory exact-action gate holds execution.</span></div><div class="tr n2"><span class="td k">Running</span><span class="td">The next selected, permitted stage can advance.</span></div><div class="tr n2"><span class="td k">Paused</span><span class="td">Execution is held until the person resumes.</span></div><div class="tr n2"><span class="td k">Failed</span><span class="td">An error or denial stopped progress; inspect saved work and retry eligibility.</span></div><div class="tr n2"><span class="td k">Cancelled</span><span class="td">Future work is stopped; existing outputs remain.</span></div><div class="tr n2"><span class="td k">Partially completed</span><span class="td">Prepared work remains after omitted tools or rejection.</span></div><div class="tr n2"><span class="td k">Completed</span><span class="td">The run has finished and its required decisions are resolved.</span></div></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">11 / Solution: consequence preview</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Approve this. Exactly this.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Consequence Preview brings together the agent, parent task, affected resource, all recipients, exact subject and body, shared data, possible consequences, reversibility and required permission.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The default email has eight demo recipients.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/atlas/06.webp" alt="Context and recipients, at the top of the proposal. Detail crop; lower recipients continue in the scroll area." loading="lazy" width="590" height="960"><figcaption>Context and recipients, at the top of the proposal. Detail crop; lower recipients continue in the scroll area.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/07.webp" alt="Decision-area crop: the review box and disabled approval control." loading="lazy" width="536" height="337"><figcaption>Decision-area crop: the review box and disabled approval control.</figcaption></figure></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">The decision rules</h3>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Review the current revision.</span><span class="td">Approval stays unavailable until its exact-review box is checked.</span></div><div class="tr defs"><span class="td k">Check current permission.</span><span class="td">Enabling communication does not bypass exact approval.</span></div><div class="tr defs"><span class="td k">Explain reversibility.</span><span class="td">A real email could be forwarded and cannot reliably be recalled. This demo sends nothing.</span></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Why:</strong> a specific decision can be explained and recorded later.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Cost:</strong> completeness makes this a long review and a checkbox records acknowledgment. It cannot prove comprehension or prevent approval fatigue.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">12 / Solution: decision branches</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">A new draft needs a new yes.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Changing the subject, body or recipients creates a new revision and clears both review and approval.</p>
-<figure class="rv fig"><img src="ux/atlas/08.webp" alt="Edit the proposal: subject, recipients and body are editable. Saving creates a new revision with no inherited review or approval." loading="lazy" width="590" height="960"><figcaption><strong>Edit the proposal:</strong> subject, recipients and body are editable. Saving creates a new revision with no inherited review or approval.</figcaption></figure>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Clarification holds the action</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Resolving the question returns the proposal to fresh exact review. It does not authorize communication.</p>
-<figure class="rv fig"><img src="ux/atlas/09.webp" alt="Local simulation / clarification detail." loading="lazy" width="536" height="372"><figcaption>Local simulation / clarification detail.</figcaption></figure>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Rejection ends the request</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Prepared work survives. The rejected action cannot execute or be edited around the decision.</p>
-<figure class="rv fig"><img src="ux/atlas/10.webp" alt="Local simulation / rejection detail." loading="lazy" width="536" height="148"><figcaption>Local simulation / rejection detail.</figcaption></figure>
-<div class="rv callout"><span class="mono lbl">The earlier decision stays intact.</span><p>If a previously approved draft is edited, its old payload remains in history. The new proposal needs its own review and approval.</p></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">13 / Solution: autonomy boundaries</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Permission is not consent.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Permission answers what a task may attempt. Approval answers whether this exact consequential action may proceed.</p>
-<figure class="rv fig"><img src="ux/atlas/11.webp" alt="Permissions overview crop. Boundaries belong to the selected task; the complete permission model is summarized below." loading="lazy" width="1134" height="581"><figcaption>Permissions overview crop. Boundaries belong to the selected task; the complete permission model is summarized below.</figcaption></figure>
-<div class="rv tbl"><div class="tr head n2"><span class="th">Boundary</span><span class="th">Current prototype behavior</span></div><div class="tr n2"><span class="td k">Read permission</span><span class="td">Allows fictional fixture reading; denial can stop a read step.</span></div><div class="tr n2"><span class="td k">Draft creation</span><span class="td">Allows preparation of local notes, comparisons, reports and drafts.</span></div><div class="tr n2"><span class="td k">External communication</span><span class="td">Requires current permission plus exact revision review and approval. Records a simulation only.</span></div><div class="tr n2"><span class="td k">Modify / Delete / Paid action</span><span class="td">Stored settings for future scope. The current pipeline does not implement these Operations and they remain blocked even when enabled.</span></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Every future operation checks current boundaries. Revocation blocks the next affected step and preserves earlier work. Restoring the required boundary can make a failed step eligible for retry.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Trade-off:</strong> unsupported switches communicate the broader model but may imply capabilities the prototype lacks. I would test that interpretation before expanding the permission set.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">14 / Solution: failure recovery</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Resume from the break.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">A failure should reveal what stopped and what remains available before offering another attempt.</p>
-<ul class="dots"><li class="rv"><span class="dot"></span><span>The comparison-error scenario stops after research and extraction.</span></li><li class="rv"><span class="dot"></span><span>The task is Failed with two saved artifacts.</span></li><li class="rv"><span class="dot"></span><span>Recovery Center exposes the failed stage, retained work and retry eligibility.</span></li><li class="rv"><span class="dot"></span><span>An eligible retry continues at comparison without duplicating earlier outputs.</span></li></ul>
-<div class="figrow" style="--n:3"><figure class="rv fig"><img src="ux/atlas/12.webp" alt="1 / Failure. Comparison stops. Two earlier outputs remain available." loading="lazy" width="590" height="960"><figcaption><strong>1 / Failure.</strong> Comparison stops. Two earlier outputs remain available.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/13.webp" alt="2 / Inspect. Saved research and extracted notes can be inspected before retry." loading="lazy" width="590" height="960"><figcaption><strong>2 / Inspect.</strong> Saved research and extracted notes can be inspected before retry.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/14.webp" alt="3 / Retry. Five outputs are prepared. Exact-action review is still pending." loading="lazy" width="590" height="960"><figcaption><strong>3 / Retry.</strong> Five outputs are prepared. Exact-action review is still pending.</figcaption></figure></div>
-<div class="rv callout"><span class="mono lbl">Recovery has conditions.</span><p>A permission, dependency or fixed simulation limit can keep retry blocked. A retry button is only useful when the next attempt is allowed to proceed.</p></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Why:</strong> preserved artifacts make recovery inspectable.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Limit:</strong> these are local fixture outputs. The prototype does not resolve changed external data, duplicate real-world side effects or uncertain partial execution by a live agent.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">15 / Solution: history &amp; saved work</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Give the decision a receipt.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Activity History is the Agent Flight Recorder. Task filters narrow the record - event details explain plans, attempts, denials, edits, decisions and retries. Approved payloads remain saved as snapshots, so later edits do not overwrite what was previously approved.</p>
-<figure class="rv fig"><img src="ux/atlas/15.webp" alt="Activity History overview crop. This is a separate sample task, illustrating attributed events and filters." loading="lazy" width="1131" height="767"><figcaption>Activity History overview crop. This is a separate sample task, illustrating attributed events and filters.</figcaption></figure>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Saved work travels with the task.</span><span class="td">Outputs remain inspectable and downloadable after failure, rejection or cancellation. They are marked as simulated.</span></div><div class="tr defs"><span class="td k">A useful limit.</span><span class="td">The log lives in browser storage. It is inspectable product behavior, not a tamper-proof organizational audit trail.</span></div></div>
-<figure class="rv fig"><img src="ux/atlas/16.webp" alt="Task history detail. The earlier exact approved payload is retained beneath its event." loading="lazy" width="590" height="960"><figcaption>Task history detail. The earlier exact approved payload is retained beneath its event.</figcaption></figure>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Why:</strong> supervision needs both the current state and the explanation of how it got there.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Trade-off:</strong> a full log can overwhelm; filters and payload disclosure keep the overview compact while retaining detail.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">16 / Solution: the supporting screens</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Keep the rest of the workspace useful.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The supporting views make the core supervision flow easier to discover and return to.</p>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/atlas/17.webp" alt="Onboarding. Optional introduction explains the simulation and starts a guided mission." loading="lazy" width="1400" height="972"><figcaption><strong>Onboarding.</strong> Optional introduction explains the simulation and starts a guided mission.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/18.webp" alt="Agent Workspace. Specialist cards lead into participating tasks and stage ownership." loading="lazy" width="1400" height="972"><figcaption><strong>Agent Workspace.</strong> Specialist cards lead into participating tasks and stage ownership.</figcaption></figure></div>
-<div class="figrow" style="--n:2"><figure class="rv fig"><img src="ux/atlas/19.webp" alt="Approval Center. A dedicated queue keeps pending human decisions discoverable." loading="lazy" width="1400" height="972"><figcaption><strong>Approval Center.</strong> A dedicated queue keeps pending human decisions discoverable.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/20.webp" alt="Settings. Local preferences, data export and a confirmed reset stay accessible." loading="lazy" width="1400" height="972"><figcaption><strong>Settings.</strong> Local preferences, data export and a confirmed reset stay accessible.</figcaption></figure></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Estimated resources and persistent guidance</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Resource monitors show labeled estimates and fixed local simulation limits, not measured model usage or charges. The guided mission follows actual task state and survives refresh; unfinished or cancelled steps do not gain completion checkmarks.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">17 / Visual system &amp; accessibility</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">Quiet surfaces. Explicit signals.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The visual system keeps attention on decisions: off-white canvas, white panels, charcoal text and restrained sage accents.</p>
-<div class="rv swatches"><div class="sw"><i style="background:#f4f6f2"></i><span class="mono lbl">Canvas</span></div><div class="sw"><i style="background:#ffffff"></i><span class="mono lbl">Surface</span></div><div class="sw"><i style="background:#242d2a"></i><span class="mono lbl">Text</span></div><div class="sw"><i style="background:#23695b"></i><span class="mono lbl">Focus / accent</span></div><div class="sw"><i style="background:#8c621a"></i><span class="mono lbl">Warning</span></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">System fonts, shared spacing and 12px card corners create consistency. Status badges include words as well as color. Amber identifies review or warning states; it does not replace an explanation.</p>
-<div class="phones" style="--n:3"><figure class="rv fig"><img src="ux/atlas/21.webp" alt="Delegate / 375px demo capture." loading="lazy" width="375" height="812"><figcaption>Delegate / 375px demo capture.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/22.webp" alt="Clarify / 375px demo capture." loading="lazy" width="375" height="812"><figcaption>Clarify / 375px demo capture.</figcaption></figure><figure class="rv fig"><img src="ux/atlas/23.webp" alt="Recover / 375px demo capture." loading="lazy" width="375" height="812"><figcaption>Recover / 375px demo capture.</figcaption></figure></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Mobile.</strong> Navigation becomes a menu. Content stacks; task inspection, exact review and recovery remain available.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Access is part of the interaction model</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The prototype includes labeled controls, a skip link, visible focus, dialog focus handling, text statuses, reduced-motion support and a workflow list alternative. Documented checks covered keyboard behavior and reflow at narrow widths.</p>
-<div class="rv callout"><span class="mono lbl">Still to validate:</span><p>real screen reader use, actual browser zoom and sessions with disabled participants. Automated scans reported zero violations only in the states checked; this is not a WCAG conformance claim.</p></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">18 / Evaluate: iteration &amp; checks</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The audit changed the product.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">These are documented implementation and interaction fixes.</p>
-<div class="rv tbl"><div class="tr head n2"><span class="th">Issue found</span><span class="th">Change and supporting check</span></div><div class="tr n2"><span class="td k">Fleet status named the coordinator while another specialist owned the active stage.</span><span class="td">Attributed status and participating tasks to the responsible specialist. Covered by ownership tests.</span></div><div class="tr n2"><span class="td k">A stale browser tab could overwrite a task created elsewhere.</span><span class="td">Read the latest saved workspace before updates and allocate unique task IDs. Provider regression checks preserved both tasks.</span></div><div class="tr n2"><span class="td k">Clarification copy called every entered address fictional.</span><span class="td">Changed it to explain that addresses are used only in the local simulation. Retested with an edited address.</span></div><div class="tr n2"><span class="td k">Small controls and an unreachable short-window sidebar profile.</span><span class="td">Raised checked action targets to 44px and made the sidebar scrollable. Browser measurements confirmed the checked behavior</span></div></div>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What the recorded checks establish</h3>
-<div class="rv tbl"><div class="tr defs"><span class="td k">Engine and storage:</span><span class="td">revision-specific approval, denial, rejection, cancellation, dependency order, artifact preservation and saved-state behavior.</span></div><div class="tr defs"><span class="td k">Browser journeys:</span><span class="td">setup, plan review, exact review, edits, clarification, recovery, navigation, exports and responsive states.</span></div><div class="tr defs"><span class="td k">Build checks:</span><span class="td">lint, TypeScript and production compilation passed in the recorded runs.</span></div></div>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">19 / Outcome &amp; next validation</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">A working oversight model. A user-value hypothesis.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">The prototype connects nine screens, four simulated specialists and five fixed stages. It preserves task state across refresh, holds consequential actions for exact approval and retains earlier outputs during recovery. No usability improvement, adoption lift or business result was measured.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What I would test next</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I would run an initial six to eight moderated sessions with intended product and operations users who already delegate multi-step work. This would be a formative study to locate misunderstandings, not a statistically representative performance benchmark.</p>
-<div class="rv tbl"><div class="tr head n3"><span class="th">Task / hypothesis</span><span class="th">What I would observe</span><span class="th">What would prompt a change</span></div><div class="tr n3"><span class="td k"><strong>Delegate and review a plan.</strong> Visible scope supports prediction.</span><span class="td">Ask the person to explain what will happen next before execution.</span><span class="td">They miss a selected tool or misunderstand an optional checkpoint.</span></div><div class="tr n3"><span class="td k"><strong>Inspect an email with a planted discrepancy.</strong> Exact review supports informed consent.</span><span class="td">Record whether they notice an unexpected recipient or changed content, without prompting.</span><span class="td">They approve despite missing the discrepancy.</span></div><div class="tr n3"><span class="td k"><strong>Edit, clarify or reject a proposal.</strong> The branches have distinct meanings.</span><span class="td">Ask whether an older approval authorizes the new revision and what the current action may do.</span><span class="td">They expect automatic approval or continued execution after rejection.</span></div><div class="tr n3"><span class="td k"><strong>Recover from comparison failure.</strong> Retained work supports recovery.</span><span class="td">Observe whether they find the two saved artifacts and retry at the failed stage.</span><span class="td">They restart unnecessarily or expect blocked retry to work.</span></div></div>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">I would report actual participant counts, observed errors, interventions, task completion and comprehension in the study context, alongside the design changes they led to. Timing would be descriptive at this sample size. A later comparison would be needed to claim improvement over another approach.</p>
-    </div>
-  </div>
-</section>
-<section style="padding:0 var(--gutter) clamp(48px,6vw,88px)">
-  <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start">
-    <div class="sec-head" style="flex:1 1 240px;min-width:0;position:sticky;top:96px">
-      <div class="mono lbl" style="color:var(--tomato);margin-bottom:12px">20 / Reflection &amp; sources</div>
-      <h2 class="display" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1">The interface can hold a boundary. People still have to understand it.</h2>
-    </div>
-    <div class="body" style="flex:2.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px;padding-top:6px">
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">ATLAS moved my attention from the output alone to the contract around it: what was permitted, what was reviewed, what changed and what survives. The most useful documented correction was ownership. A polished status card still misleads if it names the wrong specialist.</p>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">My next design priority is the density of exact-action review, especially on mobile. I would test information order and disclosure while keeping recipients, changed content and consequences visible enough to support a deliberate decision.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">What production would require</h3>
-<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6">Browser storage can be cleared; closing the browser stops the simulation. Real execution needs authenticated identity, server-enforced permissions, durable jobs, secure integrations, reliable handling of repeated actions, and retained audit records. Dynamic plans introduce uncertainty the fixed pipeline does not test.</p>
-<h3 class="display rv" style="margin:14px 0 0;font-size:clamp(22px,2.4vw,30px);line-height:1.1">Secondary sources</h3>
-<p class="rv small">[1] Amershi et al. / Guidelines for Human-AI Interaction / CHI 2019</p>
-<p class="rv small">[2] Google PAIR / People + AI Guidebook / Feedback + Control</p>
-<p class="rv small">[3] NIST / AI RMF 1.0 / Appendix C / 2023</p>
+<figure class="rv hero-fig diag wide" style="background:#ffffff;max-width:1200px"><div class="sc" tabindex="0" role="group" aria-label="Diagram, scroll sideways on small screens"><img src="ux/atlas/d-evidence.webp" alt="How far the evidence goes: built and verified are done, observed and impact are not yet claimed. ATLAS is here" loading="lazy" width="2400" height="1013"></div></figure>
+<p class="rv small">Figure 6. Every claim in this case study sits on the first two rungs.</p>
+<div class="cards" style="--n:3"><div class="rv hard card"><h4 class="display">What exists</h4><p>9 screens, 4 agents, 9 states, 6 permissions, 14 seeded scenarios</p><p>Passing engine, safety, journey and accessibility suites at desktop, tablet and 375 px</p><p>A static build ready to host</p></div><div class="rv hard card"><h4 class="display">What doesn't exist yet</h4><p>Usability results, task success or business impact</p><p>WCAG conformance. Only clean automated scans so far.</p><p>Live AI. All agents are simulated.</p></div><div class="rv hard card"><h4 class="display">What production would need</h4><p>Durable server-side jobs, not browser storage</p><p>Real security behind permissions</p><p>An undo window for actions that can be reversed</p><p>Plan review for plans that change between runs</p></div></div>
+<div class="rv mono lbl sub">Success targets, set before the study</div>
+<div class="rv tbl"><div class="tr head n3"><span class="th">Measure (5 to 6 people)</span><span class="th">Target</span><span class="th">Status</span></div><div class="tr n3"><span class="td k">Names the recipients and shared data before approving</span><span class="td">5 of 6</span><span class="td">Not yet measured</span></div><div class="tr n3"><span class="td k">Unsafe approval attempts across all sessions</span><span class="td">0</span><span class="td">Not yet measured</span></div><div class="tr n3"><span class="td k">Chooses retry over a new task after a failure</span><span class="td">4 of 6</span><span class="td">Not yet measured</span></div><div class="tr n3"><span class="td k">Explains what was sent and who approved it</span><span class="td">5 of 6</span><span class="td">Not yet measured</span></div></div>
+<div class="rv mono lbl sub">Reflection</div>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>The worst bug was the problem I was designing against.</strong> Status showed the wrong agent, which is exactly the "who did this?" confusion ATLAS exists to prevent. Visible responsibility needs a test, not just intent.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>Honesty became a design constraint.</strong> "Say what is simulated" shaped real UI: the Demo Mode chip, labelled sample charts, and milestones that tick only when work happened.</p>
+<p class="rv" style="margin:0;max-width:68ch;font-size:17px;line-height:1.6"><strong>My riskiest decision is the one I most want tested.</strong> Consequence Preview shows everything, and that may be too much.</p>
     </div>
   </div>
 </section>

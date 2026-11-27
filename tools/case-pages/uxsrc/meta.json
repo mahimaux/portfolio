@@ -18,10 +18,10 @@
   "lede": "Steer gives supervisors one live view of the school and gives instructors a clear view of the next lesson. Both work from the same record, so a change made at the desk reaches the car, and a lesson logged in the car gets back to the desk."
  },
  "atlas": {
-  "words": 3127,
-  "mins": 15,
+  "words": 1764,
+  "mins": 9,
   "title": "Delegate the work. Keep the judgment.",
-  "lede": "ATLAS is a control center for supervising AI agent work to inspect the plan, review consequential actions, and recover useful work when execution stops."
+  "lede": "A control center that lets people hand multi-step work to AI agents, approve exactly what goes out, and recover the work when a run breaks."
  },
  "lineage": {
   "words": 3082,
