@@ -1,76 +1,165 @@
-kicker: UX and accessibility case study / Self-directed concept / Web prototype + Chrome extension
+kicker: UX and accessibility case study / Self-directed concept / 2 weeks
 name: Reframe
 title: Make the page easier to read. Keep the reader in charge.
-lede: I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version.
-meta: My role | Research, UX, UI, content design and prototype development.
-meta: The test case | A fictional benefits page with income limits, deadlines and exceptions.
-meta: What I measured | The rewrite checks caught 9 of 12 meaning-changing examples in a hand-labelled benchmark.
-hero: 01 | 01 A simplified eligibility passage, with an explanation of the change and access to the published wording.
-intro: I built CivicConnect to make the design problem concrete. Imagine trying to find out whether you qualify for help with an energy bill. The deadline is buried, several parts of the page compete for attention, and a single “unless” can change your answer.
-intro_small: CivicConnect, its energy-assistance program and all example eligibility details are fictional.
+lede: Reframe is a reading layer that makes dense government pages easier to read, without letting AI change the rules on them.
+meta: Role | Solo product designer ;; Research, product definition, interaction and visual design, specs and evaluation.
+meta: Timeframe | 2 weeks, October 2026
+meta: Tools | Claude Code for the build ;; It wrote the code to my specs: the demo site, the Reframe panel, a Chrome extension (Manifest V3) and 60 automated checks across 9 browser test suites. I reviewed every build and ran every audit.
+meta: Also used | axe and keyboard-only testing in Chromium for audits, and Excalidraw for diagrams.
+meta: Status | Working concept prototype. Not yet tested with users.
+hero: 01 | 01 A simplified eligibility passage. The marker explains what changed, and the published wording is one tap away.
+intro: Reframe opens beside the page it adapts. Text size, spacing, contrast, focus and motion change at once, because they can't alter what a page says. Simplifying, explaining and translating are AI-assisted, and the reader previews, checks and approves each passage before anything changes. Every change can be undone, and Reframe never asks about disability.
+intro_small: CivicConnect, the State of Himavat and the HEAP energy-assistance program on the demo page are fictional.
 cardsub: AI explainability · Accessibility
 proto: video | ux/reframe/tutorial.mp4
 
-# 01 Research & problem framing || The deadline is in there somewhere
-p: The project began with desk research and self-testing on CivicConnect. I looked at browser reading tools, operating-system settings, plain-language guidance and criticism of accessibility overlays.
-rows: Reading controls | Firefox Reader View supports changes to size, width and spacing. Edge also offers translation and Copilot summaries. That set a baseline for support readers can already turn on. [1, 2]
-rows: Plain language and control | W3C cognitive accessibility guidance recommends clearer language, reader control over content changes and an easy way back. Those patterns support the preview and recovery decisions. [3]
-rows: Overlay criticism | The European Disability Forum and IAAP describe how some overlays can interfere with assistive technology. I kept activation reader-led and treated compatibility as a question to test. [4]
-h: Personas grounded in reading situations
-p: These are scenario-based personas synthesized from the desk research. One reader can move between them over the course of a single visit.
-card: The tired applicant :: Dense text and competing alerts make it hard to keep a place. Needs comfortable reading, simpler wording, focus and reduced motion.
-card: The reader in glare :: Small type, weak contrast and color-only cues make details hard to see. Needs more legible text, bigger controls and clearer visual cues.
-card: The multilingual reader :: A term or eligibility condition is unclear in English. Needs an explanation or a translation with the original close at hand.
-quote: How might we :: How might we help a reader find and understand the rule that applies to them, without asking them to disclose a diagnosis or giving up access to the published text?
-small: Two questions guided the design: Where should a change take effect immediately? Where does the reader need to stop and inspect it first?
+# 01 The problem || Government pages assume the reader reads easily
+p: A benefits page decides who gets help, and the answer sits in income limits, deadlines and exceptions. Rules often hang on one word, and exceptions sit in fine print. A page can pass an accessibility audit and still lose the people it exists to serve.
+h: Who gets left behind
+stat: 28% | of US adults read at or below the lowest literacy level in 2023, up from 19% in 2017. [1]
+stat: 15 to 20% | of people may have some symptoms of dyslexia. [2]
+stat: 2.2B | people worldwide have a near or distance vision impairment. [3]
+stat: 67.8M | people in the US, almost 1 in 5, speak a language other than English at home. [4]
+h: The pages don't meet them halfway
+table: Finding | Figure | What it means for these readers
+tr: Home pages with detectable WCAG failures [5] | 94.8% | Basic access is still broken on most of the web.
+tr: Home pages with low-contrast text [5] | 79.1% | That averages 29.6 low-contrast instances per page, and low-vision readers feel it first.
+tr: Benefits websites hard to use on a phone [6] | 52% | Many applicants only have a phone, where dense text and tables are hardest to read.
+tr: Benefits applications that require an account first [6] | 70% | People face more reading and more steps before they reach the rule that applies to them.
+h: One paragraph, four ways to lose the rule
+diagram: p1 | A six-line paragraph adapted from the demo page: Applicants facing an imminent loss of service may also qualify for an emergency crisis benefit, subject to the availability of funds. Household income must not exceed the limit for your household size. A reader with low literacy meets rare words and legal phrasing and can't tell whether the emergency benefit is for them. A reader with dyslexia meets two rules in one block and loses their place. A low-vision reader meets fine print in smaller, lighter type and skips it. A reader with a different first language meets modal verbs like may also qualify and must not exceed, where translation can shift the limit, and acts on a different rule.
+small: Each reader hits a different barrier on the same paragraph, and each one ends up missing or misreading the rule that decides whether they get help.
+h: Why today's fixes fall short
+rows: Zoom, reader mode and OS settings | They are safe because they never touch a word. For the same reason, they can't explain "categorically eligible".
+rows: Browser translation and AI summaries | They help with the words, but nothing checks the result. "Must not exceed the limit" can turn into "earns less than the limit", which drops a household earning exactly the limit.
+rows: Accessibility overlays | Disability organisations have warned that overlays don't deliver compliance and can get in the way of assistive technology. [7]
+quote: Problem statement :: People applying for help, often under stress, need to find and understand the rule that applies to them. Today's tools either leave the hard wording alone or change it with nothing checking the result.
+quote: How might we :: How might we help every reader understand a government page, without asking them to disclose a disability or risking what the rules say?
 
-# 02 Ideation & onboarding || One panel, two ways to make a change
-p: I organized the panel around what the reader wants to do: read, understand, see, focus, reduce motion or switch language. How the change takes effect depends on what it touches.
-rows: Apply immediately | Type, spacing, contrast, larger controls, reduced motion and focus mode give immediate feedback. People can adjust them while looking at the page.
-rows: Preview before applying | Simplification, everyday wording, generated translations and proposed color cues get a review step. Selected-text explanations open beside the source and leave the page wording in place.
-h: Ask what would help
-p: The optional setup asks one question in everyday language and lets readers skip it. Preferences stay on the device. A single launcher opens the same panel later, with a separate Active changes view for reviewing and undoing adjustments.
-figs: 02 | 02 Setup offers needs-based choices. The reader can also skip setup. ;; 03 | 03 The launcher opens reading settings next to the page.
-note: :: A preview for every change slows down visible adjustments. An immediate rewrite makes readers discover changed rules after the fact. I gave these two kinds of change different paths.
-small: I carried the same approach into the interface: plain labels, warm paper tones, a restrained accent and no chat window to learn.
+# 02 Who it's for || Designed around reading situations
+p: Reframe never asks about disability. It asks what would make websites easier to use. Each persona below is a reading situation, defined by what gets in the way on the page. Many of the causes are temporary, like glare or a long day, and they can overlap in one visit.
+diagram: p2 | Causes feed three reading situations. Low literacy, dyslexia, tiredness or stress, and dense legal wording lead to reading taking effort, which calls for comfortable spacing, plainer wording, a quieter page and the rule up front. Low vision, glare on a phone screen and an old dim monitor lead to seeing taking effort, which calls for bigger text and controls, stronger contrast and cues beyond color. English not being a first language and unfamiliar official terms lead to reading in a second language, which calls for a plain explanation or a translation with the original close by.
+small: Because the design targets the barrier, nobody has to name the cause.
+card: Reading takes effort // The tired applicant :: Trying to find out if the household qualifies for HEAP, and by when. :: In the way: long sentences, terms like "categorically eligible", a deadline buried in a paragraph and a scrolling alert ticker. :: Reframe gives them comfortable spacing, simpler wording approved passage by passage, a focus mode that never dims rules or deadlines, and the ticker as a still list. Covers low literacy and dyslexia.
+card: Seeing takes effort // The reader in glare :: Trying to check the income table and find an open service center, on a phone in daylight. :: In the way: small type, weak contrast in places, and open or closed shown only as green and red dots. :: Reframe gives them text from 90% to 200%, high contrast, 56px targets and text labels where the page relies on color alone. Covers low vision.
+card: Reading in a second language // The multilingual reader :: Trying to understand one eligibility condition in Hindi or Kannada and check it against the official wording. :: In the way: legal terms, and machine translation that gives no sign whether numbers, dates and conditions survived. :: Reframe gives them explanations beside the source, previewed translations with numbers and dates checked, and View original on screen the whole time.
 
-# 03 Solution / Presentation || Turn down the noise
-p: The page should stay usable while the reader changes it. Comfortable reading, text size and line height make the article easier to scan. Larger interface controls and high contrast address different parts of the same problem.
-figs: 04 | 04 Focus mode quiets peripheral content. The status message explains how to reveal it or exit. ;; 05 | 05 The color tools add cues that can be read alongside color. Changes can be reviewed and reversed.
-h: Keep the deadline in view
-p: Focus mode dims peripheral navigation, sidebar material and the footer. Hover or keyboard focus brings those areas back into view. Warnings, eligibility rules, requirements, deadlines, rights information and help lines are protected from dimming.
-h: Give color a second cue
-p: The vision tools can improve color distinction, add labels or visual cues, and emphasize links. Reframe looks for a label in the page first. When the page cannot support a proposed interpretation, the element stays as published.
-small: The guided tour also demonstrates individual undo, the reduced-motion setting for a moving alert ticker, and the control for larger interface elements.
+# 03 Key design decisions || Four decisions that keep the reader in charge
+p: For each decision I list the options I weighed, why I chose one, and what it cost.
+h: 01 Two speeds: instant for looks, reviewed for words
+p: Before any change runs, Reframe asks whether it could alter what the page says.
+rows: Considered | Previewing every change, even text size. Applying everything instantly, rewrites included.
+rows: Chosen | Splitting by risk. Visual settings apply instantly, and wording changes go through review.
+rows: Why | Type, spacing and contrast can't change a rule, so approving them only slows people down. A rewrite can change a rule, so the reader has to see it first.
+rows: Tradeoff | The panel now holds two mental models. I kept both in one place, and the Active changes tab lists every change of either kind.
+diagram: d1 | A reader picks a need. If it can't change what the page says, such as text size, spacing, contrast, larger controls, focus or less motion, it applies at once. If it can, it goes through Extract, Rewrite, Check, Preview and Approve, one passage at a time, and a failed check leaves the passage as published. Either way the change lands on the page, marked if AI made it, with Undo and View original one tap away.
+h: 02 Approve passage by passage
+p: A whole-page rewrite asks the reader to trust everything at once.
+rows: Considered | One button that simplifies the whole page. A full-page side-by-side view to accept or reject.
+rows: Chosen | Approval for each passage. Anything that fails a check stays as published.
+rows: Why | Eligibility lives in specific passages, and approving them one at a time keeps attention there. One bad passage can't spoil the rest, and each applied passage gets a marker that explains what changed.
+rows: Tradeoff | It takes more taps and is slower for readers who only want the gist. Key points at the top of the simplified page cover the gist.
+figs: 07 | 07 Each passage has its own choice between Use this version and Keep published.
+h: 03 Evidence instead of confidence scores
+p: The review screen has to give the reader something to act on.
+rows: Considered | A confidence percentage, like most AI tools. A plain pass or fail badge.
+rows: Chosen | A list of what was checked and found, such as "48 of 51 details found in the new wording".
+rows: Why | A percentage gives no reason, so the reader can't act on it. My audit found a green "Eligibility rules preserved" badge on a rewrite that had moved the income limit, and I removed it. The interface never claims the meaning is verified.
+rows: Tradeoff | There's more to read than a single badge. The checks confirm that details are present, but they don't check who does what. In my 19-case test set they missed 3 of 12 meaning changes.
+figs: 12 | 12 The preview reports what was checked and also says what the checks can't prove.
+h: 04 The original is always one tap away
+p: A reader can only trust a change they can check against the source.
+rows: Considered | One Restore button in the panel. In my first build it sat 19 Tab stops deep.
+rows: Chosen | View original and Undo beside every changed passage, plus an Active changes tab.
+rows: Why | The reader can check one passage against the published text without losing the rest, and the way back sits where the change is. View original stays on screen while a translation is on.
+rows: Tradeoff | Every changed passage carries a marker and two buttons, which adds to the page. Undoing everything means a trip to Active changes.
+figs: 10 | 10 Each marker opens "Why did Reframe change this?" with View original and Undo.
 
-# 04 Solution / Content review || Show the rewrite before it touches the page
-p: A shorter sentence can be easier to read and still send someone to the wrong office. I split permission to send text from permission to apply the result.
-figs: 06 | 06 Before sending, the consent screen explains the request and what leaves the device. ;; 07 | 07 The review shows the proposed wording alongside the original, with checks and passage-level choices.
-rows: 1. Explain the request | The prototype explains what will be sent before a rewrite. The service receives the relevant page text. Setup preferences and anything the reader types stay out of the request.
-rows: 2. Review the proposal | The server checks the rewrite and the browser checks it again. The review names checks such as numbers, dates, obligations and conditions. A failed passage defaults to the published wording.
-rows: 3. Apply and recover | The reader can keep the page as published or apply reviewed passages. Changed passages are marked, with a way to inspect the source and undo the change.
-note: :: The review says what it checked. It gives the reader the evidence it has, without a confidence percentage.
-small: The prototype also supports an Everyday words review for lighter edits and adds an overview to the simplified page.
+# 04 The experience || One launcher, one panel, and the page stays the reader's
+p: These screens come from the working prototype on CivicConnect's HEAP page, in the order of a first visit.
+figs: 02 | 02 Setup asks one question, "What would make websites easier for you to use?", with seven need cards. It can be skipped, and answers stay on the device. ;; 03 | 03 A plain launcher at the bottom right opens the panel, with Alt+R as a shortcut. Two tabs separate What you need from Active changes.
+p: Each section in the panel is tagged Instant or Reviewed, so the reader knows what will happen before acting.
+figs: 04 | 04 Focus mode fades the sidebar and footer, which come back on hover or focus. It never dims eligibility rules, deadlines, rights or help lines. ;; 05 | 05 Colored dots gain text labels such as "Open today", taken from the page's own legend. Where the page never says what a color means, Reframe leaves it alone.
+list: Text size from 90% to 200%, with four levels each of line, paragraph and letter spacing
+list: Comfortable reading, with clearer type and shorter lines
+list: A larger interface with 56px targets
+list: Reduced motion, which turns the alert ticker into a still list
+figs: 06 | 06 Before a rewrite, the consent screen says what will change, what stays the same and exactly what is sent. The preview and approval screens are in Decisions 02 and 03.
+figs: 08 | 08 Select a phrase, or press Alt+E, and a plain explanation opens beside it. The page wording isn't touched. ;; 09 | 09 Hindi and Kannada are previewed side by side with the source, here with 98 of 98 details found. English and Spanish use the site's own published copy.
 
-# 05 Solution / Meaning & language || Keep the original within reach
-p: Sometimes the sticking point is one phrase. Sometimes the reader needs a different language for the whole task. Each path keeps the source close enough to consult.
-figs: 08 | 08 Select a phrase to open an explanation beside the original. ;; 09 | 09 Kannada preview shows the source and translation before application.
-figs: 10 | 10 A change marker opens the rationale and offers View original and Undo. ;; 11 | 11 Guided tour, 4:42. When the proposed change cannot be checked, the page stays as it is.
-rows: Explain a phrase | A small card pairs the selected wording with a simpler explanation. The original passage remains in place.
-rows: Switch languages | English and Spanish use published site copy and switch immediately. Hindi and Kannada use the reviewed translation flow. Readers can view the original again or reset the translation.
+# 05 Trust and safety || Designed for the day the AI is wrong
+p: On a benefits page, a fluent mistake is worse than no help. Several layers sit between a rewrite and the page, and each catches a different failure. None of them can promise the meaning survives, and the interface never says it does.
+small: In this prototype, AI answers come from prepared examples, not a live model. The checks, review flow and recovery are fully built.
+flow: Service check | Compares the published and new wording for amounts, dates, duties, conditions and names.
+flow: Browser re-check | Runs the same checks again on the reader's device, so a faulty service can't skip them.
+flow: Reader preview | Shows published and new wording side by side, with what was checked for each passage.
+flow: Approval per passage | Use this version or Keep published. A failed passage defaults to published.
+flow: Marker and undo | Marks every applied change, with View original and Undo beside it.
+h: How the meaning checks work
+diagram: t1 | The published passage and the proposed rewrite feed a check that pulls out the details that decide a rule: amounts such as 18,000 and 6,000 rupees, dates such as November 3, 2026 and March 31, 2027, duties such as must, may and must not exceed, conditions such as unless and only if, and names such as HEAP and the Office of Energy Assistance. It looks for each one in the rewrite and keeps a tally, 48 of 51 details on the HEAP page. If every detail in a passage is found, the reader sees a preview with the tally. If not, the passage stays as published. The checks run twice, on the service and again in the browser. They can't see who does each action, the order of cause and effect, or claims the page never made.
+h: Rules for every AI surface
+rows: Words | Say what was checked. Never say "verified", "accurate" or "preserved".
+rows: Default | When a check fails or the service is down, the page stays as published.
+rows: Scope | Explanations and translations may only use the page's own content.
+rows: Recovery | View original and Undo on every change, with all of them listed in Active changes.
+rows: Look | No sparkle, no chatbot and no percentages. AI changes look like ordinary edits.
+h: What leaves the device
+rows: Stays on the device | Answers to the setup question, every setting and preference, anything the reader types or selects, and the history of applied changes.
+rows: Sent after consent | Only the page's main text for the passages being rewritten, as plain text. Returned text is checked again in the browser.
+figs: 11 | 11 If an answer can't be checked, Reframe says it couldn't safely adapt the content and leaves the page as it was.
+h: Two trust failures my own audit caught
+table: Found | What changed
+tr: A green "Eligibility rules preserved" badge on a rewrite that had moved the income limit | I removed the badge. Reviews list what was checked instead.
+tr: "Words explained" invented claims, such as "You do not pay it back" | Explanations are now limited to the page's own content.
+h: A rewrite the checks missed
+p: This rewrite kept every word the checks look for and reversed the rule.
+diagram: t2 | Published: The office must contact you within 30 days. Rewrite: You must contact the office within 30 days. Must and within 30 days line up, but the office and you swap places. The checks found the duty must, the deadline 30 days and the name office, and they don't check who does the action. It passed every check, and a reader who approves it thinks they must contact the office, when the published rule says the office must contact them.
+stat: 9 of 12 | rewrites that changed the meaning were flagged.
+stat: 3 | passed the checks. All three are listed below.
+stat: 1 of 7 | faithful rewrites was refused.
+stat: 0 | places where the interface says meaning is verified.
+small: Method: 19 passage pairs from CivicConnect, 12 that change the meaning and 7 that don't. I labelled them myself and ran them through the prototype's rule-based checks.
+table: Miss | Example | Why the checks passed it
+tr: Swapped actor | "The office must contact you within 30 days" became "You must contact the office within 30 days" | "Must", "30 days" and "office" are all still there.
+tr: Reversed cause | Cause and effect swapped, with the same terms kept | The checks look for terms, not their order.
+tr: Invented claim | A name repeated into a claim the page never made | The name matches the source, so it counts as found.
 
-# 06 Evaluation & reflection || What the checks caught and missed
-p: I hand-labelled 19 pairs of original passages and rewrites from CivicConnect: 12 that changed the meaning and 7 that preserved it. I ran them through the prototype’s rule-based checks.
-stat: 9 of 12 | Meaning-changing rewrites caught.
-stat: 3 of 12 | Meaning-changing rewrites missed.
-stat: 1 of 7 | Faithful rewrites refused.
-h: Same deadline, different person
-table: Published example | Rewrite the checks missed
-tr: The office must contact you within 30 days. | You must contact the office within 30 days.
-p: Both sentences kept “must” and “30 days.” The duty changed hands. The other misses reversed cause and effect or introduced a claim about the office while retaining the expected names. The checks also refused one faithful rewrite that split a sentence into steps.
-h: What I’d test next
-rows: Reader comprehension | Ask people who use screen readers, reading adjustments or translation to find an eligibility rule, review a rewrite and recover the source. Track task completion, correct interpretation and independent recovery.
-rows: Compatibility and meaning | Check keyboard order, announcements, zoom and translation on more real pages. Expand the benchmark to cover swapped actors, negation, exceptions and causal reversals.
-small: The benchmark measures the checks on one fictional page. Participant outcomes, translation accuracy across sites and accessibility conformance remain open. The extension is a concept build.
-small: 1 Mozilla Firefox Reader View · 2 Microsoft Edge Reading mode · 3 W3C cognitive accessibility guidance · 4 EDF and IAAP statement on overlays
-small: Project evidence: original case study PDF and archive, guided tour, and Reframe’s evaluation notes. Prototype screenshots appear throughout.
+# 06 Outcomes and metrics || What changed, and what I'd measure at scale
+p: Everything below was measured on the working prototype, through my own audits and the Simplify output. Nobody outside the project has used Reframe yet, so there are no adoption or satisfaction numbers.
+stat: −19% | words per sentence after Simplify, from 19.3 to 15.7 across 4 passages.
+stat: 3 steps | before AI wording reaches the page: consent, preview, then approval passage by passage.
+stat: 2 of 2 | critical audit findings fixed in the prototype.
+stat: 0 | places where the interface says meaning is verified.
+h: What changed in the build
+diagram: o1 | Before and after. From my audit, setup went from 6 steps to 3, panel controls went from about 20 to 6 sections in 2 tabs, 67 axe contrast failures were fixed, and open critical findings went from 2 to 0. From Simplify on 4 passages, words per sentence went from 19.3 to 15.7 and long words from 7 to 4. Reader mode stays at 19.3 and 7.
+small: Reader mode changes how the page looks and leaves sentence length where it was. Of the three, only Simplify shortens the sentences.
+h: What I'd measure at scale
+p: Shorter text is easy to measure and easy to fake. The measure that matters is whether readers get the rule right, and the guardrails catch Reframe if it ever wins by hiding a mistake.
+diagram: o2 | The north star is that readers act on the page's real rule without help. It breaks into four measures. Task completion counts readers who finish the eligibility and deadline tasks. Comprehension counts correct answers about the rule, with and without Reframe. Calibrated trust counts readers who keep a wrong rewrite as published, against how sure they say they are. Control is the time it takes to reach View original or Undo without help. The guardrails, with today's prototype values, are meaning changes the checks pass, 3 of 12; faithful rewrites refused, 1 of 7; places the interface says meaning is verified, 0; and open critical audit findings, 0.
+table: Area | What it tells me | Where the signal comes from
+tr: Task completion | Whether readers reach an answer at all | Task sessions on the eligibility and deadline questions
+tr: Comprehension | Whether the answer they reach is the published rule | Correct answers on the same page, with and without Reframe
+tr: Calibrated trust | Whether readers trust Reframe as much as it deserves, and no more | A planted wrong rewrite, with stated confidence compared against actual correctness
+tr: Control | Whether the way back works without help | Time to View original or Undo, and how often each is used
+small: In use, only opt-in counts would leave the device: how often readers choose Keep published, Undo and View original. No page text, needs or languages.
+
+# 07 Reflection || What I got wrong, and what's next
+p: Most of the design came from catching my own mistakes, in audits of my builds or by questioning my own method. I'm publishing the three rewrites my checks missed, because those limits matter more to a reader than anything that worked.
+table: Mistake | What happened | What I changed
+tr: A reassuring badge | "Eligibility rules preserved" appeared on a rewrite that had moved the income limit | I removed it. Reviews list what was checked.
+tr: Explanations beyond the page | "Words explained" invented claims, such as "You do not pay it back" | Every AI surface may only use the page's own content.
+tr: A mode hidden inside a setting | "Less visual clutter" silently turned on Focus mode, which dimmed navigation to 3.05:1 and caused 67 contrast failures | Focus mode became its own named choice, and it never dims protected content.
+tr: Too much up front | Six full-screen setup steps came before the reader could do anything | Setup is now three steps, with one optional question and Skip.
+tr: Too many controls | About 20 controls, with Restore 19 Tab stops in | The panel has six sections in two tabs, and three color options became one.
+tr: Labelling my own test | I labelled all 19 benchmark pairs myself, after I knew what the checks look for | I say so beside the results. A second labeller is the first next step.
+h: The three rewrites my checks missed
+diagram: w1 | Each miss and the check it needs. A swapped actor, where "The office must contact you" became "You must contact the office", passed because the words were all there and only their roles moved; it needs a check of who does each action. A reversed cause, with the same terms kept, passed because terms are checked and their order isn't; it needs a check of because, so, if and unless, in order. An invented claim, where a name was repeated into a claim the page never made, passed because the name matches the source; it needs a flag on sentences with no matching source sentence.
+h: What's next
+rows: Now | Add the three missing checks for who acts, the order of cause and effect, and new claims. Bring in a second labeller to re-label the 19 pairs and grow the set. Test with readers in each reading situation.
+rows: Next | Put a live model behind the checks in place of prepared examples, then re-run the benchmark. Test with NVDA, VoiceOver and switch users. Ship the extension's side panel and phone view, then publish it to the store.
+rows: Later | A publisher mode, so agencies approve plain versions themselves. More languages beyond Hindi and Kannada, with native reviewers. A write-up of the review-before-apply pattern for other teams.
+h: What I'm taking forward
+card: The screen where Reframe declines :: It matters more than any other. When a check fails, Reframe keeps the published text and says so.
+card: Counts over percentages :: A reader can check "48 of 51 details found". They can only take a percentage on trust.
+card: Claude Code as a build partner :: It let me test my decisions in a real browser within two weeks. The specs, the judgment calls and the audits were mine.
+small: Sources: 1 NCES, PIAAC 2023 results (Dec 2024) · 2 International Dyslexia Association, via Reading Rockets, Dyslexia Basics · 3 World Health Organization, Blindness and vision impairment fact sheet (Feb 2026) · 4 US Census Bureau, languages spoken at home, 2019 ACS (Dec 2022) · 5 WebAIM Million 2025 · 6 Code for America, Benefits Enrollment Field Guide, reported by Route Fifty (Apr 2023) · 7 European Disability Forum and IAAP, joint statement on accessibility overlays (2023)
