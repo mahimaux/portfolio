@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Lineage case study</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+@media screen{
+ html,body{background:#E4ECE9}
+ body{padding:56px 0 40px}
+ .page{margin:0 auto 24px;background:#fff;box-shadow:0 2px 18px rgba(18,46,46,.12);border-radius:6px}
+ .dl{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;gap:16px;align-items:center;justify-content:center;padding:10px 16px;background:#122E2E;color:#fff;font:500 13px Inter,sans-serif}
+ .dl a{color:#9CC9C0;text-decoration:none}.dl a:hover{text-decoration:underline}
+ .wrap{transform-origin:top left}
+}
+@media print{.dl{display:none}}
+</style>
+<script>
+function fit(){var w=document.querySelector('.wrap');if(!w)return;var pw=1122+32,vw=window.innerWidth;var s=Math.min(1,vw/pw);w.style.transform=s<1?'scale('+s+')':'';w.style.width=s<1?(pw)+'px':'';document.body.style.height=s<1?(w.scrollHeight*s+100)+'px':'';}
+addEventListener('resize',fit);addEventListener('load',fit);
+</script>
+
+<style>
+@page { size: 297mm 210mm; margin: 0; }
+:root{--ink:#122E2E;--ink2:#3C5555;--mute:#6B7F7D;--line:#D6E2DE;--tint:#EEF5F2;--teal:#1F6F66;--teal2:#2E8B7F;
+--warn:#B4532A;--warnbg:#FCEBDD;--ok:#1E7A4C;--okbg:#DDF3E6;--blue:#2B4FD8;--bluebg:#E6ECFB}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{font-family:Inter,sans-serif;color:var(--ink);font-size:10.2pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-feature-settings:"ss01","cv11"}
+.page{width:297mm;height:210mm;padding:14mm 16mm 13mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+.foot{position:absolute;left:16mm;right:16mm;bottom:6.5mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute)}
+.eyebrow{font-size:8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:3mm}
+h1{font-family:"Inter Display",Inter,sans-serif;font-weight:700;font-size:35pt;white-space:nowrap;line-height:1.02;letter-spacing:-.025em}
+h2{font-family:"Inter Display",Inter,sans-serif;font-weight:700;font-size:22pt;line-height:1.12;letter-spacing:-.015em;margin-bottom:2.5mm}
+h3{font-size:11pt;font-weight:650;margin-bottom:2mm}
+h4{font-size:7.8pt;font-weight:650;text-transform:uppercase;letter-spacing:.07em;color:var(--mute);margin-bottom:2mm}
+.lede{font-size:12pt;color:var(--ink2);line-height:1.42}
+.row{display:flex;gap:8mm}
+.col{flex:1;min-width:0}
+.card{background:var(--tint);border-radius:3mm;padding:4mm 4.5mm}
+.card.w{background:#fff;border:1px solid var(--line)}
+.shot{border:1px solid var(--line);border-radius:2.5mm;overflow:hidden;background:#fff;box-shadow:0 1.5mm 6mm rgba(18,46,46,.10)}
+.shot img{display:block;width:100%}
+.shot.pad{padding:5mm 6mm}
+.cap{font-size:8pt;color:var(--mute);margin-top:2mm;line-height:1.35}
+ul.b{list-style:none}
+ul.b li{padding-left:4.5mm;position:relative;margin-bottom:1.6mm}
+ul.b li:before{content:"";position:absolute;left:0;top:1.9mm;width:1.6mm;height:1.6mm;border-radius:50%;background:var(--teal2)}
+ul.x li:before{background:var(--warn)}
+table{border-collapse:collapse;width:100%;font-size:9pt}
+th{text-align:left;font-weight:650;font-size:7.6pt;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);padding:1.6mm 2mm;border-bottom:1.2px solid var(--ink)}
+td{padding:2mm 2mm;border-bottom:1px solid var(--line);vertical-align:top}
+.tag{display:inline-block;font-size:7.3pt;font-weight:650;padding:.5mm 2mm;border-radius:5mm;white-space:nowrap}
+.tag.ok{background:var(--okbg);color:var(--ok)}
+.tag.warn{background:var(--warnbg);color:var(--warn)}
+.tag.blue{background:var(--bluebg);color:var(--blue)}
+.tag.teal{background:var(--tint);color:var(--teal)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:8.2pt;color:var(--ink2)}
+
+/* hero */
+.hero{display:flex;gap:12mm;flex:1;min-height:0}
+.hero .l{flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero .r{flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero .r .shot{max-height:166mm}
+.hero .r .shot img{height:100%;object-fit:cover;object-position:top}
+.snap{margin-top:9mm;border-top:1.2px solid var(--ink)}
+.snap div{display:grid;grid-template-columns:24mm 1fr;gap:4mm;padding:2.6mm 0;border-bottom:1px solid var(--line);font-size:10pt}
+.snap dt{font-size:7.8pt;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);padding-top:.6mm}
+.snap dd b{font-weight:650}
+
+/* problem */
+.posters{display:flex;align-items:center;gap:3mm}
+.poster{width:48mm;position:relative}
+.poster img{display:block;width:100%;border-radius:2mm;border:1px solid var(--line)}
+.poster .lab{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm;font-size:8pt;font-weight:650;white-space:nowrap}
+.poster .sub{font-size:7.8pt;color:var(--mute);margin-top:1.4mm;line-height:1.3}
+.ring{position:absolute;border:.7mm solid #E8590C;border-radius:50%}
+.pin{position:absolute;width:5.4mm;height:5.4mm;border-radius:50%;background:#E8590C;color:#fff;font-weight:700;font-size:7.6pt;display:flex;align-items:center;justify-content:center}
+.arrow{display:flex;flex-direction:column;align-items:center;gap:1mm;width:19mm;text-align:center;font-size:7.6pt;color:var(--ink2);line-height:1.25}
+.arrow svg{display:block}
+.chg{color:var(--warn);font-weight:650}
+.keep{color:var(--ok);font-weight:650}
+.opt{border-radius:2.5mm;padding:3mm 3.5mm;font-size:9pt}
+.opt b{display:block;margin-bottom:1mm;font-size:9.4pt}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.why .card{padding:3mm 4mm;font-size:8.8pt;line-height:1.38}
+.why .card b{display:block;font-size:9.6pt;margin-bottom:1mm}
+.why .n{display:none}
+
+/* role */
+.chips{display:flex;gap:3mm;margin:1mm 0 5mm}
+.chip{border:1px solid var(--line);border-radius:2.5mm;padding:2.6mm 4mm;flex:1;background:#fff}
+.chip b{display:block;font-family:"Inter Display";font-size:15pt;font-weight:700;color:var(--teal);line-height:1.05}
+.chip span{font-size:8.4pt;color:var(--ink2)}
+.oos td:first-child{font-weight:600;width:40%}
+.p3 ul.b li{margin-bottom:3mm;font-size:10.2pt}.p3 td{padding:2.8mm 2mm;font-size:9.4pt}.p3 .chips{margin-bottom:7mm}
+/* research matrix */
+.mx{border-collapse:separate;border-spacing:0;width:100%;font-size:9pt}
+.mx th{border:none;padding:0 2mm 2mm;vertical-align:bottom;text-align:center;font-size:7.4pt;line-height:1.25}
+.mx th.grp{text-align:center;padding:1.6mm 2mm;font-size:7.4pt;letter-spacing:.08em;border-radius:2mm 2mm 0 0}
+.mx th.g1{background:#F1F4F3;color:var(--mute)}
+.mx th.g2{background:var(--warnbg);color:var(--warn)}
+.mx td{border-bottom:1px solid var(--line);padding:2.4mm 2mm;text-align:center;vertical-align:middle}
+.mx td:first-child{text-align:left}
+.mx td.c1{background:#F7F9F8}
+.mx td.c2{background:#FEF6EF}
+.mx tr.us td{border-bottom:none;background:var(--tint)!important;font-weight:650}
+.mx tr.us td:first-child{border-radius:2mm 0 0 2mm}
+.mx tr.us td:last-child{border-radius:0 2mm 2mm 0}
+.mx small{display:block;font-size:7.4pt;color:var(--mute);font-weight:400;margin-top:.4mm}
+.dot{display:inline-block;width:4.2mm;height:4.2mm;border-radius:50%;vertical-align:middle}
+.dot.y{background:var(--teal2)}
+.dot.p{background:linear-gradient(90deg,var(--teal2) 50%,#fff 50%);border:1.2px solid var(--teal2)}
+.dot.n{border:1.2px solid #B9C7C4;background:#fff}
+.dot.q{background:#F3D27A}
+.dot.r{background:#E08A6B}
+.legend{display:flex;gap:5mm;font-size:7.8pt;color:var(--mute);margin-top:2.5mm;align-items:center}
+.legend .dot{width:3.2mm;height:3.2mm;margin-right:1mm}
+.insight{background:var(--ink);color:#fff;border-radius:3mm;padding:5mm 6mm}
+.insight .k{font-size:7.6pt;letter-spacing:.08em;text-transform:uppercase;color:#9CC9C0;font-weight:650;margin-bottom:1.5mm}
+.insight .t{font-family:"Inter Display";font-size:17pt;font-weight:700;line-height:1.15}
+.find{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm}
+.find div{font-size:8.8pt;border-top:1px solid var(--line);padding-top:2mm;color:var(--ink2)}
+.find b{color:var(--ink);display:block;font-size:9pt}
+.find i{font-style:normal;color:var(--teal);font-weight:600}
+
+/* spine */
+.spine{display:grid;grid-template-columns:1fr 9mm 1.25fr;align-items:stretch}
+.spine .box{border-radius:3mm;padding:4.5mm 5mm}
+.spine .ar{display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:16pt}
+.pr{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:6mm}
+.pr .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-top:1.2mm solid var(--teal);padding:4.5mm 5mm}
+.pr .num{font-family:"Inter Display";font-weight:700;color:var(--teal);font-size:9pt;letter-spacing:.06em;margin-bottom:1mm}
+.pr h3{font-family:"Inter Display";font-size:15pt;line-height:1.12;margin-bottom:2.5mm}
+.pr .st{font-size:10.6pt;margin-bottom:3mm;line-height:1.4}
+.pr dl{font-size:9.6pt;color:var(--ink2)}
+.pr dt{font-size:7.4pt;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-top:2.2mm}
+.pr .drives{margin-top:auto;padding-top:5mm;display:flex;gap:1.5mm;flex-wrap:wrap}
+
+/* directions */
+.dm{width:100%;border-collapse:separate;border-spacing:0 2mm;font-size:9.4pt}
+.dm th{border:none;font-size:7.4pt;text-align:center;padding:0 2mm}
+.dm th:first-child,.dm th:last-child{text-align:left}
+.dm td{border:none;padding:3mm 3mm;background:#F6F8F7;vertical-align:middle;text-align:center}
+.dm td:first-child{text-align:left;border-radius:2.5mm 0 0 2.5mm;width:62mm}
+.dm td:last-child{text-align:left;border-radius:0 2.5mm 2.5mm 0;width:88mm;font-size:8.8pt;color:var(--ink2)}
+.dm td:first-child b{display:block;font-size:10pt}
+.dm td:first-child span{font-size:8.2pt;color:var(--mute)}
+.dm tr.win td{background:var(--okbg)}
+.dm .dot{width:5mm;height:5mm}
+.verdict{font-weight:650;font-size:8pt;display:block;margin-bottom:.5mm}
+
+/* decisions */
+.dec{display:flex;gap:10mm;flex:1;min-height:0;align-items:center;padding-bottom:4mm}
+.dec .t{width:112mm;flex:none;display:flex;flex-direction:column}
+.dec .s{flex:1;min-width:0;display:flex;gap:4mm;align-items:center;justify-content:center}
+.rows>div{display:grid;grid-template-columns:21mm 1fr;gap:3mm;padding:2.8mm 0;border-top:1px solid var(--line);font-size:10.2pt}
+.rows>div:last-child{border-bottom:1px solid var(--line)}
+.rows dt{font-size:7.4pt;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);padding-top:.7mm}
+.rows .choice{background:var(--tint);margin:0 -3mm;padding:2.6mm 3mm;border-radius:2mm;border-top:none}
+.rows .choice dt{color:var(--teal)}
+.opts{list-style:none}
+.opts li{margin-bottom:.8mm}
+.opts li.no{color:var(--mute);text-decoration:line-through;text-decoration-color:#B9C7C4}
+.opts li.yes{font-weight:650;color:var(--ink)}
+.opts li.yes:before{content:"✓ ";color:var(--ok)}
+.dhead{display:flex;align-items:baseline;gap:3mm;margin-bottom:1mm}
+.dnum{font-family:"Inter Display";font-weight:700;font-size:10pt;color:#fff;background:var(--teal);border-radius:1.6mm;padding:.6mm 2mm}
+.prin{margin-top:3mm;font-size:8pt;color:var(--mute)}
+.scap{font-size:7.8pt;color:var(--mute);margin-top:1.6mm;line-height:1.3}
+.chain{display:flex;align-items:center;gap:1.5mm;font-size:8pt;margin-top:3mm;flex-wrap:wrap}
+.chain .v{border:1px solid var(--line);border-radius:2mm;padding:1.4mm 2.2mm;background:#fff;line-height:1.25}
+.chain .v b{display:block;font-size:8.6pt}
+.chain .a{color:var(--mute)}
+
+/* part 3 */
+.it2{display:flex;flex-direction:column;gap:3.5mm}
+.numi{display:inline-flex;width:4.6mm;height:4.6mm;border-radius:50%;background:var(--teal);color:#fff;font-size:7pt;align-items:center;justify-content:center;margin-right:1mm}
+.ec{font-size:8.7pt}.ec td{padding:1.7mm 1.6mm}.ec td:first-child{color:var(--teal);width:8mm}.ec th{padding:1.4mm 1.6mm}
+.ec td:nth-child(3){color:var(--mute);width:15mm}
+.au td{padding:2.6mm 2mm}.au tr.fail td{background:#FEF6EF}
+.dot.i{border:1.4px dashed var(--teal2);background:#fff}
+.it{display:grid;grid-template-columns:1fr 1fr;gap:4mm 7mm;flex:1;min-height:0}
+.itc{display:flex;gap:3.5mm;border-top:1.2px solid var(--ink);padding-top:3mm;font-size:9.2pt}
+.itc>div:nth-child(2){flex:1;min-width:0}
+.itc .n{font-family:"Inter Display";font-weight:700;font-size:18pt;color:var(--teal);line-height:1;width:7mm;flex:none}
+.itc b{display:block;font-size:10.4pt;margin-bottom:1.5mm}
+.itc dl{display:grid;grid-template-columns:17mm 1fr;gap:1.2mm 2mm;color:var(--ink2)}
+.itc dt{font-size:7.2pt;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);padding-top:.6mm}
+.itc .ev{width:52mm;flex:none}
+.itc .ev.ba{display:flex;gap:2mm;width:64mm}.itc .ev.ba>div{flex:1}
+.a11y{font-size:9pt}.a11y td{padding:2.2mm 2mm}
+
+.rf{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm;margin-top:4mm}
+.rf .card{padding:6mm 6mm;font-size:10pt}.rf ul.b li{margin-bottom:3.5mm;line-height:1.45}
+.rf h4{font-size:8.4pt;margin-bottom:4mm}
+.lrn{margin-bottom:6mm;font-size:10pt;line-height:1.45;color:#D5E6E2}.lrn b{display:block;color:#fff;font-family:"Inter Display";font-size:14pt;line-height:1.2;margin-bottom:1.5mm}
+</style></head><body><div class="dl"><span>Lineage case study</span><a href="Lineage-Case-Study-v3.pdf">Download PDF</a><a href="Lineage-Case-Study-v3.docx">Download Word</a></div><div class="wrap">
+
+<!-- ============ 1 · HERO ============ -->
+<section class="page">
+  <div class="hero">
+    <div class="l">
+      <div class="eyebrow">Lineage · Case study · Interaction design</div>
+      <h1>Recover the shadow.<br>Keep the progress.</h1>
+      <p class="lede" style="margin-top:6mm;max-width:118mm">Lineage lets a designer bring back one approved element from an earlier version, with everything it depends on, without losing the work done since. Before anything is saved, it shows exactly what will change and what will stay.</p>
+
+      <dl class="snap">
+        <div><dt>Timeline</dt><dd><b>3 weeks</b>, solo, with AI-assisted coding for the prototype</dd></div>
+        <div><dt>Scope</dt><dd>One end-to-end recovery flow on one poster: 3 selectable elements, compare, preview, recover, undo, plus every failure state</dd></div>
+      </dl>
+    </div>
+    <div class="r">
+      <div class="shot"><img src="img/hero_preview.jpg" alt="Recovery preview dialog"></div>
+      <p class="cap">The recovery preview. The approved shadow is shown inside today's poster, with what <b>will change</b>, what <b>will stay</b> and what is <b>required together</b>, all before the designer commits.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>1</span></div>
+</section>
+
+<!-- ============ 2 · PROBLEM ============ -->
+<section class="page">
+  <div class="eyebrow">01 · The problem</div>
+  <h2>The lead approved a soft shadow. An AI edit made it heavier. The rest of the poster moved on.</h2>
+  <p class="lede" style="margin-bottom:4mm;max-width:235mm">Now the team wants that approved shadow back, without undoing the new background and wording.</p>
+
+  <div class="row" style="gap:9mm">
+    <div style="flex:none">
+      <div class="posters">
+        <div class="poster">
+          <div class="lab"><span>21 Oct · approved</span><span class="tag ok">✓ Approved</span></div>
+          <div style="position:relative">
+            <img src="img/poster_approved.jpg" alt="Poster as approved">
+            <div class="ring" style="left:12%;top:60%;width:76%;height:16%;border-color:var(--ok)"></div>
+          </div>
+          <div class="sub">Hand-refined shadow, signed off by the creative lead</div>
+        </div>
+        <div class="arrow">
+          <svg width="70" height="16" viewBox="0 0 70 16"><path d="M2 8 H64" stroke="#6B7F7D" stroke-width="2"/><path d="M58 2 L66 8 L58 14" fill="none" stroke="#6B7F7D" stroke-width="2"/></svg>
+          <span><b>4 days,</b><br>3 kinds of change</span>
+        </div>
+        <div class="poster">
+          <div class="lab"><span>25 Oct · today</span><span class="tag warn">Too heavy</span></div>
+          <div style="position:relative">
+            <img src="img/poster_now.jpg" alt="Today's poster">
+            <div class="ring" style="left:12%;top:60%;width:76%;height:16%"></div>
+            <div class="pin" style="right:3%;top:57%">1</div>
+            <div class="pin" style="right:3%;top:6%">2</div>
+            <div class="pin" style="right:3%;top:80%">3</div>
+          </div>
+          <div class="sub">Newer background and wording the team wants to keep</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>What happened to each part</h4>
+      <table>
+        <tr><th style="width:5mm"></th><th>Part</th><th>Since approval</th><th>The team wants</th></tr>
+        <tr><td><span class="pin" style="position:static;width:4.6mm;height:4.6mm;font-size:7pt">1</span></td><td><b>Shadow</b> + its mask</td><td>AI-assisted edit made it heavier. The tool used was not recorded.</td><td><span class="chg">The approved one back</span></td></tr>
+        <tr><td><span class="pin" style="position:static;width:4.6mm;height:4.6mm;font-size:7pt">2</span></td><td><b>Background</b></td><td>Regenerated twice, warm sand to soft teal</td><td><span class="keep">Keep the new one</span></td></tr>
+        <tr><td><span class="pin" style="position:static;width:4.6mm;height:4.6mm;font-size:7pt">3</span></td><td><b>Wording</b></td><td>“Hydrating face serum” became “Calm skin, all day.”</td><td><span class="keep">Keep the new one</span></td></tr>
+        <tr><td></td><td><b>Product photo</b></td><td>Unchanged</td><td>Keep</td></tr>
+      </table>
+
+      <h4 style="margin-top:4.5mm">Today, both ways back lose something</h4>
+      <div class="row" style="gap:4mm">
+        <div class="opt" style="background:var(--warnbg);flex:1"><b>Restore the old file</b>
+          <div><span class="keep">✓</span> Shadow comes back<br><span class="chg">✕</span> New background and wording are lost</div></div>
+        <div class="opt" style="background:var(--warnbg);flex:1"><b>Rebuild the shadow by hand</b>
+          <div><span class="keep">✓</span> Looks close<br><span class="chg">✕</span> Not the artwork that was approved</div></div>
+      </div>
+      <p class="cap" style="margin-top:2.5mm">The shadow also only looks right with the mask it was made with, and nothing on the poster shows that link.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:auto">
+    <h4>Why this matters now</h4>
+    <div class="why">
+      <div class="card"><div class="n">1</div><b>AI edits multiply versions</b>Each AI pass adds a version between the approved one and the one on screen. Here, one AI edit replaced the approved shadow.</div>
+      <div class="card"><div class="n">2</div><b>The record has gaps</b>An AI edit may not record the tool or prompt behind it. Here, the heavier shadow has no tool on record.</div>
+      <div class="card"><div class="n">3</div><b>Approval doesn't travel</b>The sign-off covered the shadow on a different poster. Copied into today's design, it can look approved when nobody has reviewed it.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Serein is a fictional brand. Posters are rendered from the prototype's demo data.</span><span>2</span></div>
+</section>
+
+<!-- ============ 3 · ROLE & CONSTRAINTS ============ -->
+<section class="page p3">
+  <div class="eyebrow">02 · Constraints</div>
+  <h2>Solo, three weeks, AI-assisted. So I chose one flow and made it complete.</h2>
+
+  <div class="chips">
+    <div class="chip"><b>Solo</b><span>Sole designer, from framing to the audit</span></div>
+    <div class="chip"><b>3 weeks</b><span>Framing, prototype, refinement and accessibility audit</span></div>
+    <div class="chip"><b>AI-assisted</b><span>Prototype code written with AI coding tools</span></div>
+  </div>
+
+  <div class="row" style="flex:1;min-height:0;gap:9mm">
+    <div class="col" style="flex:1.1">
+      <h4>Constraints, and what I decided because of them</h4>
+      <table>
+        <tr><th>Constraint</th><th>Decision</th></tr>
+        <tr><td>Three weeks, one designer</td><td>One poster, three elements and one linked mask, built end to end rather than spread thin across many features</td></tr>
+        <tr><td>Only recorded, separate artwork can be copied</td><td>Copy the stored original, or refuse if it is missing</td></tr>
+        <tr><td>Records can be incomplete</td><td>Show “Not recorded” wherever a fact is missing</td></tr>
+        <tr><td>Saved in one browser, one editor at a time</td><td>Any change to the poster during a preview forces a fresh preview</td></tr>
+        <tr><td>Must work without a mouse</td><td>An Elements list is the keyboard route; status always has a text label alongside colour</td></tr>
+      </table>
+    </div>
+
+    <div class="col" style="flex:.85">
+      <h4>Deliberately out of scope</h4>
+      <table class="oos">
+        <tr><td>Live AI generation</td><td>AI outputs are pre-recorded, so recovery is the only thing being judged</td></tr>
+        <tr><td>Multiplayer and accounts</td><td>One editor at a time; the flow assumes no one else edits mid-preview</td></tr>
+        <tr><td>Capture from other apps</td><td>Depends on integrations beyond a prototype</td></tr>
+        <tr><td>Rebuilding flattened art</td><td>Can't be done faithfully, so the product refuses</td></tr>
+        <tr><td>Rights and authenticity</td><td>A history record doesn't prove how art was made (C2PA)</td></tr>
+        <tr><td>User testing</td><td>Not run yet; the prototype is built to be tested next</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>3</span></div>
+</section>
+
+<!-- ============ 4 · RESEARCH ============ -->
+<section class="page">
+  <div class="eyebrow">03 · Research and the landscape</div>
+  <h2>Selective restore already exists. The decision around it doesn't.</h2>
+  <p class="lede" style="margin-bottom:5mm;max-width:240mm">Before designing, I checked whether this was solved: three HCI studies, the leading professional tools and the C2PA provenance standard.</p>
+
+  <div class="row" style="gap:9mm;flex:1;min-height:0">
+    <div class="col" style="flex:1.35">
+      <table class="mx">
+        <tr><th></th><th class="grp g1" colspan="2">Restore</th><th class="grp g2" colspan="2">Decision context</th></tr>
+        <tr><th></th><th class="c1">Find the right<br>version</th><th>Keep later<br>work</th><th>Show what must<br>come with it</th><th>Show what the<br>approval covered</th></tr>
+        <tr><td><b>Photoshop History Brush</b></td><td class="c1"><span class="dot p"></span></td><td class="c1"><span class="dot y"></span></td><td class="c2"><span class="dot n"></span></td><td class="c2"><span class="dot n"></span></td></tr>
+        <tr><td><b>Cloud version history</b></td><td class="c1"><span class="dot y"></span></td><td class="c1"><span class="dot p"></span><small>manual extraction</small></td><td class="c2"><span class="dot n"></span></td><td class="c2"><span class="dot n"></span></td></tr>
+        <tr><td><b>Layers and saved copies</b></td><td class="c1"><span class="dot p"></span><small>if well named</small></td><td class="c1"><span class="dot y"></span></td><td class="c2"><span class="dot n"></span></td><td class="c2"><span class="dot n"></span></td></tr>
+        <tr><td><b>HistoryPalette</b> <small>research tool, 2025</small></td><td class="c1"><span class="dot y"></span><small>in place</small></td><td class="c1"><span class="dot y"></span></td><td class="c2"><span class="dot n"></span></td><td class="c2"><span class="dot n"></span></td></tr>
+        <tr><td><b>Content Credentials (C2PA)</b></td><td class="c1"><span class="dot n"></span></td><td class="c1" style="color:var(--mute)">n/a</td><td class="c2"><span class="dot n"></span></td><td class="c2"><span class="dot p"></span><small>records claims, not proof</small></td></tr>
+        <tr class="us"><td>Lineage</td><td><span class="dot y"></span><small>by element</small></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span><small>then vs now</small></td></tr>
+      </table>
+      <div class="legend"><span><span class="dot y"></span>Yes</span><span><span class="dot p"></span>Partly</span><span><span class="dot n"></span>No</span><span style="margin-left:auto">My reading of public documentation and papers, not a hands-on benchmark.</span></div>
+    </div>
+
+    <div class="col" style="display:flex;flex-direction:column">
+      <div class="insight">
+        <div class="k">The insight</div>
+        <div class="t">Tools can bring old work back. None I reviewed show what that will do to today's design.</div>
+      </div>
+      <h4 style="margin-top:5mm">What the desk review changed</h4>
+      <div class="find">
+        <div><b>Selective undo, CHI 2015</b>6 of 9 participants expected to use it often; 3 said layers were enough. <i>Existing workarounds are the real competitor.</i></div>
+        <div><b>Creative version control, CSCW 2022</b>18 interviews: old versions are material to reuse. <i>Organise around the element, not the file.</i></div>
+        <div><b>HistoryPalette, 2025</b>In-place preview and reuse already exist. <i>Focus on dependencies, approval and what stays.</i></div>
+        <div><b>C2PA guidance</b>A record of how something was made doesn't prove it. <i>Keep facts, statements and unknowns apart.</i></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>4</span></div>
+</section>
+
+<!-- ============ 5 · INSIGHT → HMW → PRINCIPLES ============ -->
+<section class="page">
+  <div class="eyebrow">04 · Insight, question and principles</div>
+  <h2>One insight, one question, three principles</h2>
+  <p class="lede" style="margin-bottom:4.5mm">Each design decision later in this case study traces back to one of these principles.</p>
+
+  <div class="spine">
+    <div class="box" style="background:var(--ink);color:#fff">
+      <h4 style="color:#9CC9C0">Insight</h4>
+      <div style="font-family:'Inter Display';font-size:15pt;font-weight:700;line-height:1.15">Recovery is a judgement call.</div>
+      <p style="font-size:9pt;margin-top:2mm;color:#D5E6E2">Finding the old artwork is the easy part. The hard part is judging what it will do to today's design.</p>
+    </div>
+    <div class="ar">→</div>
+    <div class="box" style="background:var(--tint)">
+      <h4>How might we</h4>
+      <div style="font-family:'Inter Display';font-size:14pt;font-weight:650;line-height:1.22">…help a designer recover a previously approved element while understanding its dependencies, its evidence gaps and its effect on the current design?</div>
+    </div>
+  </div>
+
+  <div class="pr">
+    <div class="card">
+      <div class="num">PRINCIPLE 1</div>
+      <h3>Make scope visible</h3>
+      <div class="st">Before saving, a designer can say what will change, what will stay and what has to come along.</div>
+      <dl><dt>In practice</dt><dd>Try the old shadow on in today's poster. The preview lists Will change, Will stay and Required together.</dd>
+      <dt>Cost I accepted</dt><dd>More to read in the dialog</dd></dl>
+      <div class="drives"><span class="tag teal">D3 Compare vs recover</span><span class="tag teal">D5 Mask as dependency</span></div>
+    </div>
+    <div class="card">
+      <div class="num">PRINCIPLE 2</div>
+      <h3>Keep history accountable</h3>
+      <div class="st">History only grows, and every fact stays attached to the version it is true for.</div>
+      <dl><dt>In practice</dt><dd>Approval stays on the revision it was given for. Undo adds a new version instead of erasing one.</dd>
+      <dt>Cost I accepted</dt><dd>Longer history; even an exact copy needs a new sign-off</dd></dl>
+      <div class="drives"><span class="tag teal">D2 Approval stays</span><span class="tag teal">D4 Receipt and undo</span></div>
+    </div>
+    <div class="card">
+      <div class="num">PRINCIPLE 3</div>
+      <h3>Prefer an explicit stop</h3>
+      <div class="st">If something required is missing or unknown, say so and stop. Never swap in something close.</div>
+      <dl><dt>In practice</dt><dd>A missing mask blocks recovery and names the reason. An unrecorded tool shows as “Not recorded”.</dd>
+      <dt>Cost I accepted</dt><dd>More dead ends for the user</dd></dl>
+      <div class="drives"><span class="tag teal">D1 Evidence labels</span><span class="tag teal">D5 Mask as dependency</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>5</span></div>
+</section>
+
+<!-- ============ 6 · DIRECTIONS ============ -->
+<section class="page">
+  <div class="eyebrow">05 · Exploring directions</div>
+  <h2>Four ways back to the approved shadow</h2>
+  <p class="lede" style="margin-bottom:3mm">I judged each recovery approach on the same four questions.</p>
+
+  <table class="dm">
+    <tr><th>Approach</th><th>Same artwork<br>as reviewed?</th><th>Keeps later<br>work?</th><th>Result<br>predictable?</th><th>Buildable<br>now?</th><th>Why it lost or won</th></tr>
+    <tr><td><b>A. Restore the whole earlier poster</b><span>Familiar file-level rollback</span></td><td><span class="dot y"></span></td><td><span class="dot r"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="verdict" style="color:var(--warn)">Too broad</span>Brings back the shadow, but also reverts the background and wording the team wants to keep.</td></tr>
+    <tr><td><b>B. Replay the earlier edits</b><span>Rebuild a past state step by step</span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot q"></span></td><td><span class="dot r"></span></td><td><span class="verdict" style="color:var(--warn)">Can't promise it</span>Needs a complete, reliable log of every edit and dependency.</td></tr>
+    <tr><td><b>C. Ask AI to recreate the shadow</b><span>Generate something that looks close</span></td><td><span class="dot r"></span></td><td><span class="dot y"></span></td><td><span class="dot q"></span></td><td><span class="dot y"></span></td><td><span class="verdict" style="color:var(--warn)">New artwork</span>A close match still isn't the reviewed artwork, so it would need a new review anyway.</td></tr>
+    <tr class="win"><td><b>D. Copy the recorded snapshot</b><span>Shadow plus its mask, as stored</span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="verdict" style="color:var(--ok)">Chosen</span>Copies known, stored artwork into new revisions. The rest of the poster is kept.</td></tr>
+  </table>
+  <div class="legend" style="margin-top:0"><span><span class="dot y"></span>Yes</span><span><span class="dot r"></span>No</span><span><span class="dot q"></span>Depends on data the prototype can't guarantee</span></div>
+
+  <div class="row" style="margin-top:auto;gap:6mm">
+    <div class="card" style="flex:1.3;background:var(--okbg)"><h3>Why the snapshot won</h3>
+      <ul class="b"><li>It makes the narrowest promise the product can keep: copy what was stored and reviewed, or refuse when that isn't possible.</li><li>It is the only option that is yes on all four questions.</li></ul></div>
+    <div class="card" style="flex:1"><h3>What it costs</h3>
+      <ul class="b"><li>Flattened or unrecorded artwork can't be recovered, so the product has to say no clearly (principle 3).</li></ul></div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>6</span></div>
+</section>
+
+<!-- ============ 7 · DECISIONS ============ -->
+<section class="page">
+  <div class="eyebrow">06 · Key design decisions · 1 of 5</div>
+  <div class="dec">
+    <div class="t">
+      <div class="dhead"><span class="dnum">D1</span></div>
+      <h2>Evidence labels: “Not recorded” is an answer</h2>
+      <dl class="rows" style="margin-top:3mm">
+        <div><dt>Problem</dt><dd>An AI-assisted edit may not capture the tool or prompt behind it. In the demo, no tool was recorded for the heavier shadow.</dd></div>
+        <div><dt>Options</dt><dd><ul class="opts"><li class="no">One merged provenance list</li><li class="no">Hide fields that are empty</li><li class="yes">Three labelled groups</li></ul></dd></div>
+        <div class="choice"><dt>Choice</dt><dd><b>Recorded by the system</b>, <b>Declared by a collaborator</b> and <b>Unknown</b> sit in separate blocks. A missing tool reads “Tool: not recorded”.</dd></div>
+        <div><dt>Trade-off</dt><dd>More labels to read on every version</dd></div>
+      </dl>
+      <div class="prin">Principle 3 · Prefer an explicit stop</div>
+    </div>
+    <div class="s">
+      <div style="width:90mm"><div class="shot pad"><img src="img/c_r3_evidence.jpg" alt="Evidence groups"></div><div class="scap">The AI-edited shadow. A collaborator's note never looks like a verified fact, and the gap stays visible.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>7</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Key design decisions · 2 of 5</div>
+  <div class="dec">
+    <div class="t">
+      <div class="dhead"><span class="dnum">D2</span></div>
+      <h2>Approval stays with the original revision</h2>
+      <dl class="rows" style="margin-top:3mm">
+        <div><dt>Problem</dt><dd>The lead approved shadow-r2 on an older poster. Since then the background, mask and wording have all changed. A green badge on a copy would state a true fact in a misleading place.</dd></div>
+        <div><dt>Options</dt><dd><ul class="opts"><li class="no">Carry the approval forward</li><li class="no">Ask the designer each time</li><li class="yes">Approval stays put; every copy needs review</li></ul></dd></div>
+        <div class="choice"><dt>Choice</dt><dd>The approval names who signed off and when, shows the poster they actually saw, and compares then with now. Every recovered copy starts as <b>Needs review</b>.</dd></div>
+        <div><dt>Trade-off</dt><dd>Even an exact copy needs another sign-off</dd></div>
+      </dl>
+      <div class="prin">Principle 2 · Keep history accountable</div>
+    </div>
+    <div class="s">
+      <div style="width:60mm"><div class="shot pad"><img src="img/c_r2_approval.jpg" alt="Approval scope"></div><div class="scap">“This covers shadow-r2 in the composition below. It does not approve the current poster.”</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>8</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Key design decisions · 3 of 5</div>
+  <div class="dec">
+    <div class="t" style="width:100mm">
+      <div class="dhead"><span class="dnum">D3</span></div>
+      <h2>Compare and recover are separate actions</h2>
+      <dl class="rows" style="margin-top:3mm">
+        <div><dt>Problem</dt><dd>Designers need to try the old shadow on before committing, and must know nothing is saved while they look.</dd></div>
+        <div><dt>Options</dt><dd><ul class="opts"><li class="no">Hover preview (mouse-only, fleeting)</li><li class="no">Apply inline from the history card</li><li class="yes">Compare on the canvas, then recover from a preview</li></ul></dd></div>
+        <div class="choice"><dt>Choice</dt><dd>Compare only changes the view, with three cues: a blue frame, a “Preview only, nothing is saved” label and a caption. Saving happens only in the preview dialog. Radio buttons switch the view, so it works by keyboard.</dd></div>
+        <div><dt>Trade-off</dt><dd>One more step before recovering</dd></div>
+      </dl>
+      <div class="prin">Principle 1 · Make scope visible</div>
+    </div>
+    <div class="s" style="align-items:flex-start">
+      <div style="flex:1.25"><div class="shot"><img src="img/compare_canvas.jpg" alt="Compare on canvas"></div><div class="scap">The approved shadow inside today's poster. Everything else stays as it is now.</div></div>
+      <div style="flex:.6"><div class="shot"><img src="img/compare_controls.jpg" alt="Compare controls"></div><div class="scap">An explicit switch, then “Preview recovery”.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>9</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Key design decisions · 4 of 5</div>
+  <div class="dec">
+    <div class="t">
+      <div class="dhead"><span class="dnum">D4</span></div>
+      <h2>A recovery gets a receipt. Undo adds a version.</h2>
+      <dl class="rows" style="margin-top:3mm">
+        <div><dt>Problem</dt><dd>Rolling the whole poster back would erase unrelated work done since. Deleting the recovery would leave a gap in the history.</dd></div>
+        <div><dt>Options</dt><dd><ul class="opts"><li class="no">Undo deletes the recovery</li><li class="no">Roll back the whole poster</li><li class="yes">Undo saves a new version</li></ul></dd></div>
+        <div class="choice"><dt>Choice</dt><dd>A receipt appears only after the save succeeds: the new versions, what they were copied from and <b>Needs review</b>. Undo saves another version that brings back the previous shadow.</dd></div>
+        <div><dt>Trade-off</dt><dd>“Undo” means something slightly unfamiliar, and history gets longer</dd></div>
+      </dl>
+      <div class="chain">
+        <div class="v"><b>r2</b>approved</div><span class="a">→</span>
+        <div class="v"><b>r3</b>AI edit</div><span class="a">→</span>
+        <div class="v"><b>r4</b>copy of r2</div><span class="a">→</span>
+        <div class="v"><b>r5</b>undo: copy of r3</div>
+      </div>
+      <div class="prin">Principle 2 · Keep history accountable. The approval stays on r2.</div>
+    </div>
+    <div class="s">
+      <div style="flex:1"><div class="shot"><img src="img/g_receipt_panel.jpg" alt="Receipt"></div><div class="scap">After saving: the receipt</div></div>
+      <div style="flex:1"><div class="shot"><img src="img/g_after_undo_panel.jpg" alt="After undo"></div><div class="scap">After undo: r5 is added, nothing is erased</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>10</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Key design decisions · 5 of 5</div>
+  <div class="dec">
+    <div class="t" style="width:100mm">
+      <div class="dhead"><span class="dnum">D5</span></div>
+      <h2>The mask is a dependency, not a top-level item</h2>
+      <dl class="rows" style="margin-top:3mm">
+        <div><dt>Problem</dt><dd>The shadow only looks right with the mask it was made with, and nothing on the poster shows that link. The designer is after the shadow; the mask matters only because the shadow needs it.</dd></div>
+        <div><dt>Options</dt><dd><ul class="opts"><li class="no">A fourth selectable element</li><li class="no">Quietly reuse today's mask</li><li class="yes">A required pair with the shadow</li></ul></dd></div>
+        <div class="choice"><dt>Choice</dt><dd>The Elements list shows “shadow-r3 with mask-r2”. The preview names the mask under <b>Required together</b>. If the mask is missing, recovery stops and says why.</dd></div>
+        <div><dt>Trade-off</dt><dd>The mask is less visible as something you can pick</dd></div>
+      </dl>
+      <div class="prin">Principles 1 and 3 · Make scope visible, prefer an explicit stop</div>
+    </div>
+    <div class="s" style="flex-direction:column;align-items:stretch;gap:3.5mm">
+      <div class="row" style="gap:4mm;align-items:flex-start">
+        <div style="width:36mm;flex:none"><div class="shot"><img src="img/elements_list.jpg" alt="Elements list"></div><div class="scap">Three elements; the mask rides with the shadow</div></div>
+        <div style="flex:1"><div class="shot"><img src="img/mask_required.jpg" alt="Required together"></div><div class="scap">The preview says why the mask comes too</div></div>
+      </div>
+      <div><div class="shot"><img src="img/mask_missing.jpg" alt="Mask missing"></div><div class="scap">If the mask is missing, recovery is blocked. Today's mask is never swapped in.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>11</span></div>
+</section>
+
+<!-- ============ 12 · END-TO-END FLOW ============ -->
+<section class="page">
+  <div class="eyebrow">07 · End-to-end flow</div>
+  <h2>One path to a recovery, and a named exit at every check</h2>
+  <p class="lede" style="margin-bottom:5mm">Nothing is saved until the designer presses “Recover”. The system checks three times along the way, and every exit leaves today's work as it was.</p>
+  <div style="flex:1;display:flex;align-items:center"><img src="img/flow.svg" style="width:100%;display:block" alt="End-to-end recovery flow with exits"></div>
+  <div class="why" style="margin-top:4mm">
+    <div class="card"><b>Check 1 · building the preview</b>Is the source artwork stored? Is its mask stored? Was it made for today's photo position?</div>
+    <div class="card"><b>Check 2 · on “Recover”</b>Has the poster, the approval or the evidence changed since the preview? Did the save succeed?</div>
+    <div class="card"><b>Check 3 · before undo</b>Has the recovered shadow or its mask been edited since? If so, undo would overwrite newer work.</div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>12</span></div>
+</section>
+
+<!-- ============ 13 · EDGE CASES: INVENTORY ============ -->
+<section class="page">
+  <div class="eyebrow">08 · Edge cases and failure states</div>
+  <h2>Nine ways a recovery can stop, each designed</h2>
+  <p class="lede" style="margin-bottom:4mm">Every state can be triggered on demand from the prototype's demo panel, so I built and reviewed each one.</p>
+  <div class="row" style="gap:8mm;flex:1;min-height:0">
+    <div class="col" style="flex:1.45">
+      <table class="ec">
+        <tr><th></th><th>Situation</th><th>Caught</th><th>What the person sees</th><th>Next step</th></tr>
+        <tr><td><b>F1</b></td><td>Source artwork missing</td><td>Preview</td><td>“…cannot be recovered because its source asset is unavailable.”</td><td>Another version, or redo by hand</td></tr>
+        <tr><td><b>F2</b></td><td>Linked mask missing</td><td>Preview</td><td>“…cannot be recovered because its linked mask is unavailable.”</td><td>Another version. Today's mask is never used</td></tr>
+        <tr><td><b>F3</b></td><td>Photo has moved</td><td>Preview</td><td>“This shadow was made for a different product position.”</td><td style="color:var(--mute)">—</td></tr>
+        <tr><td><b>F4</b></td><td>Background changed after preview</td><td>Recover</td><td>“The poster changed after this preview.”</td><td>Build a fresh preview</td></tr>
+        <tr><td><b>F5</b></td><td>Approval withdrawn after preview</td><td>Recover</td><td>Same text as F4; original approval record kept</td><td>Build a fresh preview</td></tr>
+        <tr><td><b>F6</b></td><td>Evidence corrected after preview</td><td>Recover</td><td>Same text as F4</td><td>Build a fresh preview</td></tr>
+        <tr><td><b>F7</b></td><td>Save fails</td><td>Recover</td><td>“…could not be saved, so nothing was changed.” No success shown</td><td>Try saving again</td></tr>
+        <tr><td><b>F8</b></td><td>Recovered shadow edited, then undo</td><td>Undo</td><td>“Undo is unavailable; choose a new recovery instead.”</td><td>Recover again</td></tr>
+        <tr><td><b>F9</b></td><td>Typography clicked</td><td>Select</td><td>“Typography is protected poster content.”</td><td>None needed</td></tr>
+      </table>
+    </div>
+    <div class="col" style="display:flex;flex-direction:column;gap:3mm;justify-content:center">
+      <div><div class="shot"><img src="img/f_src_dialog.jpg" alt="F1 dialog"></div><div class="scap">F1: refuses instead of substituting, with one safe action.</div></div>
+      <div><div class="shot"><img src="img/F7.jpg" alt="F7 dialog"></div><div class="scap">F7: the dialog stays open and nothing is changed.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Exact copy from the prototype, shortened with “…” where marked.</span><span>13</span></div>
+</section>
+
+<!-- ============ 14 · EDGE CASES: MESSAGE AUDIT ============ -->
+<section class="page">
+  <div class="eyebrow">08 · Edge cases and failure states</div>
+  <h2>I audited my own error copy. Two messages failed.</h2>
+  <p class="lede" style="margin-bottom:4mm">Each blocked-state message should answer four questions, without blaming the person.</p>
+  <div class="row" style="gap:9mm;flex:1;min-height:0">
+    <div class="col" style="flex:1.3">
+      <table class="mx au">
+        <tr><th style="text-align:left">Message</th><th>What<br>happened</th><th>Why</th><th>What is<br>safe</th><th>Next<br>step</th><th>No<br>blame</th></tr>
+        <tr><td><b>F1</b> Source unavailable</td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot i"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+        <tr><td><b>F2</b> Mask missing</td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot i"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+        <tr class="fail"><td><b>F3</b> Photo position</td><td><span class="dot y"></span></td><td><span class="dot p"></span></td><td><span class="dot r"></span></td><td><span class="dot r"></span></td><td><span class="dot y"></span></td></tr>
+        <tr><td><b>F4</b> Preview out of date</td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+        <tr class="fail"><td><b>F5, F6</b> Approval or evidence changed</td><td><span class="dot p"></span></td><td><span class="dot r"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+        <tr><td><b>F7</b> Save failed</td><td><span class="dot y"></span></td><td><span class="dot r"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+        <tr><td><b>F8</b> Undo unavailable</td><td><span class="dot y"></span></td><td><span class="dot y"></span></td><td><span class="dot i"></span></td><td><span class="dot y"></span></td><td><span class="dot y"></span></td></tr>
+      </table>
+      <div class="legend"><span><span class="dot y"></span>Yes</span><span><span class="dot p"></span>Partly</span><span><span class="dot i"></span>Implied, not stated</span><span><span class="dot r"></span>No</span></div>
+    </div>
+    <div class="col">
+      <h4>What the audit found</h4>
+      <ul class="b">
+        <li><b>F3 is the weakest.</b> It doesn't say the current photo is safe, and it offers no next step.</li>
+        <li><b>F5 and F6 say the wrong thing.</b> They reuse “The poster changed” when it was the approval or the evidence that changed.</li>
+        <li><b>F1, F2 and F8 imply safety</b> instead of stating it.</li>
+      </ul>
+      <h4 style="margin-top:5mm">Checked in the prototype</h4>
+      <ul class="b">
+        <li>All nine states trigger on demand and show the copy on the previous page</li>
+        <li>Stored data is unchanged after F1 to F8 (reload and inspect)</li>
+        <li>No success message or receipt appears when a save fails</li>
+        <li>Focus moves into each dialog, stays inside, and returns on Escape</li>
+        <li>Status words such as Needs review and Unavailable always appear alongside colour</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>14</span></div>
+</section>
+
+<!-- ============ 15 · ITERATION ============ -->
+<section class="page">
+  <div class="eyebrow">09 · Iteration</div>
+  <h2>Building it changed the specification</h2>
+  <p class="lede" style="margin-bottom:4mm">Each change came from building the prototype and reviewing it in a real browser.</p>
+  <div class="row" style="gap:9mm;flex:1;min-height:0">
+    <div class="it2" style="flex:1.1">
+      <div class="itc"><div class="n">1</div><div><b>The test passed, but the screen was wrong</b>
+        <dl><dt>Noticed</dt><dd>A hidden-state check passed in a simulated page while a CSS rule made the real interface wrong.</dd>
+        <dt>Changed</dt><dd>I now check the rendered app in a browser as well as the underlying rules.</dd></dl></div></div>
+      <div class="itc"><div class="n">2</div><div><b>The difference was too small to see</b>
+        <dl><dt>Noticed</dt><dd>Two full posters side by side made the shadow change nearly invisible.</dd>
+        <dt>Changed</dt><dd>Added enlarged shadow crops under each poster. The dialog got taller, but the decision became visible.</dd></dl></div></div>
+      <div class="itc"><div class="n">3</div><div><b>Too many things competed for attention</b>
+        <dl><dt>Noticed</dt><dd>Nested tinted frames, several drop shadows, uppercase labels and 14px body text.</dd>
+        <dt>Changed</dt><dd>One level of containment, white surfaces with hairline dividers and quieter labels.</dd></dl></div></div>
+      <div class="itc"><div class="n">4</div><div><b>An accessibility fix broke accessibility</b>
+        <dl><dt>Noticed</dt><dd>Making the page behind the dialog inert broke focus return on Escape.</dd>
+        <dt>Changed</dt><dd>Remove the inert state before returning focus. Browser tests caught the regression.</dd></dl></div></div>
+    </div>
+    <div class="col" style="display:flex;flex-direction:column;gap:5mm;justify-content:flex-start">
+      <div><h4><span class="numi">2</span> Enlarged crops added to the preview</h4><div class="shot"><img src="img/it2_crops.jpg" alt="Enlarged shadow crops"></div></div>
+      <div><h4><span class="numi">3</span> History panel, before and after the visual pass</h4>
+        <div class="row" style="gap:4mm"><div class="col"><div class="shot"><img src="img/it3_before.jpg" alt="Before"></div><div class="scap">Before: tinted, nested card</div></div><div class="col"><div class="shot"><img src="img/it3_after.jpg" alt="After"></div><div class="scap">After: white surface, one border</div></div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Lineage · Mahima Shastry</span><span>15</span></div>
+</section>
+
+<!-- ============ 16 · ACCESSIBILITY ============ -->
+<section class="page">
+  <div class="eyebrow">10 · Accessibility</div>
+  <h2>Recovery shouldn't require a mouse</h2>
+  <p class="lede" style="margin-bottom:4mm">I audited four key states with axe-core 4.10.2 and a scripted Playwright keyboard walkthrough in Chromium.</p>
+  <div class="row" style="gap:8mm">
+    <div class="col" style="flex:1.35">
+      <table class="a11y">
+        <tr><th>Check</th><th>Result</th></tr>
+        <tr><td><b>WCAG 2.2 A/AA automated rules</b></td><td><span class="tag ok">0 violations</span> in the default, compare and receipt states. <span class="tag warn">1 serious</span> in the recovery dialog: its scrolling body can't be reached by keyboard.</td></tr>
+        <tr><td><b>Dialog focus</b></td><td>Focus moves in; 30 of 30 Tab presses stay inside; Escape returns focus to the button that opened it.</td></tr>
+        <tr><td><b>Status without colour</b></td><td>Needs review, Will change and Unavailable always appear as words alongside colour.</td></tr>
+        <tr><td><b>Reduced motion</b></td><td>No transitions or animations under reduced-motion settings.</td></tr>
+        <tr><td><b>Reflow</b></td><td>No horizontal scroll at 1440, 1024, 720 or 390px.</td></tr>
+        <tr><td><b>Visible focus</b></td><td>A 2px outline on every stop.</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h4>Fix list from the audit</h4>
+      <table class="a11y">
+        <tr><td style="width:15mm"><span class="tag warn">High</span></td><td>Make the dialog body keyboard-scrollable and labelled. This fixes the one serious violation.</td></tr>
+        <tr><td><span class="tag warn">High</span></td><td>Point <span class="mono">aria-describedby</span> at a one-line summary of what will change.</td></tr>
+        <tr><td><span class="tag blue">Medium</span></td><td>Add a skip link to Elements; move Reset and demo controls to the end of the tab order.</td></tr>
+        <tr><td><span class="tag blue">Medium</span></td><td>Rewrite the canvas hint so it leads with the keyboard: “Choose an element from the list, or click it on the poster.”</td></tr>
+      </table>
+    </div>
+  </div>
+  <div style="margin-top:auto">
+    <h4>The keyboard route, as measured</h4>
+    <img src="img/keyboard.svg" style="width:100%;display:block" alt="Keyboard route">
+  </div>
+  <div class="foot"><span>No WCAG conformance is confirmed. Automated checks can't show the experience works for a disabled person.</span><span>16</span></div>
+</section>
+
+<!-- ============ 17 · REFLECTION ============ -->
+<section class="page">
+  <div class="eyebrow">11 · Reflection</div>
+  <h2>Looking back</h2>
+  <p class="lede" style="margin-bottom:6mm">What I'd keep, what I'd change, and what this project taught me.</p>
+  <div class="rf">
+    <div class="card" style="background:var(--okbg)">
+      <h4 style="color:var(--ok)">What worked</h4>
+      <ul class="b">
+        <li><b>Narrowing the promise.</b> “Copy what was recorded, or refuse” made every later decision easier to explain and to test.</li>
+        <li><b>Designing the “no” states early.</b> Writing the failure rules first meant blocked states were designed.</li>
+        <li><b>Checking the rendered screen.</b> Two of my four iterations only surfaced because I looked at the real interface.</li>
+      </ul>
+    </div>
+    <div class="card" style="background:var(--warnbg)">
+      <h4 style="color:var(--warn)">What I'd do differently</h4>
+      <ul class="b x">
+        <li><b>Talk to designers before building.</b> The approval model rests on teams approving individual elements. A few short conversations would have tested that early.</li>
+        <li><b>Design the reviewer's side alongside the designer's.</b> The lead's half of the loop is still unbuilt.</li>
+        <li><b>Run an accessibility scan on every build.</b> The one serious dialog issue would have been caught sooner.</li>
+      </ul>
+    </div>
+    <div class="card" style="background:var(--ink);color:#fff">
+      <h4 style="color:#9CC9C0">What I learned</h4>
+      <div class="lrn"><b>Accurate data can still mislead.</b>An approval badge that is technically correct tells the wrong story once it travels to a new poster.</div>
+      <div class="lrn"><b>A refusal is a design surface.</b>Blocked states got the same care as the main path: exact copy, current work kept safe, and a next step.</div>
+    </div>
+  </div>
+  <div style="margin-top:auto;border-top:1.2px solid var(--ink);padding-top:5mm;display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-family:'Inter Display';font-weight:700;font-size:24pt;letter-spacing:-.02em;color:var(--teal)">Recover the shadow. Keep the progress.</div>
+    <div style="font-size:9pt;color:var(--mute)">Lineage · Mahima Shastry</div>
+  </div>
+  <div class="foot"><span></span><span>17</span></div>
+</section>
+</div></body></html>
