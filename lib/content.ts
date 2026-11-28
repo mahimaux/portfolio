@@ -576,7 +576,7 @@ export const process = [
     "href": "cases/reframe.dc.html",
     "thumb": "work/reframe.webp",
     "thumbAlt": "Reframe running on a tablet",
-    "readTime": "7 min read"
+    "readTime": "18 min read"
   },
   {
     "n": "03",

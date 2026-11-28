@@ -6,10 +6,10 @@
   "lede": "HalO is a discreet safety ring and companion app concept for women commuting alone in urban and rural India. The ring triggers the emergency. The app handles everything before and after it."
  },
  "reframe": {
-  "words": 1430,
-  "mins": 7,
+  "words": 3758,
+  "mins": 18,
   "title": "Make the page easier to read. Keep the reader in charge.",
-  "lede": "I designed and built Reframe, a reading layer for existing websites. It lets people adjust how a page looks and reads, review suggested changes to the wording, and get back to the published version."
+  "lede": "Reframe is a reading layer that makes dense government pages easier to read, without letting AI change the rules on them."
  },
  "steer": {
   "words": 2494,
